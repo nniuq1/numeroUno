@@ -181,7 +181,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1814796785
+  m_SortingLayerID: 2143037313
   m_SortingLayer: -2
   m_SortingOrder: -998
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
@@ -376,7 +376,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1814796785
+  m_SortingLayerID: 2143037313
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 3011568025020975841}
   - component: {fileID: 1733187646190511211}
   - component: {fileID: 5518515650949313550}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: sofa (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 6256997884027888668}
   - component: {fileID: 6127006187703128449}
   - component: {fileID: 2778772141805688000}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: sofa (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +595,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1800343803628023309}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: d644d7d1e3c024e24991b0d48bf38b8c, type: 2}
+  m_Material: {fileID: 6200000, guid: bc541d843350c41538d22ddad6b65353, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 1293786878303518428}
   - component: {fileID: 8750859103704537906}
   - component: {fileID: 1236542697004984495}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: sofa (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -793,7 +793,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1814796785
+  m_SortingLayerID: 2143037313
   m_SortingLayer: -2
   m_SortingOrder: -999
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
@@ -877,7 +877,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1814796785
+  m_SortingLayerID: 2143037313
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
@@ -961,7 +961,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1814796785
+  m_SortingLayerID: 2143037313
   m_SortingLayer: -2
   m_SortingOrder: -1000
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
@@ -986,7 +986,7 @@ GameObject:
   - component: {fileID: 5335676136337878933}
   - component: {fileID: 2525964046340747424}
   - component: {fileID: 898659910420403271}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: sofa (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1046,7 +1046,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1261789655
+  m_SortingLayerID: 1193220985
   m_SortingLayer: -1
   m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
@@ -1096,7 +1096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2300349294745882143}
   - component: {fileID: 3439000289250242466}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: sofa (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1156,7 +1156,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1261789655
+  m_SortingLayerID: 1193220985
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
@@ -1309,7 +1309,7 @@ GameObject:
   - component: {fileID: 3537666102371864189}
   - component: {fileID: 3621335711380322764}
   - component: {fileID: 7074591786574640801}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: sofa (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1590,7 +1590,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1814796785
+  m_SortingLayerID: 2143037313
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
@@ -1615,7 +1615,7 @@ GameObject:
   - component: {fileID: 7364958567364631952}
   - component: {fileID: 7013342542234918983}
   - component: {fileID: 920253313747068950}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: sofa (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1727,7 +1727,7 @@ GameObject:
   - component: {fileID: 5591706649048696505}
   - component: {fileID: 1117397232497381806}
   - component: {fileID: 6020813437145013346}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: sofa
   m_TagString: Untagged
   m_Icon: {fileID: 0}

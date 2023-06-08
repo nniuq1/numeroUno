@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 5114060779332690144}
   - component: {fileID: 2352948557534440171}
   - component: {fileID: 2502510649443919482}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: square (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 6852827970169866281}
   - component: {fileID: 6294669951414508927}
   - component: {fileID: 7954170799489891991}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: square (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 6437738473876811396}
   - component: {fileID: 1133712727873148910}
   - component: {fileID: 4938827087263811018}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: square (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +716,7 @@ GameObject:
   - component: {fileID: 4814276671880772126}
   - component: {fileID: 3097539659867466896}
   - component: {fileID: 6305090943811745059}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -911,7 +911,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1814796785
+  m_SortingLayerID: 2143037313
   m_SortingLayer: -2
   m_SortingOrder: -1000
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
@@ -1131,7 +1131,7 @@ GameObject:
   - component: {fileID: 3802032442804519800}
   - component: {fileID: 5131140508443654344}
   - component: {fileID: 7660440107080254338}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: square (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1214,7 +1214,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 9159262872422833978}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: d644d7d1e3c024e24991b0d48bf38b8c, type: 2}
+  m_Material: {fileID: 6200000, guid: bc541d843350c41538d22ddad6b65353, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
