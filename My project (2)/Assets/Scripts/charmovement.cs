@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class charmovement : MonoBehaviour
+public class charmovement : NetworkBehaviour
 {
     private Rigidbody2D rb;
     public float speed = 5;
@@ -14,7 +15,10 @@ public class charmovement : MonoBehaviour
 
     public Vector2 wallStopDimentions;
     public LayerMask sideMask;
-
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) Destroy(this);
+    }
     // Start is called before the first frame update
     void Start()
     {
