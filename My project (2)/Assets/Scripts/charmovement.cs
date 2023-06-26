@@ -19,7 +19,7 @@ public class charmovement : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            transform.GetChild(1).GetComponent<Camera>().targetDisplay = 1;
+            transform.GetChild(1).GetComponent<Camera>().targetDisplay = 2;
             Destroy(this);
         }
     }
