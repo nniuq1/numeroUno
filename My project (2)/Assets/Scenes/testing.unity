@@ -309,6 +309,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1554327350627883728, guid: 00df4403b0263434f98707b47582e8cb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554327350627883728, guid: 00df4403b0263434f98707b47582e8cb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4342881439462133313, guid: 00df4403b0263434f98707b47582e8cb, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3563075371
@@ -363,7 +371,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4342881439462133325, guid: 00df4403b0263434f98707b47582e8cb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152070158669296646, guid: 00df4403b0263434f98707b47582e8cb, type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152070158669296646, guid: 00df4403b0263434f98707b47582e8cb, type: 3}
+      propertyPath: field of view
+      value: 134.72351
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152070158669296646, guid: 00df4403b0263434f98707b47582e8cb, type: 3}
+      propertyPath: orthographic size
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
