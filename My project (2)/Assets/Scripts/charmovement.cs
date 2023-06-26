@@ -17,7 +17,11 @@ public class charmovement : NetworkBehaviour
     public LayerMask sideMask;
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner) Destroy(this);
+        if (!IsOwner)
+        {
+            transform.GetChild(1).GetComponent<Camera>().targetDisplay = Display.displays[1];
+            Destroy(this);
+        }
     }
     // Start is called before the first frame update
     void Start()
