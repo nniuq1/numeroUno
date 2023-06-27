@@ -22,6 +22,7 @@ public class positionSharing : NetworkBehaviour
         }
         else
         {
+            print(_netPos.Value);
             transform.position = _netPos.Value;
         }
     }
