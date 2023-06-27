@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class projectileScript : MonoBehaviour
 {
+    public GameObject explosion;
+    public bool explodes = false;
     public itemClass item;
 
     private void Start()
@@ -28,6 +30,10 @@ public class projectileScript : MonoBehaviour
     {
         if (!collision.CompareTag("Player") && !collision.CompareTag("projectile"))
         {
+            if (explodes)
+            {
+                Instantiate(explosion, transform.position, transform.rotation, null);
+            }
             Destroy(gameObject);
         }
     }

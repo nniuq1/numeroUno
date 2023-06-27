@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddb52ec0759284d6abf0a54266bf4f46, type: 3}
-  m_Name: lazerGun
+  m_Name: mines
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: b9fbcd1d6c8244009bbab0a41dbb845d, type: 3}
+  sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   weapontype: 0
-  explodes: 0
-  weaponSize: {x: 1.5, y: 0.9}
-  canHoldDown: 1
+  explodes: 1
+  weaponSize: {x: 0.75, y: 0.2}
+  canHoldDown: 0
   projectileSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  bulletSize: {x: 1, y: 0.035}
-  bulletColor: {r: 1, g: 0, b: 0, a: 1}
-  projectileSpeed: 60
-  timeBetweenShots: 0.0025
-  bulletDamage: 0.0000625
+  bulletSize: {x: 0.75, y: 0.2}
+  bulletColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
+  projectileSpeed: 10
+  timeBetweenShots: 1
+  bulletDamage: 0
   MeleeAtackArea: {x: 0, y: 0}
   timeBetweenMeleeAtack: 0
   attackSpeed: 0

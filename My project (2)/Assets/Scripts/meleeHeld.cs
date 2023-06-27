@@ -9,7 +9,7 @@ public class meleeHeld : MonoBehaviour
 
     private void Update()
     {
-        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.parent.position.x)
+        if (transform.parent.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition).x > transform.parent.position.x)
         {
             transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].weaponSize;
             transform.rotation = Quaternion.Euler(0, 0, -90);
@@ -17,7 +17,7 @@ public class meleeHeld : MonoBehaviour
         }
         else
         {
-            transform.localScale = new Vector2((Inventory.itemClasses[(int)Inventory.itemSelected].MeleeAtackArea.x) + 0.5f, Inventory.itemClasses[(int)Inventory.itemSelected].MeleeAtackArea.x + 0.5f);
+            transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].weaponSize;
             transform.rotation = Quaternion.Euler(0, 0, 90);
             transform.position = new Vector2(transform.parent.position.x - transform.localScale.y / 2, transform.parent.position.y);
         }

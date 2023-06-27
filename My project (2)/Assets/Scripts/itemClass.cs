@@ -15,6 +15,8 @@ public class itemClass : ScriptableObject
     };
     public WeaponType weapontype;
 
+    public bool explodes = false;
+
     public Vector2 weaponSize = new Vector2(0.8f, 0.8f);
     public bool canHoldDown;
     public Sprite projectileSprite;

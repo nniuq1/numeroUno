@@ -11,7 +11,7 @@ public class pointHeld : MonoBehaviour
 
     private void Update()
     {
-        Vector3 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 dir = transform.parent.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
@@ -33,6 +33,10 @@ public class pointHeld : MonoBehaviour
                 GameObject newBullet = Instantiate(projectile, transform.position, transform.rotation);
                 newBullet.GetComponent<projectileScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
                 newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
+                if (Inventory.itemClasses[(int)Inventory.itemSelected].explodes)
+                {
+                    newBullet.GetComponent<projectileScript>().explodes = true;
+                }
             }
         }
         else
@@ -44,6 +48,10 @@ public class pointHeld : MonoBehaviour
                 GameObject newBullet = Instantiate(projectile, transform.position, transform.rotation);
                 newBullet.GetComponent<projectileScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
                 newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
+                if (Inventory.itemClasses[(int)Inventory.itemSelected].explodes)
+                {
+                    newBullet.GetComponent<projectileScript>().explodes = true;
+                }
             }
         }
     }
