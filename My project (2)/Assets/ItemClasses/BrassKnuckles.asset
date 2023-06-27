@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 4a3c64ec8ad964011aa28fb633e9b153, type: 3}
   weapontype: 1
-  explodes: 0
+  explodes: 1
   weaponSize: {x: 0.8, y: 0.8}
   canHoldDown: 0
   projectileSprite: {fileID: 0}
