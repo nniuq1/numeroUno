@@ -9,9 +9,7 @@ public class positionSharing : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner)
-        {
-        }
+        
     }
     // Update is called once per frame
     void Update()
