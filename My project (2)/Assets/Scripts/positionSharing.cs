@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class positionSharing : NetworkBehaviour
 {
-    public NetworkVariable<Vector2> _netPos = new NetworkVariable<Vector2>(writePerm: NetworkVariableWritePermission.Owner);
+    public NetworkVariable<Vector3> _netPos = new NetworkVariable<Vector3>(writePerm: NetworkVariableWritePermission.Owner);
 
     public override void OnNetworkSpawn()
     {
