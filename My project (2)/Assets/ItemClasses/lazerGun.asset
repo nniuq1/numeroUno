@@ -14,15 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b9fbcd1d6c8244009bbab0a41dbb845d, type: 3}
   weapontype: 0
-  explodes: 1
+  explodes: 0
+  explosionDelay: 0
   weaponSize: {x: 1.5, y: 0.9}
   canHoldDown: 1
   projectileSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   bulletSize: {x: 1, y: 0.035}
   bulletColor: {r: 1, g: 0, b: 0, a: 1}
-  projectileSpeed: 60
-  timeBetweenShots: 0.0025
+  projectileSpeed: 50
+  timeBetweenShots: 0
   bulletDamage: 0.0000625
+  gravityScale: 0
   MeleeAtackArea: {x: 0, y: 0}
   timeBetweenMeleeAtack: 0
   attackSpeed: 0
