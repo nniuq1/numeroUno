@@ -21,7 +21,7 @@ MonoBehaviour:
   projectileSprite: {fileID: 21300000, guid: b99271736cafc41198cb5204231e9f8f, type: 3}
   projectile: {fileID: 8204904633328365783, guid: 7c3229b251aae4aee9af357fc60572ee, type: 3}
   bulletSize: {x: 0.2, y: 0.2}
-  bulletColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
+  bulletColor: {r: 1, g: 1, b: 1, a: 1}
   projectileSpeed: 10
   timeBetweenShots: 1
   bulletDamage: 0
