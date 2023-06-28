@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb52ec0759284d6abf0a54266bf4f46, type: 3}
   m_Name: mines
   m_EditorClassIdentifier: 
-  sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  sprite: {fileID: 21300000, guid: b99271736cafc41198cb5204231e9f8f, type: 3}
   weapontype: 0
   explodes: 1
   explosionDelay: 7
   weaponSize: {x: 0.75, y: 0.2}
   canHoldDown: 0
-  projectileSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  projectileSprite: {fileID: 21300000, guid: b99271736cafc41198cb5204231e9f8f, type: 3}
   projectile: {fileID: 8204904633328365783, guid: 7c3229b251aae4aee9af357fc60572ee, type: 3}
   bulletSize: {x: 0.75, y: 0.2}
   bulletColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
