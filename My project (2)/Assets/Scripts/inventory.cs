@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class inventory : MonoBehaviour
 {
+    GameObject inventoryUI;
     public List<itemCombo> combinations;
     public List<itemClass> itemClasses = new List<itemClass>();
     public float itemSelected = 0;
+
+    private void Start()
+    {
+        inventoryUI = GameObject.FindObjectOfType<Canvas>().transform.GetChild(2).gameObject;
+    }
 
     private void Update()
     {
@@ -59,6 +66,41 @@ public class inventory : MonoBehaviour
                 transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
                 transform.GetChild(2).GetChild(0).localScale = new Vector3(0.8f, 0.8f, 1);
                 transform.GetChild(2).GetChild(0).position = transform.position;
+            }
+        }
+
+        if (itemClasses.Count > 0)
+        {
+            inventoryUI.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected].sprite;
+            if (itemClasses.Count > 1)
+            {
+                if ((int)itemSelected == itemClasses.Count - 1)
+                {
+                    inventoryUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = itemClasses[0].sprite;
+                }
+                else
+                {
+                    inventoryUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected + 1].sprite;
+                }
+            }
+            else
+            {
+                inventoryUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected].sprite;
+            }
+            if (itemClasses.Count > 1)
+            {
+                if ((int)itemSelected == 0)
+                {
+                    inventoryUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = itemClasses[itemClasses.Count - 1].sprite;
+                }
+                else
+                {
+                    inventoryUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected - 1].sprite;
+                }
+            }
+            else
+            {
+                inventoryUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected].sprite;
             }
         }
     }
