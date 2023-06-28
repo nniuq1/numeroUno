@@ -15,6 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   weapontype: 0
   explodes: 1
+  explosionDelay: 7
   weaponSize: {x: 0.75, y: 0.2}
   canHoldDown: 0
   projectileSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
@@ -23,6 +24,7 @@ MonoBehaviour:
   projectileSpeed: 10
   timeBetweenShots: 1
   bulletDamage: 0
+  gravityScale: 1
   MeleeAtackArea: {x: 0, y: 0}
   timeBetweenMeleeAtack: 0
   attackSpeed: 0

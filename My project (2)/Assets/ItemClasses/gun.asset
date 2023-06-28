@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 4f4a16d7c3f344d0a8eca4a6c06b4108, type: 3}
   weapontype: 0
-  explodes: 1
+  explodes: 0
+  explosionDelay: 0
   weaponSize: {x: 0.8, y: 0.8}
   canHoldDown: 0
   projectileSprite: {fileID: 21300000, guid: be13c71e778b345d4b7f0a28c69ed6c1, type: 3}
@@ -23,6 +24,7 @@ MonoBehaviour:
   projectileSpeed: 17.5
   timeBetweenShots: 0.5
   bulletDamage: 1.5
+  gravityScale: 0.1
   MeleeAtackArea: {x: 0, y: 0}
   timeBetweenMeleeAtack: 0
   attackSpeed: 0

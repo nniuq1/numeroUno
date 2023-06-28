@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c9bd7eb1f944252b829ab4e8feb24f, type: 3}
   m_Name: mine+knuckles
   m_EditorClassIdentifier: 
-  ingredients: []
-  result: {fileID: 0}
+  ingredients:
+  - {fileID: 11400000, guid: 2122911f9bbe4473692d7f3a5088e96b, type: 2}
+  - {fileID: 11400000, guid: 49fbbbaa2a47045f7a137a983adb44f5, type: 2}
+  result: {fileID: 11400000, guid: 9aeccde0696a743f0be952a4d58682d3, type: 2}

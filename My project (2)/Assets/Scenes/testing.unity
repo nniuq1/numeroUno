@@ -159,6 +159,9 @@ MonoBehaviour:
   - {fileID: 5126515106361190977, guid: ac959d6b5ff894553b2b29649d6be0ba, type: 3}
   - {fileID: 7143771224573497292, guid: f9002dc1c3ba847fbb1d0c94abacd5dc, type: 3}
   - {fileID: 6389761062500396564, guid: 13397708cda07437d99c37d7222093ed, type: 3}
+  - {fileID: 6389761062500396564, guid: 13397708cda07437d99c37d7222093ed, type: 3}
+  - {fileID: 6389761062500396564, guid: 13397708cda07437d99c37d7222093ed, type: 3}
+  - {fileID: 6389761062500396564, guid: 13397708cda07437d99c37d7222093ed, type: 3}
   roomsLeft:
   - {fileID: 702647809786854491, guid: d27650dab13e144c2bd8c20e89d9f79f, type: 3}
   - {fileID: 8838424430042753736, guid: f64a774e261be44789a3ce0f392d26cc, type: 3}
@@ -187,7 +190,7 @@ MonoBehaviour:
   leftHamburguesa: {fileID: 8764721422024707704, guid: 4dc1a119635b24fc186bca312386a571, type: 3}
   midHamburguesa: {fileID: 8865017226026932759, guid: ba0c25b37e02541aea82d5fb1126765b, type: 3}
   rightHamburguesa: {fileID: 8080989971241210567, guid: abc74206701fe473b96520ede09faa17, type: 3}
-  length: 6
+  length: 7
   height: 6
 --- !u!4 &1853245188
 Transform:

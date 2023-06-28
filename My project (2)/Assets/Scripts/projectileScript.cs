@@ -29,7 +29,10 @@ public class projectileScript : MonoBehaviour
     IEnumerator death()
     {
         yield return new WaitForSeconds(5);
-        Destroy(gameObject);
+        if (move)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
