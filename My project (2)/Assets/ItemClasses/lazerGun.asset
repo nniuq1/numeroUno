@@ -19,6 +19,7 @@ MonoBehaviour:
   weaponSize: {x: 1.5, y: 0.9}
   canHoldDown: 1
   projectileSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  projectile: {fileID: 8204904633328365783, guid: 7c3229b251aae4aee9af357fc60572ee, type: 3}
   bulletSize: {x: 1, y: 0.035}
   bulletColor: {r: 1, g: 0, b: 0, a: 1}
   projectileSpeed: 50

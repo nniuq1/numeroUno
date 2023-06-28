@@ -32,14 +32,23 @@ public class pointHeld : NetworkBehaviour
             {
                 canShoot = false;
                 StartCoroutine(timeBetween());
-                GameObject newBullet = Instantiate(projectile, transform.position, transform.rotation);
-                newBullet.GetComponent<projectileScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
-                newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
-                if (Inventory.itemClasses[(int)Inventory.itemSelected].explodes)
+                GameObject newBullet = Instantiate(Inventory.itemClasses[(int)Inventory.itemSelected].projectile, transform.position, transform.rotation);
+                if (Inventory.itemClasses[(int)Inventory.itemSelected].projectile.GetComponent<projectileScript>() != null)
                 {
-                    newBullet.GetComponent<projectileScript>().explodes = true;
-                    newBullet.GetComponent<projectileScript>().explosionDelay = Inventory.itemClasses[(int)Inventory.itemSelected].explosionDelay;
+                    newBullet.GetComponent<projectileScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
+                    if (Inventory.itemClasses[(int)Inventory.itemSelected].explodes)
+                    {
+                        newBullet.GetComponent<projectileScript>().explodes = true;
+                        newBullet.GetComponent<projectileScript>().explosionDelay = Inventory.itemClasses[(int)Inventory.itemSelected].explosionDelay;
+                    }
+                    newBullet.GetComponent<projectileScript>().player = transform.parent.parent.gameObject;
                 }
+                else
+                {
+                    newBullet.GetComponent<kaboomarangScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
+                }
+                newBullet.GetComponent<kaboomarangScript>().player = transform.parent.parent.gameObject;
+                newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
                 newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected].gravityScale;
             }
         }
@@ -49,14 +58,23 @@ public class pointHeld : NetworkBehaviour
             {
                 canShoot = false;
                 StartCoroutine(timeBetween());
-                GameObject newBullet = Instantiate(projectile, transform.position, transform.rotation);
-                newBullet.GetComponent<projectileScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
-                newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
-                if (Inventory.itemClasses[(int)Inventory.itemSelected].explodes)
+                GameObject newBullet = Instantiate(Inventory.itemClasses[(int)Inventory.itemSelected].projectile, transform.position, transform.rotation);
+                if (Inventory.itemClasses[(int)Inventory.itemSelected].projectile.GetComponent<projectileScript>() != null)
                 {
-                    newBullet.GetComponent<projectileScript>().explodes = true;
-                    newBullet.GetComponent<projectileScript>().explosionDelay = Inventory.itemClasses[(int)Inventory.itemSelected].explosionDelay;
+                    newBullet.GetComponent<projectileScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
+                    if (Inventory.itemClasses[(int)Inventory.itemSelected].explodes)
+                    {
+                        newBullet.GetComponent<projectileScript>().explodes = true;
+                        newBullet.GetComponent<projectileScript>().explosionDelay = Inventory.itemClasses[(int)Inventory.itemSelected].explosionDelay;
+                    }
+                    newBullet.GetComponent<projectileScript>().player = transform.parent.parent.gameObject;
                 }
+                else
+                {
+                    newBullet.GetComponent<kaboomarangScript>().player = transform.parent.parent.gameObject;
+                    newBullet.GetComponent<kaboomarangScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
+                }
+                newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
                 newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected].gravityScale;
             }
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class projectileScript : MonoBehaviour
 {
+    public GameObject player;
     bool move = true;
     public float explosionDelay = 0;
     public GameObject explosion;
@@ -37,7 +38,7 @@ public class projectileScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Player") && !collision.CompareTag("projectile"))
+        if (collision.transform.gameObject != player && !collision.CompareTag("projectile"))
         {
             if (explodes)
             {

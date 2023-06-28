@@ -21,6 +21,7 @@ public class itemClass : ScriptableObject
     public Vector2 weaponSize = new Vector2(0.8f, 0.8f);
     public bool canHoldDown;
     public Sprite projectileSprite;
+    public GameObject projectile;
     public Vector2 bulletSize = new Vector2(1, 1);
     public Color bulletColor = Color.white;
     public float projectileSpeed;
