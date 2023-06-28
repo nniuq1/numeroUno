@@ -49,6 +49,12 @@ public class projectileScript : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if (!move && collision.CompareTag("Player") && collision.gameObject != player)
+        {
+            Instantiate(explosion, transform.position, transform.rotation, null);
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator explodeDelay()
