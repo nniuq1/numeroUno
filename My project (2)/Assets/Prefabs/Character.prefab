@@ -244,6 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa66040153ce4bd3b0bbd0de6e96435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combinations:
+  - {fileID: 11400000, guid: 532d5e5fbfbf44534803c9f1f3679167, type: 2}
   itemClasses: []
   itemSelected: 0
 --- !u!61 &4342881439462133317

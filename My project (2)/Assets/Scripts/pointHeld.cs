@@ -37,7 +37,9 @@ public class pointHeld : MonoBehaviour
                 if (Inventory.itemClasses[(int)Inventory.itemSelected].explodes)
                 {
                     newBullet.GetComponent<projectileScript>().explodes = true;
+                    newBullet.GetComponent<projectileScript>().explosionDelay = Inventory.itemClasses[(int)Inventory.itemSelected].explosionDelay;
                 }
+                newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected].gravityScale;
             }
         }
         else
@@ -52,7 +54,9 @@ public class pointHeld : MonoBehaviour
                 if (Inventory.itemClasses[(int)Inventory.itemSelected].explodes)
                 {
                     newBullet.GetComponent<projectileScript>().explodes = true;
+                    newBullet.GetComponent<projectileScript>().explosionDelay = Inventory.itemClasses[(int)Inventory.itemSelected].explosionDelay;
                 }
+                newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected].gravityScale;
             }
         }
     }

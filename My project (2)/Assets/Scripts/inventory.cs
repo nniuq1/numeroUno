@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class inventory : MonoBehaviour
 {
+    public List<itemCombo> combinations;
     public List<itemClass> itemClasses = new List<itemClass>();
     public float itemSelected = 0;
 
@@ -68,6 +69,39 @@ public class inventory : MonoBehaviour
         {
             Destroy(collision.gameObject);
             itemClasses.Add(collision.transform.GetComponent<itemScript>().itemclass);
+            CheckComboes();
+        }
+    }
+
+    public void CheckComboes()
+    {
+        for (int c = 0; c < combinations.Count; c++)
+        {
+            bool makes = true;
+            for (int i = 0; i < combinations[c].ingredients.Count; i++)
+            {
+                bool hasIt = false;
+                for (int clas = 0; clas < itemClasses.Count; clas++)
+                {
+                    if (itemClasses[clas] == combinations[c].ingredients[i])
+                    {
+                        hasIt = true;
+                    }
+                }
+                if (hasIt == false)
+                {
+                    makes = false;
+                }
+            }
+            if (makes == true)
+            {
+                for (int i = 0; i < combinations[c].ingredients.Count; i++)
+                {
+                    itemClasses.Remove(combinations[c].ingredients[i]);
+                }
+                itemClasses.Add(combinations[c].result);
+                CheckComboes();
+            }
         }
     }
 }

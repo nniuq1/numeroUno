@@ -16,6 +16,7 @@ public class itemClass : ScriptableObject
     public WeaponType weapontype;
 
     public bool explodes = false;
+    public float explosionDelay = 0;
 
     public Vector2 weaponSize = new Vector2(0.8f, 0.8f);
     public bool canHoldDown;
@@ -25,6 +26,7 @@ public class itemClass : ScriptableObject
     public float projectileSpeed;
     public float timeBetweenShots;
     public float bulletDamage;
+    public float gravityScale = 0;
 
     public Vector2 MeleeAtackArea;
     public float timeBetweenMeleeAtack;
