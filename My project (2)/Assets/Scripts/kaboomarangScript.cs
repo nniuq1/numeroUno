@@ -45,7 +45,7 @@ public class kaboomarangScript : MonoBehaviour
     {
         if (leaving)
         {
-            if (collision.transform.gameObject != player && !collision.CompareTag("projectile"))
+            if (collision.transform.gameObject != player && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
             {
                 leaving = false;
                 Instantiate(explosion, transform.position, transform.rotation);

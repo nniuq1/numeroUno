@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 5134748193751815681}
   - component: {fileID: 7495363402182287697}
   - component: {fileID: 1827180635405932210}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: square (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 7314584198652232955}
   - component: {fileID: 4145514295956221235}
   - component: {fileID: 7371276699242124049}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: square (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 3638324040825697773}
   - component: {fileID: 6698391394253603849}
   - component: {fileID: 8012783850434522327}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: square (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ GameObject:
   - component: {fileID: 7711268730539472107}
   - component: {fileID: 3458779106510246392}
   - component: {fileID: 2267008558333743066}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: square (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1178,7 +1178,7 @@ GameObject:
   - component: {fileID: 5042017342255490257}
   - component: {fileID: 370828411345580189}
   - component: {fileID: 2564150971239350555}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: square (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1393,7 +1393,7 @@ GameObject:
   - component: {fileID: 2604287823605686731}
   - component: {fileID: 7856011757197499421}
   - component: {fileID: 638193432978690512}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: square (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1719,7 +1719,7 @@ GameObject:
   - component: {fileID: 4231198924281358374}
   - component: {fileID: 1552401714665739664}
   - component: {fileID: 8810648200735615324}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: square (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2240,7 +2240,7 @@ GameObject:
   - component: {fileID: 407729205953259355}
   - component: {fileID: 1727311322648877542}
   - component: {fileID: 7389111031991279185}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: square (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

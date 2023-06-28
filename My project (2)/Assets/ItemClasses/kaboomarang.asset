@@ -19,11 +19,11 @@ MonoBehaviour:
   weaponSize: {x: 1, y: 1}
   canHoldDown: 1
   projectileSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  projectile: {fileID: 0}
+  projectile: {fileID: 5775257510328848719, guid: 536e388a3634341218c8897bbaa55345, type: 3}
   bulletSize: {x: 1, y: 1}
   bulletColor: {r: 1, g: 1, b: 1, a: 1}
-  projectileSpeed: 20
-  timeBetweenShots: 0
+  projectileSpeed: 30
+  timeBetweenShots: 1
   bulletDamage: 2
   gravityScale: 0
   MeleeAtackArea: {x: 0, y: 0}

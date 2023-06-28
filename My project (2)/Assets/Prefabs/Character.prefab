@@ -227,7 +227,7 @@ MonoBehaviour:
   jumpTestDimentions: {x: 0.7, y: 0.1}
   jumpMask:
     serializedVersion: 2
-    m_Bits: 193
+    m_Bits: 1217
   wallStopDimentions: {x: 0.1, y: 1.95}
   sideMask:
     serializedVersion: 2
