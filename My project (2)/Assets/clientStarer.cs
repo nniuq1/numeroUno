@@ -11,5 +11,12 @@ public class clientStarer : MonoBehaviour
     {
         bees.StartClient();
         transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
+    }
+    public void formTheHive()
+    {
+        bees.StartServer();
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
     }
 }
