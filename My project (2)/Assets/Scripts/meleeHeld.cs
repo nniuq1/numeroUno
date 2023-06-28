@@ -11,6 +11,7 @@ public class meleeHeld : MonoBehaviour
 
     private void Update()
     {
+        transform.GetComponent<Animator>().enabled = true;
         if (transform.parent.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition).x > transform.parent.position.x)
         {
             transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].weaponSize;

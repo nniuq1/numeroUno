@@ -14,6 +14,7 @@ public class hamburguesaHeld : MonoBehaviour
 
     private void Update()
     {
+        transform.GetComponent<Animator>().enabled = false;
         if (Input.GetMouseButton(0))
         {
             timeRemaining -= Time.deltaTime;

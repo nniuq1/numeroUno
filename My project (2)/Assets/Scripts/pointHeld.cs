@@ -11,6 +11,7 @@ public class pointHeld : MonoBehaviour
 
     private void Update()
     {
+        transform.GetComponent<Animator>().enabled = false;
         Vector3 dir = transform.parent.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
