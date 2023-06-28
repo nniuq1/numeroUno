@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Netcode;
 
-public class pointHeld : MonoBehaviour
+public class pointHeld : NetworkBehaviour
 {
     bool canShoot = true;
     public inventory Inventory;
@@ -27,7 +28,7 @@ public class pointHeld : MonoBehaviour
 
         if (Inventory.itemClasses[(int)Inventory.itemSelected].canHoldDown)
         {
-            if (Input.GetMouseButton(0) && canShoot)
+            if (Input.GetMouseButton(0) && canShoot && IsOwner)
             {
                 canShoot = false;
                 StartCoroutine(timeBetween());
@@ -44,7 +45,7 @@ public class pointHeld : MonoBehaviour
         }
         else
         {
-            if (Input.GetMouseButtonDown(0) && canShoot)
+            if (Input.GetMouseButtonDown(0) && canShoot && IsOwner)
             {
                 canShoot = false;
                 StartCoroutine(timeBetween());
