@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class projectileScript : MonoBehaviour
 {
+    public float damage;
     public GameObject player;
     bool move = true;
     public float explosionDelay = 0;
@@ -46,15 +47,19 @@ public class projectileScript : MonoBehaviour
             }
             else
             {
+                if (collision.CompareTag("Player"))
+                {
+                    collision.GetComponent<playerHealth>().TakeDamage(damage);
+                }
                 Destroy(gameObject);
             }
         }
 
-        if (!move && collision.CompareTag("Player") && collision.gameObject != player)
+        /*if (!move && collision.CompareTag("Player") && collision.gameObject != player)
         {
             Instantiate(explosion, transform.position, transform.rotation, null);
             Destroy(gameObject);
-        }
+        }*/
     }
 
     IEnumerator explodeDelay()
