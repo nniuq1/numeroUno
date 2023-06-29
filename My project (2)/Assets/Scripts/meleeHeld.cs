@@ -54,7 +54,10 @@ public class meleeHeld : MonoBehaviour
                         Instantiate(explosion, attackBox[i].transform.position, Quaternion.Euler(0, -90, 0));
                     }
                 }
-                Destroy(attackBox[i].gameObject);
+                if (!attackBox[i].CompareTag("Player"))
+                {
+                    Destroy(attackBox[i].gameObject);
+                }
             }
         }
     }
