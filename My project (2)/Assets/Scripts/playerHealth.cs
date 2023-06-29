@@ -18,6 +18,7 @@ public class playerHealth : NetworkBehaviour
 
     public void TakeDamage(float damage)
     {
+        print("owie wowie");
         _netHealth.Value -= damage;
     }
 
