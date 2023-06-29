@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb52ec0759284d6abf0a54266bf4f46, type: 3}
   m_Name: sword
   m_EditorClassIdentifier: 
+  Name: Sword
   sprite: {fileID: 21300000, guid: d54a93a269d484043a9d89fa624dbf90, type: 3}
   weapontype: 1
   explodes: 0
@@ -19,6 +20,7 @@ MonoBehaviour:
   weaponSize: {x: 2.5, y: 2.5}
   canHoldDown: 0
   projectileSprite: {fileID: 0}
+  projectile: {fileID: 0}
   bulletSize: {x: 0, y: 0}
   bulletColor: {r: 0, g: 0, b: 0, a: 1}
   projectileSpeed: 0

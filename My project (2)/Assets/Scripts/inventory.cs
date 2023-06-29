@@ -19,12 +19,12 @@ public class inventory : MonoBehaviour
     {
         if (Input.mouseScrollDelta.y != 0)
         {
-            itemSelected += Input.mouseScrollDelta.y;
+            itemSelected += Input.mouseScrollDelta.y * 2;
             if (itemSelected < 0)
             {
                 itemSelected = itemClasses.Count - 0.001f;
             }
-            if (itemSelected > itemClasses.Count - 0.001f)
+            if (itemSelected > itemClasses.Count - 0.0001f)
             {
                 itemSelected = 0;
             }
@@ -71,7 +71,20 @@ public class inventory : MonoBehaviour
 
         if (itemClasses.Count > 0)
         {
+            inventoryUI.transform.GetChild(3).GetComponent<Text>().text = itemClasses[(int)itemSelected].Name;
+
+
             inventoryUI.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected].sprite;
+
+            if (itemClasses[(int)itemSelected].weaponSize.x > itemClasses[(int)itemSelected].weaponSize.y)
+            {
+                inventoryUI.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = itemClasses[(int)itemSelected].weaponSize/ itemClasses[(int)itemSelected].weaponSize.x * 0.8f;
+            }
+            else
+            {
+                inventoryUI.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = itemClasses[(int)itemSelected].weaponSize / itemClasses[(int)itemSelected].weaponSize.y * 0.8f;
+            }
+
             if (itemClasses.Count > 1)
             {
                 if ((int)itemSelected == itemClasses.Count - 1)

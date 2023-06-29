@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb52ec0759284d6abf0a54266bf4f46, type: 3}
   m_Name: Hamburguesa
   m_EditorClassIdentifier: 
+  Name: La Hamburguesa
   sprite: {fileID: 21300000, guid: d1418852566064e918ac47878f5ca3e4, type: 3}
   weapontype: 2
+  explodes: 0
+  explosionDelay: 0
   weaponSize: {x: 0.8, y: 0.8}
   canHoldDown: 0
   projectileSprite: {fileID: 0}
+  projectile: {fileID: 0}
   bulletSize: {x: 1, y: 1}
   bulletColor: {r: 1, g: 1, b: 1, a: 1}
   projectileSpeed: 0
   timeBetweenShots: 0
   bulletDamage: 0
+  gravityScale: 0
   MeleeAtackArea: {x: 0, y: 0}
   timeBetweenMeleeAtack: 0
   attackSpeed: 0
