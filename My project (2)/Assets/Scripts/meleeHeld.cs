@@ -58,6 +58,10 @@ public class meleeHeld : MonoBehaviour
                 {
                     Destroy(attackBox[i].gameObject);
                 }
+                else
+                {
+                    attackBox[i].GetComponent<playerHealth>().TakeDamage(Inventory.itemClasses[(int)Inventory.itemSelected].MeleeDamage);
+                }
             }
         }
     }
