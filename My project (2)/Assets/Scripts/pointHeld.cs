@@ -52,6 +52,7 @@ public class pointHeld : NetworkBehaviour
                 }
                 newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
                 newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected].gravityScale;
+                newBullet.GetComponent<NetworkObject>().Spawn();
             }
         }
         else
@@ -79,6 +80,7 @@ public class pointHeld : NetworkBehaviour
                 }
                 newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
                 newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected].gravityScale;
+                newBullet.GetComponent<NetworkObject>().Spawn();
             }
         }
     }

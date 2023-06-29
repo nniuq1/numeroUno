@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8204904633328365780}
   - component: {fileID: -3064574391192697962}
   - component: {fileID: -8375682462511935843}
+  - component: {fileID: 1486466290496329017}
   m_Layer: 9
   m_Name: ProjectilePreset
   m_TagString: projectile
@@ -99,7 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5103cc6d1cd4873ad19c6739f48c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  player: {fileID: 0}
+  explosionDelay: 0
   explosion: {fileID: 4256091626931696415, guid: 082249be930584e259c7db2468300bbe, type: 3}
+  explodes: 0
   item: {fileID: 0}
 --- !u!61 &-3064574391192697962
 BoxCollider2D:
@@ -148,3 +153,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1486466290496329017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8204904633328365783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
