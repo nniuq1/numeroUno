@@ -24,7 +24,7 @@ public class playerHealth : NetworkBehaviour
 
     void Update()
     {
-        if (!IsOwner)
+        if (IsOwner)
         {
             print(_netHealth.Value);
         }
