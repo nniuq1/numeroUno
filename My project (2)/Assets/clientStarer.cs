@@ -14,6 +14,7 @@ public class clientStarer : MonoBehaviour
         Destroy(tempCamera.gameObject);
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(true);
     }
     public void formTheHive()
     {
@@ -21,5 +22,7 @@ public class clientStarer : MonoBehaviour
         Destroy(tempCamera.gameObject);
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(true);
+
     }
 }
