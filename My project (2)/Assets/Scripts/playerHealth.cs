@@ -13,20 +13,28 @@ public class playerHealth : NetworkBehaviour
     {
         if (IsOwner)
         {
-            _netHealth.Value = startHealth;
+            health = startHealth;
         }
     }
 
     public void TakeDamage(float damage)
     {
-        _netHealth.Value -= damage;
+        if (IsServer)
+        {
+            health -= damage;
+        }
     }
 
     void Update()
     {
-        if (IsOwner)
+        if (IsServer)
         {
-            print(_netHealth.Value);
+            _netHealth.Value = health;
+        }
+        else
+        {
+            health = _netHealth.Value;
+            print(health);
         }
     
     }
