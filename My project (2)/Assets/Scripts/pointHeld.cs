@@ -43,6 +43,7 @@ public class pointHeld : NetworkBehaviour
                         newBullet.GetComponent<projectileScript>().explosionDelay = Inventory.itemClasses[(int)Inventory.itemSelected].explosionDelay;
                     }
                     newBullet.GetComponent<projectileScript>().player = transform.parent.parent.gameObject;
+                    newBullet.GetComponent<projectileScript>().damage = Inventory.itemClasses[(int)Inventory.itemSelected].bulletDamage;
                 }
                 else
                 {
@@ -69,6 +70,7 @@ public class pointHeld : NetworkBehaviour
                         newBullet.GetComponent<projectileScript>().explosionDelay = Inventory.itemClasses[(int)Inventory.itemSelected].explosionDelay;
                     }
                     newBullet.GetComponent<projectileScript>().player = transform.parent.parent.gameObject;
+                    newBullet.GetComponent<projectileScript>().damage = Inventory.itemClasses[(int)Inventory.itemSelected].bulletDamage;
                 }
                 else
                 {
