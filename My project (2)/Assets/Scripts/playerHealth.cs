@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class playerHealth : NetworkBehaviour
 {
-    public NetworkVariable<float> _netHealth = new NetworkVariable<float>(writePerm: NetworkVariableWritePermission.Owner);
+    public NetworkVariable<float> _netHealth = new NetworkVariable<float>(writePerm: NetworkVariableWritePermission.Server);
     public float startHealth = 10;
     public float health;
 
