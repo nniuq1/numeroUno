@@ -34,7 +34,7 @@ public class playerHealth : NetworkBehaviour
         else
         {
             health = _netHealth.Value;
-            print(health);
+            print(_netHealth.Value);
         }
     
     }
