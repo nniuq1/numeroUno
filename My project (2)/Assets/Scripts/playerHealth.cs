@@ -10,7 +10,10 @@ public class playerHealth : NetworkBehaviour
 
     private void Start()
     {
-        _netHealth.Value = startHealth;
+        if (IsOwner)
+        {
+            _netHealth.Value = startHealth;
+        }
     }
 
     public void TakeDamage(float damage)
