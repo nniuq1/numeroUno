@@ -11,7 +11,7 @@ public class playerHealth : NetworkBehaviour
 
     private void Start()
     {
-        if (IsOwner)
+        if (IsServer)
         {
             health = startHealth;
         }
