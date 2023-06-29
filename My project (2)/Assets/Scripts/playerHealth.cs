@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class playerHealth : MonoBehaviour
+public class playerHealth : NetworkBehaviour
 {
     public NetworkVariable<float> _netHealth = new NetworkVariable<float>(writePerm: NetworkVariableWritePermission.Owner);
     public float startHealth = 10;
@@ -16,6 +16,14 @@ public class playerHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _netHealth.Value -= damage;
-        print(_netHealth.Value);
+    }
+
+    void Update()
+    {
+        if (!IsOwner)
+        {
+            print(_netHealth.Value);
+        }
+    
     }
 }
