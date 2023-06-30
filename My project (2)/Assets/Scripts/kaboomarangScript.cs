@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class kaboomarangScript : MonoBehaviour
 {
+    public float damage;
     public GameObject player;
     bool leaving = true;
     public GameObject explosion;

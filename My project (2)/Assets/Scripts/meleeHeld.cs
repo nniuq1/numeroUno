@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class meleeHeld : MonoBehaviour
 {
+    bool canHit = true;
     public Animator animator;
     public GameObject explosion;
     public inventory Inventory;
@@ -25,8 +26,10 @@ public class meleeHeld : MonoBehaviour
             transform.position = new Vector2(transform.parent.position.x - transform.localScale.y / 2, transform.parent.position.y);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canHit && !Inventory.itemClasses[(int)Inventory.itemSelected].canHoldDown || Input.GetMouseButton(0) && canHit && Inventory.itemClasses[(int)Inventory.itemSelected].canHoldDown)
         {
+            StartCoroutine(timeBetweenHits());
+            animator.speed = 1f / Inventory.itemClasses[(int)Inventory.itemSelected].attackSpeed;
             animator.SetBool("attacking", true);
             StartCoroutine(stopAttacking());
 
@@ -68,9 +71,16 @@ public class meleeHeld : MonoBehaviour
         }
     }
 
+    IEnumerator timeBetweenHits()
+    {
+        canHit = false;
+        yield return new WaitForSeconds(Inventory.itemClasses[(int)Inventory.itemSelected].attackSpeed + Inventory.itemClasses[(int)Inventory.itemSelected].timeBetweenMeleeAtack - 0.01f);
+        canHit = true;
+    }
+
     IEnumerator stopAttacking()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
         animator.SetBool("attacking", false);
     }
 }

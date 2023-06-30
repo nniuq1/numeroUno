@@ -28,6 +28,6 @@ MonoBehaviour:
   bulletDamage: 0
   gravityScale: 0
   MeleeAtackArea: {x: 2, y: 1.9}
-  timeBetweenMeleeAtack: 0.1
-  attackSpeed: 0.1
+  timeBetweenMeleeAtack: 0.05
+  attackSpeed: 0.3
   MeleeDamage: 1.5

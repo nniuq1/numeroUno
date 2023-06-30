@@ -45,10 +45,17 @@ public class pointHeld : NetworkBehaviour
                     newBullet.GetComponent<projectileScript>().player = transform.parent.parent.gameObject;
                     newBullet.GetComponent<projectileScript>().damage = Inventory.itemClasses[(int)Inventory.itemSelected].bulletDamage;
                 }
-                else
+                else if(newBullet.GetComponent<kaboomarangScript>() != null)
                 {
                     newBullet.GetComponent<kaboomarangScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
                     newBullet.GetComponent<kaboomarangScript>().player = transform.parent.parent.gameObject;
+                    newBullet.GetComponent<kaboomarangScript>().damage = Inventory.itemClasses[(int)Inventory.itemSelected].bulletDamage;
+                }
+                else
+                {
+                    newBullet.GetComponent<wandProjectile>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
+                    newBullet.GetComponent<wandProjectile>().player = transform.parent.parent.gameObject;
+                    newBullet.GetComponent<wandProjectile>().damage = Inventory.itemClasses[(int)Inventory.itemSelected].bulletDamage;
                 }
                 newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
                 newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected].gravityScale;

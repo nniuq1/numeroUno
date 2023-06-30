@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddb52ec0759284d6abf0a54266bf4f46, type: 3}
-  m_Name: BrassKnuckles
+  m_Name: magic wand
   m_EditorClassIdentifier: 
-  Name: Brass Knuckles
-  sprite: {fileID: 21300000, guid: 4f93dad88d0a2455783d57b141af1589, type: 3}
-  weapontype: 1
+  Name: Magic Wand
+  sprite: {fileID: 21300000, guid: 2af1a7323d104499d992be9a2d8dc933, type: 3}
+  weapontype: 0
   explodes: 0
   explosionDelay: 0
-  weaponSize: {x: 1, y: 1}
+  weaponSize: {x: 0.8, y: 0.8}
   canHoldDown: 1
   projectileSprite: {fileID: 0}
   projectile: {fileID: 0}
@@ -27,7 +27,7 @@ MonoBehaviour:
   timeBetweenShots: 0
   bulletDamage: 0
   gravityScale: 0
-  MeleeAtackArea: {x: 1, y: 1.5}
+  MeleeAtackArea: {x: 0, y: 0}
   timeBetweenMeleeAtack: 0
-  attackSpeed: 0.2
-  MeleeDamage: 1
+  attackSpeed: 0
+  MeleeDamage: 0
