@@ -47,11 +47,13 @@ public class meleeHeld : MonoBehaviour
                 {
                     if (animator.GetBool("right") == true)
                     {
-                        Instantiate(explosion, attackBox[i].transform.position, Quaternion.Euler(0, 90, 0));
+                        GameObject explodesing = Instantiate(explosion, transform.position, Quaternion.Euler(0, 0, 0));
+                        explodesing.GetComponent<explosionDamage>().player = transform.parent.parent.gameObject;
                     }
                     else
                     {
-                        Instantiate(explosion, attackBox[i].transform.position, Quaternion.Euler(0, -90, 0));
+                        GameObject explodesing = Instantiate(explosion, transform.position, Quaternion.Euler(0, 0, 0));
+                        explodesing.GetComponent<explosionDamage>().player = transform.parent.parent.gameObject;
                     }
                 }
                 if (!attackBox[i].CompareTag("Player"))
