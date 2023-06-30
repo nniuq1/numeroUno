@@ -1,14 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class colorRandom : MonoBehaviour
+public class colorRandom : NetworkBehaviour
 {
-    Color charColor;
+    public NetworkVariable<Color> _netColor = new NetworkVariable<Color>(writePerm: NetworkVariableWritePermission.Owner);
+    private bool t = true;
 
     void Start()
     {
-        charColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-        transform.GetComponent<SpriteRenderer>().color = charColor;
+        if (IsOwner)
+        {
+            _netColor.Value = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+            transform.GetComponent<SpriteRenderer>().color = _netColor.Value;
+        }
+    }
+    void Update()
+    {
+        if (!IsOwner && t)
+        {
+            t = false;
+            transform.GetComponent<SpriteRenderer>().color = _netColor.Value;
+        }
     }
 }
