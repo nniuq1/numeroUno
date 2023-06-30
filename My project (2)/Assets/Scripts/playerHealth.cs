@@ -30,6 +30,7 @@ public class playerHealth : NetworkBehaviour
         if (IsServer)
         {
             _netHealth.Value = health;
+            TestClientRpc();
         }
         else
         {
@@ -37,5 +38,10 @@ public class playerHealth : NetworkBehaviour
             print(_netHealth.Value);
         }
     
+    }
+
+    [ClientRpc]
+    void TestClientRpc() {
+        print("Ugly");
     }
 }
