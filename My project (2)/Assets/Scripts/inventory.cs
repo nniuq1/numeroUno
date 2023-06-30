@@ -72,6 +72,7 @@ public class inventory : MonoBehaviour
         if (itemClasses.Count > 0)
         {
             inventoryUI.SetActive(true);
+            inventoryUI.transform.GetChild(0).gameObject.SetActive(true);
 
             inventoryUI.transform.GetChild(3).GetComponent<Text>().text = itemClasses[(int)itemSelected].Name;
 
@@ -89,6 +90,7 @@ public class inventory : MonoBehaviour
 
             if (itemClasses.Count > 1)
             {
+                inventoryUI.transform.GetChild(1).gameObject.SetActive(true);
                 if ((int)itemSelected == itemClasses.Count - 1)
                 {
                     inventoryUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = itemClasses[0].sprite;
@@ -102,8 +104,9 @@ public class inventory : MonoBehaviour
             {
                 inventoryUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected].sprite;
             }
-            if (itemClasses.Count > 1)
+            if (itemClasses.Count > 2)
             {
+                inventoryUI.transform.GetChild(2).gameObject.SetActive(true);
                 if ((int)itemSelected == 0)
                 {
                     inventoryUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = itemClasses[itemClasses.Count - 1].sprite;
