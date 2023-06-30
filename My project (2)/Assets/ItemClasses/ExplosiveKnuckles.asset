@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ExplosiveKnuckles
   m_EditorClassIdentifier: 
   Name: Explosive Nuckles
-  sprite: {fileID: 21300000, guid: 4a3c64ec8ad964011aa28fb633e9b153, type: 3}
+  sprite: {fileID: 21300000, guid: 637588f1d67de4250815f6ef319e81a8, type: 3}
   weapontype: 1
   explodes: 1
   explosionDelay: 0
-  weaponSize: {x: 0.8, y: 0.8}
+  weaponSize: {x: 1, y: 1}
   canHoldDown: 0
   projectileSprite: {fileID: 0}
   projectile: {fileID: 0}

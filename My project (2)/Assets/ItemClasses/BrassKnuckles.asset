@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: BrassKnuckles
   m_EditorClassIdentifier: 
   Name: Brass Knuckles
-  sprite: {fileID: 21300000, guid: 4a3c64ec8ad964011aa28fb633e9b153, type: 3}
+  sprite: {fileID: 21300000, guid: 4f93dad88d0a2455783d57b141af1589, type: 3}
   weapontype: 1
   explodes: 0
   explosionDelay: 0
-  weaponSize: {x: 0.8, y: 0.8}
+  weaponSize: {x: 1, y: 1}
   canHoldDown: 0
   projectileSprite: {fileID: 0}
   projectile: {fileID: 0}

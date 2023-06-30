@@ -47,12 +47,12 @@ public class meleeHeld : MonoBehaviour
                 {
                     if (animator.GetBool("right") == true)
                     {
-                        GameObject explodesing = Instantiate(explosion, new Vector3(transform.position.x + 0.75f, transform.position.y, 0), Quaternion.Euler(0, 0, 0));
+                        GameObject explodesing = Instantiate(explosion, new Vector3(transform.position.x + 1.75f, transform.position.y, 0), Quaternion.Euler(0, 0, 0));
                         explodesing.GetComponent<explosionDamage>().player = transform.parent.parent.gameObject;
                     }
                     else
                     {
-                        GameObject explodesing = Instantiate(explosion, new Vector3(transform.position.x - 0.75f, transform.position.y, 0), Quaternion.Euler(0, 0, 0));
+                        GameObject explodesing = Instantiate(explosion, new Vector3(transform.position.x - 1.75f, transform.position.y, 0), Quaternion.Euler(0, 0, 0));
                         explodesing.GetComponent<explosionDamage>().player = transform.parent.parent.gameObject;
                     }
                 }
