@@ -42,6 +42,6 @@ public class playerHealth : NetworkBehaviour
 
     [ClientRpc]
     void TestClientRpc() {
-        print("Ugly");
+        
     }
 }
