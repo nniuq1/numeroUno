@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: magic wand
   m_EditorClassIdentifier: 
   Name: Magic Wand
-  sprite: {fileID: 21300000, guid: 2af1a7323d104499d992be9a2d8dc933, type: 3}
+  sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   weapontype: 0
   explodes: 0
   explosionDelay: 0
   weaponSize: {x: 0.8, y: 0.8}
   canHoldDown: 1
-  projectileSprite: {fileID: 0}
-  projectile: {fileID: 0}
+  projectileSprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  projectile: {fileID: 4465303326248721522, guid: 92c1590e73e9c458e87f2f80411df102, type: 3}
   bulletSize: {x: 1, y: 1}
   bulletColor: {r: 1, g: 1, b: 1, a: 1}
-  projectileSpeed: 0
-  timeBetweenShots: 0
-  bulletDamage: 0
+  projectileSpeed: 25
+  timeBetweenShots: 1
+  bulletDamage: 5
   gravityScale: 0
   MeleeAtackArea: {x: 0, y: 0}
   timeBetweenMeleeAtack: 0
