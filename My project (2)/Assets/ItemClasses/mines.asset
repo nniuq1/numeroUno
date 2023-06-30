@@ -30,4 +30,4 @@ MonoBehaviour:
   MeleeAtackArea: {x: 0, y: 0}
   timeBetweenMeleeAtack: 0
   attackSpeed: 0
-  MeleeDamage: 0
+  MeleeDamage: 1.5

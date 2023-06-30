@@ -71,6 +71,8 @@ public class inventory : MonoBehaviour
 
         if (itemClasses.Count > 0)
         {
+            inventoryUI.SetActive(true);
+
             inventoryUI.transform.GetChild(3).GetComponent<Text>().text = itemClasses[(int)itemSelected].Name;
 
 
