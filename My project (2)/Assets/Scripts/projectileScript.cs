@@ -43,7 +43,7 @@ public class projectileScript : MonoBehaviour
         {
             if (explodes)
             {
-                StartCoroutine(explodeDelay());
+                StartCoroutine(explodeDelay(collision.gameObject));
             }
             else
             {
@@ -62,11 +62,11 @@ public class projectileScript : MonoBehaviour
         }*/
     }
 
-    IEnumerator explodeDelay()
+    IEnumerator explodeDelay(GameObject collision)
     {
         move = false;
-        transform.GetComponent<Rigidbody2D>().gravityScale = 0;
-        transform.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        Destroy(transform.GetComponent<Rigidbody2D>());
+        //transform.SetParent(collision.transform);
         yield return new WaitForSeconds(explosionDelay);
         Instantiate(explosion, transform.position, transform.rotation, null);
         Destroy(gameObject);
