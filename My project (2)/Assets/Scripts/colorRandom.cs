@@ -6,7 +6,7 @@ using Unity.Netcode;
 public class colorRandom : NetworkBehaviour
 {
     public NetworkVariable<Color> _netColor = new NetworkVariable<Color>(writePerm: NetworkVariableWritePermission.Owner);
-    private int t = 2;
+    private int t = 7;
 
     void Start()
     {
