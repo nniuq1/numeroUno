@@ -45,6 +45,7 @@ public class playerHealth : NetworkBehaviour
             if (_netHealth.Value <= 0)
             {
                 health = startHealth;
+                _netHealth.Value = startHealth;
                 transform.position = Vector3.zero;
             }
         }
