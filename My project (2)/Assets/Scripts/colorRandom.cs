@@ -20,7 +20,6 @@ public class colorRandom : NetworkBehaviour
     {
         if (!IsOwner && t && _netColor.Value != new Color(0, 0, 0, 0))
         {
-            print(_netColor.Value);
             transform.GetComponent<SpriteRenderer>().color = _netColor.Value;
             t = false;
         }
