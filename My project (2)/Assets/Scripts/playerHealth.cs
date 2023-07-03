@@ -45,14 +45,14 @@ public class playerHealth : NetworkBehaviour
             if (_netHealth.Value <= 0)
             {
                 health = startHealth;
-                _netHealth.Value = startHealth;
+                TestServerRpc();
                 transform.position = Vector3.zero;
             }
         }
     }
 
-    [ClientRpc]
-    void TestClientRpc() {
-        
+    [ServerRpc]
+    void TestServerRpc() {
+        _netHealth.Value = startHealth;
     }
 }
