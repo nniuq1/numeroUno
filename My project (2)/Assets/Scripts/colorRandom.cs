@@ -6,7 +6,7 @@ using Unity.Netcode;
 public class colorRandom : NetworkBehaviour
 {
     public NetworkVariable<Color> _netColor = new NetworkVariable<Color>(writePerm: NetworkVariableWritePermission.Owner);
-    private int t = 7;
+    private bool t = true;
 
     void Start()
     {
@@ -18,10 +18,10 @@ public class colorRandom : NetworkBehaviour
     }
     void Update()
     {
-        if (!IsOwner && t > 0)
+        if (!IsOwner && t && _netColor.Value != null)
         {
             transform.GetComponent<SpriteRenderer>().color = _netColor.Value;
-            t--;
+            t = false;
         }
     }
 }
