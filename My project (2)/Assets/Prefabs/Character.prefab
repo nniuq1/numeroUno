@@ -373,7 +373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _netHealth:
     m_InternalValue: 0
-  startHealth: 10
+  startHealth: 30
+  health: 0
 --- !u!1 &4342881439588749698
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,3 +625,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1944ee0d30faa4ad1bbdffc6efd8ffde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _netColor:
+    m_InternalValue: {r: 0, g: 0, b: 0, a: 0}
