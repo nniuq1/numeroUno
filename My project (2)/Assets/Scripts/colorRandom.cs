@@ -22,12 +22,13 @@ public class colorRandom : NetworkBehaviour
         if (!IsOwner && t)
         {
             transform.GetComponent<SpriteRenderer>().color = _netColor.Value;
+            t = false;
         }
     }
 
     IEnumerator waitchangeColour()
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(1f);
         t = true;
     }
 }
