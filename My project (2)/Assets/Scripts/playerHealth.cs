@@ -31,7 +31,6 @@ public class playerHealth : NetworkBehaviour
         if (IsServer)
         {
             _netHealth.Value = health;
-            TestClientRpc();
         }
         else
         {
