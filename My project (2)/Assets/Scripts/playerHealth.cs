@@ -11,6 +11,7 @@ public class playerHealth : NetworkBehaviour
 
     private void Start()
     {
+        Object.FindObjectOfType<Canvas>().transform.GetChild(3).GetChild(1).gameObject.SetActive(true);
         if (IsServer)
         {
             health = startHealth;
