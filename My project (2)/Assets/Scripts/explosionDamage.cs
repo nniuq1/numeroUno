@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class explosionDamage : MonoBehaviour
+public class explosionDamage : NetworkBehaviour
 {
     public GameObject player;
 
@@ -17,9 +18,16 @@ public class explosionDamage : MonoBehaviour
             else if (collision.GetComponent<Rigidbody2D>() != null)
             {
                 collision.GetComponent<Rigidbody2D>().velocity = new Vector2(9 * Mathf.Cos(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)), 9 * Mathf.Sin(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)));
-
+                
                 if (collision.CompareTag("Player"))
                 {
+                    if (!IsOwner)
+                    {
+                        if (IsServer)
+                        {
+
+                        }
+                    }
                     collision.GetComponent<playerHealth>().TakeDamage(5);
                     collision.GetComponent<charmovement>().Stun(0.75f);
                 }
@@ -36,4 +44,9 @@ public class explosionDamage : MonoBehaviour
             }
         }
     }
+    //[ServerRpc]
+    //public void explodeServerRpc(who,Vector2 nockback)
+    //{
+
+    //}
 }
