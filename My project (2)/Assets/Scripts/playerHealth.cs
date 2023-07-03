@@ -40,7 +40,7 @@ public class playerHealth : NetworkBehaviour
 
         if (IsOwner)
         {
-            Object.FindObjectOfType<Canvas>().transform.GetChild(3).GetChild(1).transform.localScale = new Vector2(1, startHealth / _netHealth.Value);
+            Object.FindObjectOfType<Canvas>().transform.GetChild(3).GetChild(1).transform.localScale = new Vector2(_netHealth.Value / startHealth, 1);
         }
     }
 
