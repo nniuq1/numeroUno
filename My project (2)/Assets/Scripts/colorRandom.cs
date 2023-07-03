@@ -21,7 +21,6 @@ public class colorRandom : NetworkBehaviour
     {
         if (!IsOwner && t)
         {
-            t = false;
             transform.GetComponent<SpriteRenderer>().color = _netColor.Value;
         }
     }
