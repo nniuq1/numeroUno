@@ -51,6 +51,6 @@ public class playerHealth : NetworkBehaviour
 
     [ServerRpc]
     void TestServerRpc() {
-        _netHealth.Value = startHealth;
+        //_netHealth.Value = startHealth;
     }
 }
