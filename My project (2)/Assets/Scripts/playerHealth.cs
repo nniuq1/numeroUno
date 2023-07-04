@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class playerHealth : NetworkBehaviour
 {
-    public NetworkVariable<float> _netHealth = new NetworkVariable<float>(writePerm: NetworkVariableWritePermission.Server);
+    public NetworkVariable<float> _netHealth = new NetworkVariable<float>();
     public float startHealth = 10;
     public float health;
 
@@ -43,6 +43,7 @@ public class playerHealth : NetworkBehaviour
             Object.FindObjectOfType<Canvas>().transform.GetChild(3).GetChild(1).transform.localScale = new Vector2(_netHealth.Value / startHealth, 1);
             if (_netHealth.Value <= 0)
             {
+                _netHealth.Value = startHealth;
                 TestServerRpc();
                 transform.position = Vector3.zero;
             }
@@ -51,6 +52,6 @@ public class playerHealth : NetworkBehaviour
 
     [ServerRpc]
     void TestServerRpc() {
-        //_netHealth.Value = startHealth;
+        print("EEEEEEEE");
     }
 }
