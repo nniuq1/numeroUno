@@ -31,11 +31,12 @@ public class playerHealth : NetworkBehaviour
         if (IsServer)
         {
             _netHealth.Value = health;
+            print(_netHealth.Value);
         }
         else
         {
             health = _netHealth.Value;
-            print(_netHealth.Value);
+            print(health);
         }
 
         if (IsOwner)
