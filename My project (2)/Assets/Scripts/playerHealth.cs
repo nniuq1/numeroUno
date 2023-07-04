@@ -55,6 +55,6 @@ public class playerHealth : NetworkBehaviour
     [ServerRpc]
     void TestServerRpc() {
         _netHealth.Value = startHealth;
-        transform.position = new Vector2(10,10);
+        transform.position = new Vector2(50,50);
     }
 }
