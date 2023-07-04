@@ -18,7 +18,7 @@ MonoBehaviour:
   explodes: 0
   explosionDelay: 0
   weaponSize: {x: 1.5, y: 0.9}
-  canHoldDown: 1
+  canHoldDown: 0
   projectileSprite: {fileID: 0}
   projectile: {fileID: 0}
   bulletSize: {x: 1, y: 1}
@@ -30,4 +30,4 @@ MonoBehaviour:
   MeleeAtackArea: {x: 3, y: 1.99}
   timeBetweenMeleeAtack: 0.15
   attackSpeed: 0.2
-  MeleeDamage: 0
+  MeleeDamage: 3
