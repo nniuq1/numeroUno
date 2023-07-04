@@ -17,13 +17,15 @@ public class meleeHeld : MonoBehaviour
         {
             transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].weaponSize;
             animator.SetBool("right", true);
-            transform.position = new Vector2(transform.parent.position.x + transform.localScale.y / 2, transform.parent.position.y);
+            transform.position = new Vector2(transform.parent.position.x + Inventory.itemClasses[(int)Inventory.itemSelected].MeleeAtackArea.x / 2, transform.parent.position.y);
+            transform.GetComponent<SpriteRenderer>().flipX = false;
         }
         else
         {
             transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].weaponSize;
             animator.SetBool("right", false);
-            transform.position = new Vector2(transform.parent.position.x - transform.localScale.y / 2, transform.parent.position.y);
+            transform.position = new Vector2(transform.parent.position.x - Inventory.itemClasses[(int)Inventory.itemSelected].MeleeAtackArea.x / 2, transform.parent.position.y);
+            transform.GetComponent<SpriteRenderer>().flipX = true;
         }
 
         if (Input.GetMouseButtonDown(0) && canHit && !Inventory.itemClasses[(int)Inventory.itemSelected].canHoldDown || Input.GetMouseButton(0) && canHit && Inventory.itemClasses[(int)Inventory.itemSelected].canHoldDown)
