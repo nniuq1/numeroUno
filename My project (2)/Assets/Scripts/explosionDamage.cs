@@ -41,8 +41,9 @@ public class explosionDamage : NetworkBehaviour
                     else {
                         collision.GetComponent<Rigidbody2D>().velocity = nockback;
                         collision.GetComponent<charmovement>().Stun(0.75f);
+                        collision.GetComponent<playerHealth>().TakeDamage(5);
                     }
-                    collision.GetComponent<playerHealth>().TakeDamage(5);
+                    
                 }
             }
         }
