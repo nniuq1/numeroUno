@@ -25,6 +25,13 @@ public class playerHealth : NetworkBehaviour
             health -= damage;
         }
     }
+    public void ResetHeath(float damage)
+    {
+        if (IsServer)
+        {
+            health = startHealth;
+        }
+    }
 
     void Update()
     {
