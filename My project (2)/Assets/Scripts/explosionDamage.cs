@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class explosionDamage : NetworkBehaviour
+public class explosionDamage : NetworkBehaviour, IEnumerable
 {
     public GameObject player;
 
