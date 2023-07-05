@@ -31,8 +31,10 @@ public class explosionDamage : NetworkBehaviour
                                 Send = new ClientRpcSendParams
                                 {
                                     TargetClientIds = new ulong[] { collision.GetComponent<NetworkObject>().OwnerClientId }
+                                    
                                 }
                             };
+                            print(collision.GetComponent<NetworkObject>().OwnerClientId);
                             explodeClientRpc(nockback , clientRpcParams);
                         }
                     }
@@ -59,7 +61,9 @@ public class explosionDamage : NetworkBehaviour
     [ClientRpc]
     public void explodeClientRpc(Vector2 nockback, ClientRpcParams clientRpcParams = default)
     {
+        print("yes");
         if (IsOwner) return;
+        print("no");
 
         // Run your client-side logic here!!
         NetworkManager.LocalClient.PlayerObject.GetComponent<Rigidbody2D>().velocity = nockback;
