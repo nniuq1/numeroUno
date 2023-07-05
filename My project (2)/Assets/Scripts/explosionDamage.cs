@@ -17,7 +17,8 @@ public class explosionDamage : NetworkBehaviour
             }
             else if (collision.GetComponent<Rigidbody2D>() != null)
             {
-                collision.GetComponent<Rigidbody2D>().velocity = new Vector2(9 * Mathf.Cos(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)), 9 * Mathf.Sin(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)));
+                
+                    Vector2 nockback = new Vector2(9 * Mathf.Cos(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)), 9 * Mathf.Sin(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)));
                 
                 if (collision.CompareTag("Player"))
                 {
@@ -25,11 +26,15 @@ public class explosionDamage : NetworkBehaviour
                     {
                         if (IsServer)
                         {
-
+                            ClientRpcParams clientRpcParams = new ClientRpcParams { new ClientRpcSendParams { new ulong[] { collision.GetComponent<NetworkObject>().OwnerClientId } } };
+                            explodeClientRpc(nockback , clientRpcParams);
                         }
                     }
+                    else {
+                        collision.GetComponent<Rigidbody2D>().velocity = nockback;
+                        collision.GetComponent<charmovement>().Stun(0.75f);
+                    }
                     collision.GetComponent<playerHealth>().TakeDamage(5);
-                    collision.GetComponent<charmovement>().Stun(0.75f);
                 }
             }
         }
@@ -44,9 +49,12 @@ public class explosionDamage : NetworkBehaviour
             }
         }
     }
-    //[ServerRpc]
-    //public void explodeServerRpc(who,Vector2 nockback)
-    //{
+    [ClientRpc]
+    public void explodeClientRpc(Vector2 nockback, ClientRpcParams clientRpcParams = default)
+    {
+        if (IsOwner) return;
 
-    //}
+        // Run your client-side logic here!!
+        NetworkManager.LocalClient.PlayerObject.GetComponent<Rigidbody2D>().velocity = nockback;
+    }
 }
