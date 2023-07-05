@@ -29,5 +29,5 @@ MonoBehaviour:
   gravityScale: 0
   MeleeAtackArea: {x: 3, y: 1.99}
   timeBetweenMeleeAtack: 0.15
-  attackSpeed: 0.2
+  attackSpeed: 0.25
   MeleeDamage: 3

@@ -65,7 +65,7 @@ public class meleeHeld : MonoBehaviour
                 {
                     Destroy(attackBox[i].gameObject);
                 }
-                else
+                else if (attackBox[i].gameObject != transform.parent.parent.gameObject)
                 {
                     attackBox[i].GetComponent<playerHealth>().TakeDamage(Inventory.itemClasses[(int)Inventory.itemSelected].MeleeDamage);
                 }
