@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class explosionDamage : NetworkBehaviour, IEnumerable
+public class explosionDamage : NetworkBehaviour
 {
     public GameObject player;
 
@@ -26,8 +26,8 @@ public class explosionDamage : NetworkBehaviour, IEnumerable
                     {
                         if (IsServer)
                         {
-                            //ClientRpcParams clientRpcParams = new ClientRpcParams { new ClientRpcSendParams { new ulong[] { collision.GetComponent<NetworkObject>().OwnerClientId } } };
-                            //explodeClientRpc(nockback , clientRpcParams);
+                            ClientRpcParams clientRpcParams = new ClientRpcParams { new ClientRpcSendParams { new ulong[] { collision.GetComponent<NetworkObject>().OwnerClientId } } };
+                            explodeClientRpc(nockback , clientRpcParams);
                         }
                     }
                     else {
