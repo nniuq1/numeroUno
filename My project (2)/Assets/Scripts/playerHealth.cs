@@ -25,7 +25,7 @@ public class playerHealth : NetworkBehaviour
             health -= damage;
         }
     }
-    public void ResetHeath(float damage)
+    public void ResetHealth()
     {
         if (IsServer)
         {
@@ -52,7 +52,7 @@ public class playerHealth : NetworkBehaviour
             if (_netHealth.Value <= 0)
             {
                 //_netHealth.Value = startHealth;
-                TestServerRpc();
+                TestServerRpc(NetworkManager.Singleton.LocalClientId);
                 health = startHealth;
                 transform.position = Vector3.zero;
             }
@@ -60,8 +60,8 @@ public class playerHealth : NetworkBehaviour
     }
 
     [ServerRpc]
-    void TestServerRpc() {
-        _netHealth.Value = startHealth;
+    void TestServerRpc(ulong clientId) {
+        NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject.GetComponent<playerHealth>().ResetHealth();
         transform.position = new Vector2(50,50);
     }
 }
