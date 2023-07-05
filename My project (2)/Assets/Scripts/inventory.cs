@@ -159,6 +159,12 @@ public class inventory : NetworkBehaviour
             }
             if (makes == true)
             {
+                Object.FindObjectOfType<Canvas>().transform.GetChild(4).gameObject.active = true;
+                Object.FindObjectOfType<Canvas>().transform.GetChild(4).GetChild(0).GetChild(0).GetComponent<Image>().sprite = combinations[c].ingredients[0].sprite;
+                Object.FindObjectOfType<Canvas>().transform.GetChild(4).GetChild(1).GetChild(0).GetComponent<Image>().sprite = combinations[c].ingredients[1].sprite;
+                Object.FindObjectOfType<Canvas>().transform.GetChild(4).GetChild(2).GetChild(0).GetComponent<Image>().sprite = combinations[c].result.sprite;
+                Object.FindObjectOfType<Canvas>().transform.GetChild(4).GetComponent<Animator>().SetBool("combotime", true);
+                StartCoroutine(stopCombo());
                 for (int i = 0; i < combinations[c].ingredients.Count; i++)
                 {
                     itemClasses.Remove(combinations[c].ingredients[i]);
@@ -167,5 +173,11 @@ public class inventory : NetworkBehaviour
                 CheckComboes();
             }
         }
+    }
+
+    IEnumerator stopCombo()
+    {
+        yield return new WaitForSeconds(1f);
+        Object.FindObjectOfType<Canvas>().transform.GetChild(4).GetComponent<Animator>().SetBool("combotime", false);
     }
 }
