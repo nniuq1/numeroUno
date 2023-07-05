@@ -26,8 +26,8 @@ public class explosionDamage : NetworkBehaviour
                     {
                         if (IsServer)
                         {
-                            ClientRpcParams clientRpcParams = new ClientRpcParams { new ClientRpcSendParams { new ulong[] { collision.GetComponent<NetworkObject>().OwnerClientId } } };
-                            explodeClientRpc(nockback , clientRpcParams);
+                            //ClientRpcParams clientRpcParams = new ClientRpcParams { new ClientRpcSendParams { new ulong[] { collision.GetComponent<NetworkObject>().OwnerClientId } } };
+                            //explodeClientRpc(nockback , clientRpcParams);
                         }
                     }
                     else {
