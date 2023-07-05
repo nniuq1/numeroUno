@@ -49,12 +49,29 @@ public class explosionDamage : NetworkBehaviour
         }
         else if (collision.GetComponent<Rigidbody2D>() != null)
         {
-            collision.GetComponent<Rigidbody2D>().velocity = new Vector2(9 * Mathf.Cos(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)), 9 * Mathf.Sin(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)));
+            Vector2 nockback = new Vector2(9 * Mathf.Cos(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)), 9 * Mathf.Sin(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)));
 
             if (collision.CompareTag("Player"))
             {
+                if (IsServer)
+                {
+                    ClientRpcParams clientRpcParams = new ClientRpcParams
+                    {
+                        Send = new ClientRpcSendParams
+                        {
+                            TargetClientIds = new ulong[] { collision.GetComponent<NetworkObject>().OwnerClientId }
+
+                        }
+                    };
+                    print(collision.GetComponent<NetworkObject>().OwnerClientId);
+                    explodeClientRpc(nockback, clientRpcParams);
+                }
                 collision.GetComponent<playerHealth>().TakeDamage(5);
                 collision.GetComponent<charmovement>().Stun(0.75f);
+            }
+            else
+            {
+                collision.GetComponent<Rigidbody2D>().velocity = nockback;
             }
         }
     }
