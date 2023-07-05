@@ -13,6 +13,7 @@ public class pointHeld : NetworkBehaviour
 
     private void Update()
     {
+        GetComponent<SpriteRenderer>().flipX = false;
         transform.GetComponent<Animator>().enabled = false;
         Vector3 dir = transform.parent.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
