@@ -1537,8 +1537,8 @@ MonoBehaviour:
   leftHamburguesa: {fileID: 8764721422024707704, guid: 4dc1a119635b24fc186bca312386a571, type: 3}
   midHamburguesa: {fileID: 8865017226026932759, guid: ba0c25b37e02541aea82d5fb1126765b, type: 3}
   rightHamburguesa: {fileID: 8080989971241210567, guid: abc74206701fe473b96520ede09faa17, type: 3}
-  length: 7
-  height: 6
+  length: 8
+  height: 7
 --- !u!4 &1853245188
 Transform:
   m_ObjectHideFlags: 0
