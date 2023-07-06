@@ -42,6 +42,7 @@ public class charmovement : NetworkBehaviour
         {
             t = false;
             transform.position = Vector3.zero;
+            GetComponent<playerHealth>().enabled = true;
         }
 
         Collider2D[] jumpCollision = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y - transform.localScale.y / 2 - jumpTestDimentions.y / 2), jumpTestDimentions, 0, jumpMask);
