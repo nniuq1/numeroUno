@@ -489,6 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c865bc9e0f8b47b797106ac580c23a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectBreaking: {fileID: 6584243724790088934, guid: 77ee0fa4597f9455f85f9f943448dd6a, type: 3}
   animator: {fileID: 6010190408266294141}
   explosion: {fileID: 4256091626931696415, guid: 082249be930584e259c7db2468300bbe, type: 3}
   Inventory: {fileID: 4342881439462133324}

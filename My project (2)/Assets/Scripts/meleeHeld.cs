@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class meleeHeld : MonoBehaviour
 {
+    public GameObject objectBreaking;
     bool canHit = true;
     public Animator animator;
     public GameObject explosion;
@@ -63,6 +64,7 @@ public class meleeHeld : MonoBehaviour
                 }
                 if (!attackBox[i].CompareTag("Player"))
                 {
+                    Instantiate(objectBreaking, attackBox[i].transform.position, attackBox[i].transform.rotation);
                     Destroy(attackBox[i].gameObject);
                 }
                 else if (attackBox[i].gameObject != transform.parent.parent.gameObject)
