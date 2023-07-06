@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Unity.Netcode;
 
 public class charmovement : NetworkBehaviour
@@ -17,6 +18,8 @@ public class charmovement : NetworkBehaviour
 
     public Vector2 wallStopDimentions;
     public LayerMask sideMask;
+    bool t = true;
+
     public override void OnNetworkSpawn()
     {
         if (!IsOwner)
@@ -28,12 +31,19 @@ public class charmovement : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Object.DontDestroyOnLoad(gameObject);
         rb = transform.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (SceneManager.GetActiveScene().name == "testing" && t)
+        {
+            t = false;
+            transform.position = Vector3.zero;
+        }
+
         Collider2D[] jumpCollision = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y - transform.localScale.y / 2 - jumpTestDimentions.y / 2), jumpTestDimentions, 0, jumpMask);
         if (jumpCollision.Length > 0)
         {

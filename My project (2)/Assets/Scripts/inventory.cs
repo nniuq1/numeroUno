@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Unity.Netcode;
 
 public class inventory : NetworkBehaviour
@@ -13,11 +14,15 @@ public class inventory : NetworkBehaviour
 
     private void Start()
     {
-        inventoryUI = GameObject.FindObjectOfType<Canvas>().transform.GetChild(2).gameObject;
     }
 
     private void Update()
     {
+        if (SceneManager.GetActiveScene().name == "testing")
+        {
+            inventoryUI = GameObject.FindObjectOfType<Canvas>().transform.GetChild(2).gameObject;
+        }
+
         if (Input.mouseScrollDelta.y != 0)
         {
             itemSelected -= Input.mouseScrollDelta.y * 2;

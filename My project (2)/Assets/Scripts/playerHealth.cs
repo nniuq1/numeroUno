@@ -12,7 +12,7 @@ public class playerHealth : NetworkBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().ToString() != "testing")
+        if (SceneManager.GetActiveScene().name != "testing")
         {
             this.enabled = false;
         }
