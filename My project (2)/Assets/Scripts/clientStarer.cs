@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class clientStarer : MonoBehaviour
+public class clientStarer : NetworkBehaviour
 {
     public NetworkManager bees;
     public Camera tempCamera;
