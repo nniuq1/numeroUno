@@ -27,6 +27,7 @@ public class clientStarer : NetworkBehaviour
     }
     public void StartGame()
     {
+        transform.GetChild(0).gameObject.SetActive(false);
         sceneClientRpc();
         SceneManager.LoadScene("testing");
     }
