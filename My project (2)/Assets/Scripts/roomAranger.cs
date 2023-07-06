@@ -33,9 +33,9 @@ public class roomAranger : NetworkBehaviour
     {
         if (IsServer)
         {
-            //_netseed.Value = Random.Range(0, 100000);
-            //Random.seed = _netseed.Value;
-            _netseed.Value = Random.seed;
+            _netseed.Value = Random.Range(0, 100000);
+            Random.seed = _netseed.Value;
+            //_netseed.Value = Random.seed;
             seedClientRpc(_netseed.Value);
         }
         else
