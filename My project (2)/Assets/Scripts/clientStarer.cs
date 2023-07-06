@@ -20,7 +20,7 @@ public class clientStarer : MonoBehaviour
     {
         bees.StartHost();
         Destroy(tempCamera.gameObject);
-        transform.GetChild(0).gameObject.SetActive(true);
+        //transform.GetChild(0).gameObject.SetActive(true);
         transform.GetChild(1).gameObject.SetActive(false);
         transform.GetChild(2).gameObject.SetActive(false);
 
