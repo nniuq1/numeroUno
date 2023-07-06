@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class roomAranger : MonoBehaviour
+public class roomAranger : NetworkBehaviour
 {
+    public NetworkVariable<int> _netseed = new NetworkVariable<int>();
+
     public List<GameObject> roomsMid;
     public List<GameObject> roomsLeft;
     public List<GameObject> roomsRight;
@@ -29,6 +31,16 @@ public class roomAranger : MonoBehaviour
 
     private void Start()
     {
+        if (IsServer)
+        {
+            _netseed.Value = Random.Range(0, 100000);
+            Random.seed = _netseed.Value;
+        }
+        else
+        {
+
+        }
+
         hamburguesaPos = new Vector2(Random.Range(0, length), Random.Range(0, height));
 
         for (int h = 0; h < height; h++)
@@ -136,5 +148,11 @@ public class roomAranger : MonoBehaviour
                 Instantiate(roof[Random.Range(0, roof.Count)], new Vector2(transform.position.x + 17.75f * i, transform.position.y + 8.6f * height), Quaternion.Euler(0, 0, 0));
             }
         }
+    }
+
+    [ClientRpc]
+    public void seedClientRpc(int seed)
+    {
+        _netseed.Value = seed;
     }
 }

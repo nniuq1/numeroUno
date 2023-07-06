@@ -14,7 +14,7 @@ public class menuBullet : MonoBehaviour
     {
         if (collision.CompareTag("startgame"))
         {
-            SceneManager.LoadScene("testing");
+            SceneManager.LoadScene("waitingRoom");
         }
         if (collision.CompareTag("settings"))
         {

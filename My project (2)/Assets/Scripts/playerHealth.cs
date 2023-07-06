@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerHealth : NetworkBehaviour
 {
@@ -11,10 +12,17 @@ public class playerHealth : NetworkBehaviour
 
     private void Start()
     {
-        Object.FindObjectOfType<Canvas>().transform.GetChild(3).gameObject.SetActive(true);
-        if (IsServer)
+        if (SceneManager.GetActiveScene().ToString() != "testing")
         {
-            health = startHealth;
+            this.enabled = false;
+        }
+        else
+        {
+            Object.FindObjectOfType<Canvas>().transform.GetChild(3).gameObject.SetActive(true);
+            if (IsServer)
+            {
+                health = startHealth;
+            }
         }
     }
 
