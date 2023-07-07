@@ -36,8 +36,8 @@ public class roomAranger : NetworkBehaviour
             int seed = Random.Range(-10000, 10000);
             _netseed.Value = seed;
             Random.seed = seed;
+            StartCoroutine(waitforrpc(seed));
             print(seed + "serverSeed");
-            seedClientRpc(seed);
 
             
             hamburguesaPos = new Vector2(Random.Range(0, length), Random.Range(0, height));
@@ -148,6 +148,12 @@ public class roomAranger : NetworkBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator waitforrpc(int seed)
+    {
+        yield return new WaitForSeconds(0.5f);
+        seedClientRpc(seed);
     }
 
     [ClientRpc]
