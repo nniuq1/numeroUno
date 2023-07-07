@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class roomAranger : NetworkBehaviour
 {
-    public NetworkVariable<int> _netseed = new NetworkVariable<int>();
+
 
     public List<GameObject> roomsMid;
     public List<GameObject> roomsLeft;
@@ -34,7 +34,6 @@ public class roomAranger : NetworkBehaviour
         if (Object.FindObjectOfType<NetworkManager>().GetComponent<NetworkManager>().IsServer)
         {
             int seed = Random.Range(-10000, 10000);
-            _netseed.Value = seed;
             Random.seed = seed;
             seedClientRpc(seed);
             print(seed + "serverSeed");
