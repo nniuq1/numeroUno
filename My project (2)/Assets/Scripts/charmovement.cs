@@ -114,4 +114,15 @@ public class charmovement : NetworkBehaviour
         Gizmos.DrawWireCube(new Vector2(transform.position.x + transform.localScale.x / 2 + wallStopDimentions.x / 2, transform.position.y), wallStopDimentions);
         Gizmos.DrawWireCube(new Vector2(transform.position.x - transform.localScale.x / 2 - wallStopDimentions.x / 2, transform.position.y), wallStopDimentions);
     }
+
+    [ClientRpc]
+    public void explodeClientRpc(Vector2 nockback, ClientRpcParams clientRpcParams = default)
+    {
+        print("yes");
+        //if (IsOwner) return;
+        print("no");
+
+        // Run your client-side logic here!!
+        NetworkManager.LocalClient.PlayerObject.GetComponent<Rigidbody2D>().velocity = nockback;
+    }
 }

@@ -35,15 +35,15 @@ public class explosionDamage : NetworkBehaviour
                                 }
                             };
                             print(collision.GetComponent<NetworkObject>().OwnerClientId);
-                            explodeClientRpc(nockback , clientRpcParams);
+                            collision.GetComponent<charmovement>().explodeClientRpc(nockback , clientRpcParams);
                         }
                     }
                     else {
                         collision.GetComponent<Rigidbody2D>().velocity = nockback;
                         collision.GetComponent<charmovement>().Stun(0.75f);
-                        collision.GetComponent<playerHealth>().TakeDamage(5);
+                        
                     }
-                    
+                    collision.GetComponent<playerHealth>().TakeDamage(5);
                 }
             }
         }
@@ -64,7 +64,7 @@ public class explosionDamage : NetworkBehaviour
                         }
                     };
                     print(collision.GetComponent<NetworkObject>().OwnerClientId);
-                    explodeClientRpc(nockback, clientRpcParams);
+                    collision.GetComponent<charmovement>().explodeClientRpc(nockback, clientRpcParams);
                 }
                 collision.GetComponent<playerHealth>().TakeDamage(5);
                 collision.GetComponent<charmovement>().Stun(0.75f);
@@ -76,14 +76,5 @@ public class explosionDamage : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
-    public void explodeClientRpc(Vector2 nockback, ClientRpcParams clientRpcParams = default)
-    {
-        print("yes");
-        if (IsOwner) return;
-        print("no");
-
-        // Run your client-side logic here!!
-        NetworkManager.LocalClient.PlayerObject.GetComponent<Rigidbody2D>().velocity = nockback;
-    }
+    
 }
