@@ -6,6 +6,7 @@ using Unity.Netcode;
 
 public class charmovement : NetworkBehaviour
 {
+    public GameObject roomAranger;
     bool stunned = false;
 
     private Rigidbody2D rb;
@@ -43,6 +44,11 @@ public class charmovement : NetworkBehaviour
             t = false;
             transform.position = Vector3.zero;
             GetComponent<playerHealth>().enabled = true;
+            if (IsServer)
+            {
+                GameObject aranger = Instantiate(roomAranger, Vector3.zero, Quaternion.EulerAngles(0, 0, 0));
+                aranger.GetComponent<NetworkObject>().Spawn();
+            }
         }
 
         Collider2D[] jumpCollision = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y - transform.localScale.y / 2 - jumpTestDimentions.y / 2), jumpTestDimentions, 0, jumpMask);
