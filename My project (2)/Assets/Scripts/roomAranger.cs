@@ -31,12 +31,11 @@ public class roomAranger : NetworkBehaviour
 
     private void Start()
     {
-        if (IsServer)
+        if (GetComponent<NetworkObject>().IsOwnedByServer)
         {
             int seed = Random.Range(-10000, 10000);
             _netseed.Value = seed;
             Random.seed = seed;
-            print(Random.seed);
             //_netseed.Value = Random.seed;
             seedClientRpc(seed);
         }

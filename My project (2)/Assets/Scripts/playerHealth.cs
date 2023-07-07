@@ -10,7 +10,7 @@ public class playerHealth : NetworkBehaviour
     public float startHealth = 10;
     public float health;
 
-    private void Start()
+    private void OnEnable()
     {
         if (SceneManager.GetActiveScene().name != "testing")
         {
