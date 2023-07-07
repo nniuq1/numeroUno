@@ -152,7 +152,7 @@ public class roomAranger : NetworkBehaviour
 
     IEnumerator waitforrpc(int seed)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(5f);
         seedClientRpc(seed);
     }
 
