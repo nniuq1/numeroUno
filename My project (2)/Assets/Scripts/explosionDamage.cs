@@ -24,7 +24,7 @@ public class explosionDamage : NetworkBehaviour
                 {
                     if (!IsOwner)
                     {
-                        if (IsServer)
+                        if (Object.FindObjectOfType<NetworkManager>().GetComponent<NetworkManager>().IsServer)
                         {
                             ClientRpcParams clientRpcParams = new ClientRpcParams
                             {
@@ -53,7 +53,7 @@ public class explosionDamage : NetworkBehaviour
 
             if (collision.CompareTag("Player"))
             {
-                if (IsServer)
+                if (Object.FindObjectOfType<NetworkManager>().GetComponent<NetworkManager>().IsServer)
                 {
                     ClientRpcParams clientRpcParams = new ClientRpcParams
                     {
