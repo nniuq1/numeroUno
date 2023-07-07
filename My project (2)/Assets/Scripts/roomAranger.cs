@@ -51,7 +51,7 @@ public class roomAranger : NetworkBehaviour
                     addStair = Random.Range(0, length - 2);
                     if (isStair.Count > 0)
                     {
-                        if (addStair == isStair[isStair.Count - 1] || h == hamburguesaPos.y && addStair + 1 == hamburguesaPos.x)
+                        if (addStair == isStair[isStair.Count - 1] || h == hamburguesaPos.y - 1 && addStair + 1 == hamburguesaPos.x)
                         {
                             i = -1;
                         }
