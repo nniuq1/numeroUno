@@ -31,7 +31,7 @@ public class roomAranger : NetworkBehaviour
 
     private void Start()
     {
-        if (IsServer)
+        if (Object.FindObjectOfType<NetworkManager>().GetComponent<NetworkManager>().IsServer)
         {
             int seed = Random.Range(-10000, 10000);
             _netseed.Value = seed;
