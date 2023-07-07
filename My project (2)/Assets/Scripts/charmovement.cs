@@ -44,9 +44,8 @@ public class charmovement : NetworkBehaviour
             t = false;
             transform.position = Vector3.zero;
             GetComponent<playerHealth>().enabled = true;
-            if (IsServer)
+            if (IsServer && IsOwner)
             {
-                print("1");
                 GameObject aranger = Instantiate(roomAranger, Vector3.zero, Quaternion.EulerAngles(0, 0, 0));
                 aranger.GetComponent<NetworkObject>().Spawn();
             }
