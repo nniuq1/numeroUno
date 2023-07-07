@@ -43,6 +43,7 @@ public class roomAranger : NetworkBehaviour
     [ClientRpc]
     public void seedClientRpc(int seed)
     {
+        Random.seed = seed;
         print(seed + "clientSeed");
   
 
