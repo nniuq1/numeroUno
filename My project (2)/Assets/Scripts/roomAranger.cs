@@ -36,7 +36,7 @@ public class roomAranger : NetworkBehaviour
             int seed = Random.Range(-10000, 10000);
             _netseed.Value = seed;
             Random.seed = seed;
-            StartCoroutine(waitforrpc(seed));
+            seedClientRpc(seed);
             print(seed + "serverSeed");
 
             
@@ -148,12 +148,6 @@ public class roomAranger : NetworkBehaviour
                 }
             }
         }
-    }
-
-    IEnumerator waitforrpc(int seed)
-    {
-        yield return new WaitForSeconds(5f);
-        seedClientRpc(seed);
     }
 
     [ClientRpc]
