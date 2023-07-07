@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newItemClass", menuName = "ItemClass")]
 public class itemClass : ScriptableObject
 {
+    [Header("General")]
     public string Name;
 
     public Sprite sprite;
@@ -22,6 +23,8 @@ public class itemClass : ScriptableObject
 
     public Vector2 weaponSize = new Vector2(0.8f, 0.8f);
     public bool canHoldDown;
+
+    [Header("Ranged Settings")]
     public Sprite projectileSprite;
     public GameObject projectile;
     public Vector2 bulletSize = new Vector2(1, 1);
@@ -31,6 +34,7 @@ public class itemClass : ScriptableObject
     public float bulletDamage;
     public float gravityScale = 0;
 
+    [Header("Melee Settings")]
     public Vector2 MeleeAtackArea;
     public float timeBetweenMeleeAtack;
     public float attackSpeed;
