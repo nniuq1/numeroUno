@@ -120,5 +120,6 @@ public class charmovement : NetworkBehaviour
     {
         // Run your client-side logic here!!
         NetworkManager.LocalClient.PlayerObject.GetComponent<Rigidbody2D>().velocity = nockback;
+        Stun(0.75f);
     }
 }
