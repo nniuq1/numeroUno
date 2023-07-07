@@ -118,10 +118,6 @@ public class charmovement : NetworkBehaviour
     [ClientRpc]
     public void explodeClientRpc(Vector2 nockback, ClientRpcParams clientRpcParams = default)
     {
-        print("yes");
-        //if (IsOwner) return;
-        print("no");
-
         // Run your client-side logic here!!
         NetworkManager.LocalClient.PlayerObject.GetComponent<Rigidbody2D>().velocity = nockback;
     }
