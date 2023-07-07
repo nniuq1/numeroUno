@@ -44,10 +44,6 @@ public class roomAranger : NetworkBehaviour
     [ClientRpc]
     public void seedClientRpc(int seed)
     {
-        if (!IsServer)
-        {
-
-        }
         print(seed + "clientSeed");
         _netseed.Value = seed;
         Random.seed = _netseed.Value;
