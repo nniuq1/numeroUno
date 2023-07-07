@@ -45,8 +45,8 @@ public class roomAranger : NetworkBehaviour
     public void seedClientRpc(int seed)
     {
         print(seed + "clientSeed");
-        _netseed.Value = seed;
-        Random.seed = _netseed.Value;
+  
+
         
 
         hamburguesaPos = new Vector2(Random.Range(0, length), Random.Range(0, height));
