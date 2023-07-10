@@ -54,6 +54,10 @@ public class pointHeld : NetworkBehaviour
                         newBullet.GetComponent<wandProjectile>().player = transform.parent.parent.gameObject;
                         newBullet.GetComponent<wandProjectile>().damage = Inventory.itemClasses[(int)Inventory.itemSelected.Value].bulletDamage;
                     }
+                    else
+                    {
+                        newBullet.GetComponent<kaboomarangScript>().player = NetworkManager.Singleton.LocalClientId;
+                    }
                     newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected.Value].bulletSize;
                     newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected.Value].gravityScale;
                     newBullet.GetComponent<NetworkObject>().Spawn();
@@ -83,6 +87,10 @@ public class pointHeld : NetworkBehaviour
                         }
                         newBullet.GetComponent<projectileScript>().player.Value = transform.parent.parent.gameObject;
                         newBullet.GetComponent<projectileScript>().damage.Value = Inventory.itemClasses[(int)Inventory.itemSelected.Value].bulletDamage;
+                    }
+                    else
+                    {
+                        newBullet.GetComponent<kaboomarangScript>().player = NetworkManager.Singleton.LocalClientId;
                     }
                     newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected.Value].bulletSize;
                     newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected.Value].gravityScale;
@@ -123,6 +131,10 @@ public class pointHeld : NetworkBehaviour
             newBullet.GetComponent<wandProjectile>().item = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value];
             newBullet.GetComponent<wandProjectile>().player = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.parent.parent.gameObject;
             newBullet.GetComponent<wandProjectile>().damage = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].bulletDamage;
+        }
+        else
+        {
+            newBullet.GetComponent<kaboomarangScript>().player = player;
         }
         newBullet.transform.localScale = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].bulletSize;
         newBullet.GetComponent<Rigidbody2D>().gravityScale = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].gravityScale;
