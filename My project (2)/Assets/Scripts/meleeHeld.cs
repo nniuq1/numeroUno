@@ -16,23 +16,23 @@ public class meleeHeld : MonoBehaviour
         transform.GetComponent<Animator>().enabled = true;
         if (transform.parent.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition).x > transform.parent.position.x)
         {
-            transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].weaponSize;
+            transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected.Value].weaponSize;
             animator.SetBool("right", true);
-            transform.position = new Vector2(transform.parent.position.x + Inventory.itemClasses[(int)Inventory.itemSelected].MeleeAtackArea.x / 2, transform.parent.position.y);
+            transform.position = new Vector2(transform.parent.position.x + Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea.x / 2, transform.parent.position.y);
             transform.GetComponent<SpriteRenderer>().flipX = false;
         }
         else
         {
-            transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].weaponSize;
+            transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected.Value].weaponSize;
             animator.SetBool("right", false);
-            transform.position = new Vector2(transform.parent.position.x - Inventory.itemClasses[(int)Inventory.itemSelected].MeleeAtackArea.x / 2, transform.parent.position.y);
+            transform.position = new Vector2(transform.parent.position.x - Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea.x / 2, transform.parent.position.y);
             transform.GetComponent<SpriteRenderer>().flipX = true;
         }
 
-        if (Input.GetMouseButtonDown(0) && canHit && !Inventory.itemClasses[(int)Inventory.itemSelected].canHoldDown || Input.GetMouseButton(0) && canHit && Inventory.itemClasses[(int)Inventory.itemSelected].canHoldDown)
+        if (Input.GetMouseButtonDown(0) && canHit && !Inventory.itemClasses[(int)Inventory.itemSelected.Value].canHoldDown || Input.GetMouseButton(0) && canHit && Inventory.itemClasses[(int)Inventory.itemSelected.Value].canHoldDown)
         {
             StartCoroutine(timeBetweenHits());
-            animator.speed = 1f / Inventory.itemClasses[(int)Inventory.itemSelected].attackSpeed;
+            animator.speed = 1f / Inventory.itemClasses[(int)Inventory.itemSelected.Value].attackSpeed;
             animator.SetBool("attacking", true);
             StartCoroutine(stopAttacking());
 
@@ -40,16 +40,16 @@ public class meleeHeld : MonoBehaviour
 
             if (animator.GetBool("right") == true)
             {
-                attackBox = Physics2D.OverlapBoxAll(new Vector2(transform.parent.position.x + (transform.localScale.x + 1.55f) / 2, transform.parent.position.y), Inventory.itemClasses[(int)Inventory.itemSelected].MeleeAtackArea, 0, meleeMask);
+                attackBox = Physics2D.OverlapBoxAll(new Vector2(transform.parent.position.x + (transform.localScale.x + 1.55f) / 2, transform.parent.position.y), Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea, 0, meleeMask);
             }
             else
             {
-                attackBox = Physics2D.OverlapBoxAll(new Vector2(transform.parent.position.x - (transform.localScale.x + 1.55f) / 2, transform.parent.position.y), Inventory.itemClasses[(int)Inventory.itemSelected].MeleeAtackArea, 0, meleeMask);
+                attackBox = Physics2D.OverlapBoxAll(new Vector2(transform.parent.position.x - (transform.localScale.x + 1.55f) / 2, transform.parent.position.y), Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea, 0, meleeMask);
             }
 
             for (int i = 0; i < attackBox.Length; i++)
             {
-                if (Inventory.itemClasses[(int)Inventory.itemSelected].explodes)
+                if (Inventory.itemClasses[(int)Inventory.itemSelected.Value].explodes)
                 {
                     if (animator.GetBool("right") == true)
                     {
@@ -69,7 +69,7 @@ public class meleeHeld : MonoBehaviour
                 }
                 else if (attackBox[i].gameObject != transform.parent.parent.gameObject)
                 {
-                    attackBox[i].GetComponent<playerHealth>().TakeDamage(Inventory.itemClasses[(int)Inventory.itemSelected].MeleeDamage);
+                    attackBox[i].GetComponent<playerHealth>().TakeDamage(Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeDamage);
                 }
             }
         }
@@ -78,7 +78,7 @@ public class meleeHeld : MonoBehaviour
     IEnumerator timeBetweenHits()
     {
         canHit = false;
-        yield return new WaitForSeconds(Inventory.itemClasses[(int)Inventory.itemSelected].attackSpeed + Inventory.itemClasses[(int)Inventory.itemSelected].timeBetweenMeleeAtack - 0.01f);
+        yield return new WaitForSeconds(Inventory.itemClasses[(int)Inventory.itemSelected.Value].attackSpeed + Inventory.itemClasses[(int)Inventory.itemSelected.Value].timeBetweenMeleeAtack - 0.01f);
         canHit = true;
     }
 

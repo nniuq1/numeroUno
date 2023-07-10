@@ -10,10 +10,11 @@ public class inventory : NetworkBehaviour
     GameObject inventoryUI;
     public List<itemCombo> combinations;
     public List<itemClass> itemClasses = new List<itemClass>();
-    public float itemSelected = 0;
+    public NetworkVariable<float> itemSelected = new NetworkVariable<float>();
 
     private void Start()
     {
+        itemSelected.Value = 0;
     }
 
     private void Update()
@@ -25,21 +26,21 @@ public class inventory : NetworkBehaviour
 
         if (Input.mouseScrollDelta.y != 0)
         {
-            itemSelected += Input.mouseScrollDelta.y * 2;
-            if (itemSelected < 0)
+            itemSelected.Value += Input.mouseScrollDelta.y * 2;
+            if (itemSelected.Value < 0)
             {
-                itemSelected = itemClasses.Count - 0.001f;
+                itemSelected.Value = itemClasses.Count - 0.001f;
             }
-            if (itemSelected > itemClasses.Count - 0.0001f)
+            if (itemSelected.Value > itemClasses.Count - 0.0001f)
             {
-                itemSelected = 0;
+                itemSelected.Value = 0;
             }
         }
 
-        if (itemClasses.Count > 0)
+        if (itemClasses.Count > 0 && IsOwner)
         {
-            transform.GetChild(2).GetChild(0).transform.GetComponent<SpriteRenderer>().sprite = itemClasses[(int)itemSelected].sprite;
-            if (itemClasses[(int)itemSelected].weapontype == itemClass.WeaponType.Ranged)
+            transform.GetChild(2).GetChild(0).transform.GetComponent<SpriteRenderer>().sprite = itemClasses[(int)itemSelected.Value].sprite;
+            if (itemClasses[(int)itemSelected.Value].weapontype == itemClass.WeaponType.Ranged)
             {
                 transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled = false;
@@ -48,14 +49,14 @@ public class inventory : NetworkBehaviour
                 transform.GetChild(2).GetChild(0).position = transform.position;
                 transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled = true;
             }
-            else if (itemClasses[(int)itemSelected].weapontype == itemClass.WeaponType.Melee)
+            else if (itemClasses[(int)itemSelected.Value].weapontype == itemClass.WeaponType.Melee)
             {
                 transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
                 transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled = true;
             }
-            else if (itemClasses[(int)itemSelected].weapontype == itemClass.WeaponType.Hamburguesa)
+            else if (itemClasses[(int)itemSelected.Value].weapontype == itemClass.WeaponType.Hamburguesa)
             {
                 transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled = false;
@@ -82,51 +83,51 @@ public class inventory : NetworkBehaviour
                 inventoryUI.SetActive(true);
                 inventoryUI.transform.GetChild(0).gameObject.SetActive(true);
 
-                inventoryUI.transform.GetChild(3).GetComponent<Text>().text = itemClasses[(int)itemSelected].Name;
+                inventoryUI.transform.GetChild(3).GetComponent<Text>().text = itemClasses[(int)itemSelected.Value].Name;
 
 
-                inventoryUI.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected].sprite;
+                inventoryUI.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected.Value].sprite;
 
-                if (itemClasses[(int)itemSelected].weaponSize.x > itemClasses[(int)itemSelected].weaponSize.y)
+                if (itemClasses[(int)itemSelected.Value].weaponSize.x > itemClasses[(int)itemSelected.Value].weaponSize.y)
                 {
-                    inventoryUI.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = itemClasses[(int)itemSelected].weaponSize / itemClasses[(int)itemSelected].weaponSize.x * 0.8f;
+                    inventoryUI.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = itemClasses[(int)itemSelected.Value].weaponSize / itemClasses[(int)itemSelected.Value].weaponSize.x * 0.8f;
                 }
                 else
                 {
-                    inventoryUI.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = itemClasses[(int)itemSelected].weaponSize / itemClasses[(int)itemSelected].weaponSize.y * 0.8f;
+                    inventoryUI.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = itemClasses[(int)itemSelected.Value].weaponSize / itemClasses[(int)itemSelected.Value].weaponSize.y * 0.8f;
                 }
 
                 if (itemClasses.Count > 1)
                 {
                     inventoryUI.transform.GetChild(1).gameObject.SetActive(true);
-                    if ((int)itemSelected == itemClasses.Count - 1)
+                    if ((int)itemSelected.Value == itemClasses.Count - 1)
                     {
                         inventoryUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = itemClasses[0].sprite;
                     }
                     else
                     {
-                        inventoryUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected + 1].sprite;
+                        inventoryUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected.Value + 1].sprite;
                     }
                 }
                 else
                 {
-                    inventoryUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected].sprite;
+                    inventoryUI.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected.Value].sprite;
                 }
                 if (itemClasses.Count > 2)
                 {
                     inventoryUI.transform.GetChild(2).gameObject.SetActive(true);
-                    if ((int)itemSelected == 0)
+                    if ((int)itemSelected.Value == 0)
                     {
                         inventoryUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = itemClasses[itemClasses.Count - 1].sprite;
                     }
                     else
                     {
-                        inventoryUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected - 1].sprite;
+                        inventoryUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected.Value - 1].sprite;
                     }
                 }
                 else
                 {
-                    inventoryUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected].sprite;
+                    inventoryUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = itemClasses[(int)itemSelected.Value].sprite;
                 }
             }
         }
