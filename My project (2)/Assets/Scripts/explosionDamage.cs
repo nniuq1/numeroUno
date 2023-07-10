@@ -62,9 +62,8 @@ public class explosionDamage : NetworkBehaviour
                         }
                     };
                     collision.GetComponent<charmovement>().explodeClientRpc(nockback, clientRpcParams);
+                    collision.GetComponent<playerHealth>().TakeDamage(5);
                 }
-                collision.GetComponent<playerHealth>().TakeDamage(5);
-                collision.GetComponent<charmovement>().Stun(0.75f);
             }
             else
             {
