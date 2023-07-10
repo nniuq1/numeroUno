@@ -16,7 +16,6 @@ public class explosionDamage : NetworkBehaviour
     {
         if (IsServer)
         {
-            print(1);
             // if the shooter is protected from the explosion
             if (player != null)
             {
