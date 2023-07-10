@@ -9,6 +9,7 @@ public class explosionDamage : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // if the shooter is protected from the explosion
         if (player != null)
         {
             if (player == collision.gameObject)
@@ -18,7 +19,7 @@ public class explosionDamage : NetworkBehaviour
             else if (collision.GetComponent<Rigidbody2D>() != null)
             {
                 
-                    Vector2 nockback = new Vector2(9 * Mathf.Cos(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)), 9 * Mathf.Sin(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)));
+                Vector2 nockback = new Vector2(9 * Mathf.Cos(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)), 9 * Mathf.Sin(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)));
                 
                 if (collision.CompareTag("Player"))
                 {
@@ -34,19 +35,16 @@ public class explosionDamage : NetworkBehaviour
                                     
                                 }
                             };
-                            print(collision.GetComponent<NetworkObject>().OwnerClientId);
                             collision.GetComponent<charmovement>().explodeClientRpc(nockback , clientRpcParams);
                         }
                     }
-                    else {
-                        collision.GetComponent<Rigidbody2D>().velocity = nockback;
-                        collision.GetComponent<charmovement>().Stun(0.75f);
-                        
-                    }
                     collision.GetComponent<playerHealth>().TakeDamage(5);
+                    
                 }
+                collision.GetComponent<Rigidbody2D>().velocity = nockback;
             }
         }
+        // if the shooter is not protected from the explosion
         else if (collision.GetComponent<Rigidbody2D>() != null)
         {
             Vector2 nockback = new Vector2(9 * Mathf.Cos(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)), 9 * Mathf.Sin(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)));
@@ -63,7 +61,6 @@ public class explosionDamage : NetworkBehaviour
 
                         }
                     };
-                    print(collision.GetComponent<NetworkObject>().OwnerClientId);
                     collision.GetComponent<charmovement>().explodeClientRpc(nockback, clientRpcParams);
                 }
                 collision.GetComponent<playerHealth>().TakeDamage(5);
