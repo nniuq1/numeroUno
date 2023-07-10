@@ -8,6 +8,7 @@ public class kaboomarangScript : NetworkBehaviour
     bool leaving = true;
     public GameObject explosion;
     public NetworkVariable<ulong> player = new NetworkVariable<ulong>();
+    public NetworkVariable<Vector2> position = new NetworkVariable<Vector2>();
 
     private void Start()
     {
