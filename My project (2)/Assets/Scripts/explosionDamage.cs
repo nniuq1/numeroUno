@@ -20,7 +20,7 @@ public class explosionDamage : NetworkBehaviour
             {
                 
                 Vector2 nockback = new Vector2(9 * Mathf.Cos(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)), 9 * Mathf.Sin(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)));
-                
+                print(nockback);
                 if (collision.CompareTag("Player"))
                 {
                     if (!IsOwner)
@@ -48,7 +48,7 @@ public class explosionDamage : NetworkBehaviour
         else if (collision.GetComponent<Rigidbody2D>() != null)
         {
             Vector2 nockback = new Vector2(9 * Mathf.Cos(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)), 9 * Mathf.Sin(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)));
-
+            print(nockback);
             if (collision.CompareTag("Player"))
             {
                 if (Object.FindObjectOfType<NetworkManager>().GetComponent<NetworkManager>().IsServer)
