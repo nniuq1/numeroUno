@@ -5,25 +5,31 @@ using Unity.Netcode;
 
 public class projectileScript : NetworkBehaviour
 {
-    public float damage;
-    public GameObject player;
-    bool move = true;
-    public float explosionDelay = 0;
-    public GameObject explosion;
-    public bool explodes = false;
-    public itemClass item;
+    public NetworkVariable<float> damage = new NetworkVariable<float>();
+    public NetworkVariable<GameObject> player = new NetworkVariable<GameObject>();
+    NetworkVariable<bool> move = new NetworkVariable<bool>();
+    move.Value = true;
+    public NetworkVariable<float> explosionDelay;
+    explosionDelay.Value = 0;
+    public NetworkVariable<GameObject> explosion = new NetworkVariable<GameObject>();
+    public NetworkVariable<bool> explodes = new NetworkVariable<bool>();
+    explodes.Value = false;
+    public NetworkVariable<itemClass> item = new NetworkVariable<itemClass>();
 
     private void Start()
     {
-        transform.GetComponent<SpriteRenderer>().sprite = item.projectileSprite;
-        transform.GetComponent<SpriteRenderer>().color = item.bulletColor;
-        StartCoroutine(death());
-        transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), item.projectileSpeed * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
+        if (IsServer)
+        {
+            transform.GetComponent<SpriteRenderer>().sprite = item.Value.projectileSprite;
+            transform.GetComponent<SpriteRenderer>().color = item.Value.bulletColor;
+            StartCoroutine(death());
+            transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.Value.projectileSpeed * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), item.Value.projectileSpeed * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
+        }
     }
 
     private void Update()
     {
-        if (move)
+        if (move.Value)
         {
             //transform.position = new Vector2(transform.position.x + item.projectileSpeed * Time.deltaTime * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), transform.position.y + item.projectileSpeed * Time.deltaTime * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
         }
@@ -32,7 +38,7 @@ public class projectileScript : NetworkBehaviour
     IEnumerator death()
     {
         yield return new WaitForSeconds(5);
-        if (move)
+        if (move.Value)
         {
             if (IsOwnedByServer)
             {
@@ -45,7 +51,7 @@ public class projectileScript : NetworkBehaviour
     {
         if (collision.transform.gameObject != player && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
         {
-            if (explodes)
+            if (explodes.Value)
             {
                 StartCoroutine(explodeDelay(collision.gameObject));
             }
@@ -53,7 +59,7 @@ public class projectileScript : NetworkBehaviour
             {
                 if (collision.CompareTag("Player"))
                 {
-                    collision.GetComponent<playerHealth>().TakeDamage(damage);
+                    collision.GetComponent<playerHealth>().TakeDamage(damage.Value);
                 }
                 if (IsOwnedByServer)
                 {
@@ -62,7 +68,7 @@ public class projectileScript : NetworkBehaviour
             }
         }
 
-        if (!move && collision.CompareTag("Player") && collision.gameObject != player)
+        if (!move.Value && collision.CompareTag("Player") && collision.gameObject != player)
         {
             Instantiate(explosion, transform.position, transform.rotation, null);
             if (IsOwnedByServer)
@@ -74,7 +80,7 @@ public class projectileScript : NetworkBehaviour
 
     IEnumerator explodeDelay(GameObject collision)
     {
-        move = false;
+        move.Value = false;
         Destroy(transform.GetComponent<Rigidbody2D>());
         //transform.SetParent(collision.transform);
         yield return new WaitForSeconds(explosionDelay);
