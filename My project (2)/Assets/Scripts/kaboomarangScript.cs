@@ -12,7 +12,6 @@ public class kaboomarangScript : NetworkBehaviour
 
     private void Start()
     {
-        player = 0;
         transform.GetComponent<Rigidbody2D>().velocity = new Vector2(30 * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), 30 * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
     }
 
