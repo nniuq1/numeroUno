@@ -7,9 +7,11 @@ public class kaboomarangScript : NetworkBehaviour
 {
     bool leaving = true;
     public GameObject explosion;
+    public NetworkVariable<ulong> player = new NetworkVariable<ulong>();
 
     private void Start()
     {
+        player.Value = 0;
         transform.GetComponent<Rigidbody2D>().velocity = new Vector2(30 * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), 30 * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
     }
 
@@ -21,12 +23,12 @@ public class kaboomarangScript : NetworkBehaviour
         }
         else
         {
-            Vector3 dir = player.Value.position - transform.position;
+            Vector3 dir = NetworkManager.Singleton.ConnectedClients[player.Value].PlayerObject.transform.position - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.GetComponent<Rigidbody2D>().velocity = new Vector2(30 * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), 30 * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
 
-            if (Vector2.Distance(transform.position, player.Value.transform.position) < 0.4f)
+            if (Vector2.Distance(transform.position, NetworkManager.Singleton.ConnectedClients[player.Value].PlayerObject.transform.position) < 0.4f)
             {
                 Destroy(gameObject);
             }
@@ -42,7 +44,7 @@ public class kaboomarangScript : NetworkBehaviour
     {
         if (leaving)
         {
-            if (collision.transform.gameObject != player.Value && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
+            if (collision.transform.gameObject != NetworkManager.Singleton.ConnectedClients[player.Value].PlayerObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
             {
                 leaving = false;
                 Instantiate(explosion, transform.position, transform.rotation);
