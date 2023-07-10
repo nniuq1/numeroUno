@@ -24,7 +24,7 @@ public class inventory : NetworkBehaviour
             inventoryUI = GameObject.FindObjectOfType<Canvas>().transform.GetChild(2).gameObject;
         }
 
-        if (Input.mouseScrollDelta.y != 0)
+        if (Input.mouseScrollDelta.y != 0 && IsOwner)
         {
             itemSelected.Value += Input.mouseScrollDelta.y * 2;
             if (itemSelected.Value < 0)
