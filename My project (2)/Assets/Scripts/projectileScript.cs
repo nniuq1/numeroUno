@@ -8,16 +8,14 @@ public class projectileScript : NetworkBehaviour
     public NetworkVariable<float> damage = new NetworkVariable<float>();
     public NetworkVariable<GameObject> player = new NetworkVariable<GameObject>();
     NetworkVariable<bool> move = new NetworkVariable<bool>();
-    move.Value = true;
     public NetworkVariable<float> explosionDelay;
-    explosionDelay.Value = 0;
-    public NetworkVariable<GameObject> explosion = new NetworkVariable<GameObject>();
+    public GameObject explosion;
     public NetworkVariable<bool> explodes = new NetworkVariable<bool>();
-    explodes.Value = false;
     public NetworkVariable<itemClass> item = new NetworkVariable<itemClass>();
 
     private void Start()
     {
+        move.Value = true;
         if (IsServer)
         {
             transform.GetComponent<SpriteRenderer>().sprite = item.Value.projectileSprite;
@@ -49,7 +47,7 @@ public class projectileScript : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.gameObject != player && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
+        if (collision.transform.gameObject != player.Value && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
         {
             if (explodes.Value)
             {
@@ -68,7 +66,7 @@ public class projectileScript : NetworkBehaviour
             }
         }
 
-        if (!move.Value && collision.CompareTag("Player") && collision.gameObject != player)
+        if (!move.Value && collision.CompareTag("Player") && collision.gameObject != player.Value)
         {
             Instantiate(explosion, transform.position, transform.rotation, null);
             if (IsOwnedByServer)
@@ -83,7 +81,7 @@ public class projectileScript : NetworkBehaviour
         move.Value = false;
         Destroy(transform.GetComponent<Rigidbody2D>());
         //transform.SetParent(collision.transform);
-        yield return new WaitForSeconds(explosionDelay);
+        yield return new WaitForSeconds(explosionDelay.Value);
         Instantiate(explosion, transform.position, transform.rotation, null);
         if (IsOwnedByServer)
         {
