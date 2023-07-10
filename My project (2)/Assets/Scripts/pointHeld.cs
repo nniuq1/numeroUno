@@ -35,6 +35,7 @@ public class pointHeld : NetworkBehaviour
                 canShoot = false;
                 StartCoroutine(timeBetween());
                 GameObject newBullet = Instantiate(Inventory.itemClasses[(int)Inventory.itemSelected].projectile, transform.position, transform.rotation);
+                newBullet.GetComponent<NetworkObject>().Spawn();
                 if (Inventory.itemClasses[(int)Inventory.itemSelected].projectile.GetComponent<projectileScript>() != null)
                 {
                     newBullet.GetComponent<projectileScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
@@ -69,6 +70,7 @@ public class pointHeld : NetworkBehaviour
                 canShoot = false;
                 StartCoroutine(timeBetween());
                 GameObject newBullet = Instantiate(Inventory.itemClasses[(int)Inventory.itemSelected].projectile, transform.position, transform.rotation);
+                newBullet.GetComponent<NetworkObject>().Spawn();
                 if (Inventory.itemClasses[(int)Inventory.itemSelected].projectile.GetComponent<projectileScript>() != null)
                 {
                     newBullet.GetComponent<projectileScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
