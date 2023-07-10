@@ -7,12 +7,12 @@ public class kaboomarangScript : NetworkBehaviour
 {
     bool leaving = true;
     public GameObject explosion;
-    public NetworkVariable<ulong> player = new NetworkVariable<ulong>();
+    public ulong player;
     public NetworkVariable<Vector2> position = new NetworkVariable<Vector2>();
 
     private void Start()
     {
-        player.Value = 0;
+        player = 0;
         transform.GetComponent<Rigidbody2D>().velocity = new Vector2(30 * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), 30 * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
     }
 
@@ -24,12 +24,12 @@ public class kaboomarangScript : NetworkBehaviour
         }
         else
         {
-            Vector3 dir = NetworkManager.Singleton.ConnectedClients[player.Value].PlayerObject.transform.position - transform.position;
+            Vector3 dir = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.GetComponent<Rigidbody2D>().velocity = new Vector2(30 * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), 30 * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
 
-            if (Vector2.Distance(transform.position, NetworkManager.Singleton.ConnectedClients[player.Value].PlayerObject.transform.position) < 0.4f)
+            if (Vector2.Distance(transform.position, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position) < 0.4f)
             {
                 Destroy(gameObject);
             }
@@ -45,7 +45,7 @@ public class kaboomarangScript : NetworkBehaviour
     {
         if (leaving)
         {
-            if (collision.gameObject != NetworkManager.Singleton.ConnectedClients[player.Value].PlayerObject.gameObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
+            if (collision.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
             {
                 leaving = false;
                 Instantiate(explosion, transform.position, transform.rotation);
