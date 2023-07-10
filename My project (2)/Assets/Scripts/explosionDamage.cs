@@ -18,8 +18,17 @@ public class explosionDamage : NetworkBehaviour
             }
             else if (collision.GetComponent<Rigidbody2D>() != null)
             {
-                
-                Vector2 nockback = new Vector2(9 * Mathf.Cos(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)), 9 * Mathf.Sin(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)));
+
+                //Vector2 nockback = new Vector2(9 * Mathf.Cos(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)), 9 * Mathf.Sin(Mathf.Atan2(collision.transform.position.y - transform.position.y, collision.transform.position.x - transform.position.x)));
+                Vector2 nockback;
+                if (collision.transform.position.x > player.transform.position.x)
+                {
+                    nockback = new Vector2(9, 0);
+                }
+                else
+                {
+                    nockback = new Vector2(-9, 0);
+                }
                 print(nockback);
                 if (collision.CompareTag("Player"))
                 {

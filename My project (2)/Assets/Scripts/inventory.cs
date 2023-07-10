@@ -25,7 +25,7 @@ public class inventory : NetworkBehaviour
 
         if (Input.mouseScrollDelta.y != 0)
         {
-            itemSelected -= Input.mouseScrollDelta.y * 2;
+            itemSelected += Input.mouseScrollDelta.y * 2;
             if (itemSelected < 0)
             {
                 itemSelected = itemClasses.Count - 0.001f;
