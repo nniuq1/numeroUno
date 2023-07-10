@@ -6,6 +6,9 @@ using Unity.Netcode;
 
 public class charmovement : NetworkBehaviour
 {
+    public GameObject dustparticle;
+    public float footstepChance = 0.05f;
+
     public GameObject roomAranger;
     bool stunned = false;
 
@@ -69,10 +72,20 @@ public class charmovement : NetworkBehaviour
             if (Input.GetAxisRaw("Horizontal") == 1 && rightCollision.Length == 0)
             {
                 rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+                int random = Random.Range(1, (int)(1 / footstepChance) + 1);
+                if (random == (int)(1 / footstepChance) && canJump)
+                {
+                    Instantiate(dustparticle, new Vector2(transform.position.x, transform.position.y - 1), Quaternion.Euler(-90, 0, 0));
+                }
             }
             if (Input.GetAxisRaw("Horizontal") == -1 && leftCollision.Length == 0)
             {
                 rb.velocity = new Vector2(speed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+                int random = Random.Range(1, (int)(1 / footstepChance) + 1);
+                if (random == (int)(1 / footstepChance) && canJump)
+                {
+                    Instantiate(dustparticle, new Vector2(transform.position.x, transform.position.y - 1), Quaternion.Euler(-90, 0, 0));
+                }
             }
         }
         else

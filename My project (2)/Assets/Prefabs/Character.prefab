@@ -223,6 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b6394ca29c84d20a7e6c544e8fadf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dustparticle: {fileID: 6759634117678873779, guid: 0e65ad2b5a9494be689c842c8d94fd66, type: 3}
+  footstepChance: 0.02
   roomAranger: {fileID: 8980409394462229400, guid: fe5349d8ab09a42b89050b1d86d0615a, type: 3}
   speed: 11
   jumpHeight: 11
