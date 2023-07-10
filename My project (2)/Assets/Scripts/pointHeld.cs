@@ -106,7 +106,7 @@ public class pointHeld : NetworkBehaviour
     [ServerRpc]
     void spawningServerRpc(ulong player)
     {
-        GameObject newBullet = Instantiate(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].projectile, transform.position, transform.rotation);
+        GameObject newBullet = Instantiate(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].projectile, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetChild(2).GetChild(0).position, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetChild(2).GetChild(0).rotation);
         if (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].projectile.GetComponent<projectileScript>() != null)
         {
             newBullet.GetComponent<projectileScript>().item.Value = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value];
