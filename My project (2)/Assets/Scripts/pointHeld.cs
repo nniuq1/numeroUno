@@ -10,14 +10,23 @@ public class pointHeld : NetworkBehaviour
     bool canShoot = true;
     public inventory Inventory;
     public GameObject projectile;
+    public NetworkVariable<float> _rotations = new NetworkVariable<float>();
 
     private void Update()
     {
-        GetComponent<SpriteRenderer>().flipX = false;
-        transform.GetComponent<Animator>().enabled = false;
-        Vector3 dir = transform.parent.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if (IsOwner)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+            transform.GetComponent<Animator>().enabled = false;
+            Vector3 dir = transform.parent.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            _rotations.Value = Quaternion.ToEulerAngles(transform.rotation).z;
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, _rotations.Value);
+        }
 
         if (Quaternion.ToEulerAngles(transform.rotation).z < Mathf.PI / 2 && Quaternion.ToEulerAngles(transform.rotation).z > -Mathf.PI / 2)
         {
