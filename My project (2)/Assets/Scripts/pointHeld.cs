@@ -46,7 +46,7 @@ public class pointHeld : NetworkBehaviour
                     newBullet.GetComponent<projectileScript>().player.Value = transform.parent.parent.gameObject;
                     newBullet.GetComponent<projectileScript>().damage.Value = Inventory.itemClasses[(int)Inventory.itemSelected].bulletDamage;
                 }
-                else
+                else if (Inventory.itemClasses[(int)Inventory.itemSelected].projectile.GetComponent<wandProjectile>() != null)
                 {
                     newBullet.GetComponent<wandProjectile>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
                     newBullet.GetComponent<wandProjectile>().player = transform.parent.parent.gameObject;

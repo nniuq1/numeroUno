@@ -131,7 +131,7 @@ public class charmovement : NetworkBehaviour
     [ClientRpc]
     public void explodeClientRpc(Vector2 nockback, ClientRpcParams clientRpcParams = default)
     {
-        print(nockback);
+        //print(nockback);
         NetworkManager.LocalClient.PlayerObject.GetComponent<Rigidbody2D>().velocity = nockback;
         Stun(0.75f);
     }

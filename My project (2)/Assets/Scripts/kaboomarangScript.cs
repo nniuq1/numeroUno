@@ -44,8 +44,9 @@ public class kaboomarangScript : NetworkBehaviour
     {
         if (leaving)
         {
-            if (collision.transform.gameObject != NetworkManager.Singleton.ConnectedClients[player.Value].PlayerObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
+            if (collision.gameObject != NetworkManager.Singleton.ConnectedClients[player.Value].PlayerObject.gameObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
             {
+                print(NetworkManager.Singleton.ConnectedClients[player.Value].PlayerObject.transform.position);
                 leaving = false;
                 Instantiate(explosion, transform.position, transform.rotation);
             }
