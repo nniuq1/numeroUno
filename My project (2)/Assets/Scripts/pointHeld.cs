@@ -35,7 +35,6 @@ public class pointHeld : NetworkBehaviour
                 canShoot = false;
                 StartCoroutine(timeBetween());
                 GameObject newBullet = Instantiate(Inventory.itemClasses[(int)Inventory.itemSelected].projectile, transform.position, transform.rotation);
-                newBullet.GetComponent<NetworkObject>().Spawn();
                 if (Inventory.itemClasses[(int)Inventory.itemSelected].projectile.GetComponent<projectileScript>() != null)
                 {
                     newBullet.GetComponent<projectileScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
@@ -61,6 +60,7 @@ public class pointHeld : NetworkBehaviour
                 }
                 newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
                 newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected].gravityScale;
+                newBullet.GetComponent<NetworkObject>().Spawn();
             }
         }
         else
@@ -70,7 +70,6 @@ public class pointHeld : NetworkBehaviour
                 canShoot = false;
                 StartCoroutine(timeBetween());
                 GameObject newBullet = Instantiate(Inventory.itemClasses[(int)Inventory.itemSelected].projectile, transform.position, transform.rotation);
-                newBullet.GetComponent<NetworkObject>().Spawn();
                 if (Inventory.itemClasses[(int)Inventory.itemSelected].projectile.GetComponent<projectileScript>() != null)
                 {
                     newBullet.GetComponent<projectileScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
@@ -89,6 +88,7 @@ public class pointHeld : NetworkBehaviour
                 }
                 newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
                 newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected].gravityScale;
+                newBullet.GetComponent<NetworkObject>().Spawn();
             }
         }
     }
