@@ -93,7 +93,7 @@ public class explosionDamage : NetworkBehaviour
 
     IEnumerator death()
     {
-        yield return new WaitForSeconds(0.2);
+        yield return new WaitForSeconds(0.2f);
         if (IsServer)
         {
             Destroy(gameObject);
