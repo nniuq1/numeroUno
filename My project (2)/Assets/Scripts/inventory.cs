@@ -37,7 +37,7 @@ public class inventory : NetworkBehaviour
             }
         }
 
-        if (itemClasses.Count > 0 && IsOwner)
+        if (itemClasses.Count > 0)
         {
             transform.GetChild(2).GetChild(0).transform.GetComponent<SpriteRenderer>().sprite = itemClasses[(int)itemSelected.Value].sprite;
             if (itemClasses[(int)itemSelected.Value].weapontype == itemClass.WeaponType.Ranged)
