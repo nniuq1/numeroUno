@@ -5,7 +5,7 @@ using Unity.Netcode;
 
 public class kaboomarangScript : NetworkBehaviour
 {
-    public NetworkVariable<GameObject> player = new NetworkVariable<GameObject>();
+    public NetworkVariable<Transform> player = new NetworkVariable<Transform>();
     bool leaving = true;
     public GameObject explosion;
 
@@ -22,7 +22,7 @@ public class kaboomarangScript : NetworkBehaviour
         }
         else
         {
-            Vector3 dir = player.Value.transform.position - transform.position;
+            Vector3 dir = player.Value.position - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.GetComponent<Rigidbody2D>().velocity = new Vector2(30 * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), 30 * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
