@@ -57,7 +57,8 @@ public class kaboomarangScript : NetworkBehaviour
                 if (collision.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
                 {
                     leaving = false;
-                    Instantiate(explosion, transform.position, transform.rotation);
+                    GameObject explodingson = Instantiate(explosion, transform.position, transform.rotation);
+                    explodingson.GetComponent<NetworkObject>().Spawn();
                 }
             }
         }
