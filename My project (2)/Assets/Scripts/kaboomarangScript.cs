@@ -1,20 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class kaboomarangScript : MonoBehaviour
+public class kaboomarangScript : NetworkBehaviour
 {
-    public float damage;
-    public GameObject player;
+    public NetworkVariable<GameObject> player = new NetworkVariable<GameObject>();
     bool leaving = true;
     public GameObject explosion;
-    public itemClass item;
 
     private void Start()
     {
-        transform.GetComponent<SpriteRenderer>().sprite = item.projectileSprite;
-        transform.GetComponent<SpriteRenderer>().color = item.bulletColor;
-        transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), item.projectileSpeed * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
+        transform.GetComponent<Rigidbody2D>().velocity = new Vector2(30 * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), 30 * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
     }
 
     private void Update()
@@ -25,12 +22,12 @@ public class kaboomarangScript : MonoBehaviour
         }
         else
         {
-            Vector3 dir = player.transform.position - transform.position;
+            Vector3 dir = player.Value.transform.position - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), item.projectileSpeed * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
+            transform.GetComponent<Rigidbody2D>().velocity = new Vector2(30 * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), 30 * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
 
-            if (Vector2.Distance(transform.position, player.transform.position) < 0.4f)
+            if (Vector2.Distance(transform.position, player.Value.transform.position) < 0.4f)
             {
                 Destroy(gameObject);
             }
@@ -46,7 +43,7 @@ public class kaboomarangScript : MonoBehaviour
     {
         if (leaving)
         {
-            if (collision.transform.gameObject != player && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
+            if (collision.transform.gameObject != player.Value && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
             {
                 leaving = false;
                 Instantiate(explosion, transform.position, transform.rotation);

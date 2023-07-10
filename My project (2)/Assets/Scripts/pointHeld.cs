@@ -48,9 +48,7 @@ public class pointHeld : NetworkBehaviour
                 }
                 else if(newBullet.GetComponent<kaboomarangScript>() != null)
                 {
-                    newBullet.GetComponent<kaboomarangScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
-                    newBullet.GetComponent<kaboomarangScript>().player = transform.parent.parent.gameObject;
-                    newBullet.GetComponent<kaboomarangScript>().damage = Inventory.itemClasses[(int)Inventory.itemSelected].bulletDamage;
+                    newBullet.GetComponent<kaboomarangScript>().player.Value = transform.parent.parent.gameObject;
                 }
                 else
                 {
@@ -83,8 +81,7 @@ public class pointHeld : NetworkBehaviour
                 }
                 else
                 {
-                    newBullet.GetComponent<kaboomarangScript>().player = transform.parent.parent.gameObject;
-                    newBullet.GetComponent<kaboomarangScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
+                    newBullet.GetComponent<kaboomarangScript>().player.Value = transform.parent.parent.gameObject;
                 }
                 newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
                 newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected].gravityScale;
