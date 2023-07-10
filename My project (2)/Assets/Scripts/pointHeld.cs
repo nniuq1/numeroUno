@@ -37,14 +37,14 @@ public class pointHeld : NetworkBehaviour
                 GameObject newBullet = Instantiate(Inventory.itemClasses[(int)Inventory.itemSelected].projectile, transform.position, transform.rotation);
                 if (Inventory.itemClasses[(int)Inventory.itemSelected].projectile.GetComponent<projectileScript>() != null)
                 {
-                    newBullet.GetComponent<projectileScript>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
+                    newBullet.GetComponent<projectileScript>().item.Value = Inventory.itemClasses[(int)Inventory.itemSelected];
                     if (Inventory.itemClasses[(int)Inventory.itemSelected].explodes)
                     {
-                        newBullet.GetComponent<projectileScript>().explodes = true;
-                        newBullet.GetComponent<projectileScript>().explosionDelay = Inventory.itemClasses[(int)Inventory.itemSelected].explosionDelay;
+                        newBullet.GetComponent<projectileScript>().explodes.Value = true;
+                        newBullet.GetComponent<projectileScript>().explosionDelay.Value = Inventory.itemClasses[(int)Inventory.itemSelected].explosionDelay;
                     }
-                    newBullet.GetComponent<projectileScript>().player = transform.parent.parent.gameObject;
-                    newBullet.GetComponent<projectileScript>().damage = Inventory.itemClasses[(int)Inventory.itemSelected].bulletDamage;
+                    newBullet.GetComponent<projectileScript>().player.Value = transform.parent.parent.gameObject;
+                    newBullet.GetComponent<projectileScript>().damage.Value = Inventory.itemClasses[(int)Inventory.itemSelected].bulletDamage;
                 }
                 else if(newBullet.GetComponent<kaboomarangScript>() != null)
                 {
