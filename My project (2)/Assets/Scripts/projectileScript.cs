@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class projectileScript : MonoBehaviour
+public class projectileScript : NetworkBehaviour
 {
     public float damage;
     public GameObject player;
@@ -33,7 +34,10 @@ public class projectileScript : MonoBehaviour
         yield return new WaitForSeconds(5);
         if (move)
         {
-            Destroy(gameObject);
+            if (IsOwnedByServer)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -51,14 +55,20 @@ public class projectileScript : MonoBehaviour
                 {
                     collision.GetComponent<playerHealth>().TakeDamage(damage);
                 }
-                Destroy(gameObject);
+                if (IsOwnedByServer)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 
         if (!move && collision.CompareTag("Player") && collision.gameObject != player)
         {
             Instantiate(explosion, transform.position, transform.rotation, null);
-            Destroy(gameObject);
+            if (IsOwnedByServer)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -69,6 +79,9 @@ public class projectileScript : MonoBehaviour
         //transform.SetParent(collision.transform);
         yield return new WaitForSeconds(explosionDelay);
         Instantiate(explosion, transform.position, transform.rotation, null);
-        Destroy(gameObject);
+        if (IsOwnedByServer)
+        {
+            Destroy(gameObject);
+        }
     }
 }
