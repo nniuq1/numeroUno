@@ -10,7 +10,7 @@ public class inventory : NetworkBehaviour
     GameObject inventoryUI;
     public List<itemCombo> combinations;
     public List<itemClass> itemClasses = new List<itemClass>();
-    public NetworkVariable<float> itemSelected = new NetworkVariable<float>();
+    public NetworkVariable<float> itemSelected = new NetworkVariable<float>(writePerm: NetworkVariableWritePermission.Owner);
 
     private void Start()
     {
