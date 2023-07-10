@@ -60,7 +60,7 @@ public class pointHeld : NetworkBehaviour
                 }
                 else
                 {
-                    spawningServerRpc();
+                    spawningServerRpc(Inventory.itemClasses[(int)Inventory.itemSelected]);
                 }
             }
         }
@@ -90,7 +90,7 @@ public class pointHeld : NetworkBehaviour
                 }
                 else
                 {
-                    spawningServerRpc();
+                    spawningServerRpc(Inventory.itemClasses[(int)Inventory.itemSelected]);
                 }
             }
         }
@@ -104,28 +104,28 @@ public class pointHeld : NetworkBehaviour
     }
 
     [ServerRpc]
-    void spawningServerRpc()
+    void spawningServerRpc(itemClass selected)
     {
-        GameObject newBullet = Instantiate(Inventory.itemClasses[(int)Inventory.itemSelected].projectile, transform.position, transform.rotation);
-        if (Inventory.itemClasses[(int)Inventory.itemSelected].projectile.GetComponent<projectileScript>() != null)
+        GameObject newBullet = Instantiate(selected.projectile, transform.position, transform.rotation);
+        if (selected.projectile.GetComponent<projectileScript>() != null)
         {
-            newBullet.GetComponent<projectileScript>().item.Value = Inventory.itemClasses[(int)Inventory.itemSelected];
-            if (Inventory.itemClasses[(int)Inventory.itemSelected].explodes)
+            newBullet.GetComponent<projectileScript>().item.Value = selected;
+            if (selected.explodes)
             {
                 newBullet.GetComponent<projectileScript>().explodes.Value = true;
-                newBullet.GetComponent<projectileScript>().explosionDelay.Value = Inventory.itemClasses[(int)Inventory.itemSelected].explosionDelay;
+                newBullet.GetComponent<projectileScript>().explosionDelay.Value = selected.explosionDelay;
             }
             newBullet.GetComponent<projectileScript>().player.Value = transform.parent.parent.gameObject;
-            newBullet.GetComponent<projectileScript>().damage.Value = Inventory.itemClasses[(int)Inventory.itemSelected].bulletDamage;
+            newBullet.GetComponent<projectileScript>().damage.Value = selected.bulletDamage;
         }
-        else if (Inventory.itemClasses[(int)Inventory.itemSelected].projectile.GetComponent<wandProjectile>() != null)
+        else if (selected.projectile.GetComponent<wandProjectile>() != null)
         {
-            newBullet.GetComponent<wandProjectile>().item = Inventory.itemClasses[(int)Inventory.itemSelected];
+            newBullet.GetComponent<wandProjectile>().item = selected;
             newBullet.GetComponent<wandProjectile>().player = transform.parent.parent.gameObject;
-            newBullet.GetComponent<wandProjectile>().damage = Inventory.itemClasses[(int)Inventory.itemSelected].bulletDamage;
+            newBullet.GetComponent<wandProjectile>().damage = selected.bulletDamage;
         }
-        newBullet.transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected].bulletSize;
-        newBullet.GetComponent<Rigidbody2D>().gravityScale = Inventory.itemClasses[(int)Inventory.itemSelected].gravityScale;
+        newBullet.transform.localScale = selected.bulletSize;
+        newBullet.GetComponent<Rigidbody2D>().gravityScale = selected.gravityScale;
         newBullet.GetComponent<NetworkObject>().Spawn();
     }
 }
