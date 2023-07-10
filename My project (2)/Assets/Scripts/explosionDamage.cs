@@ -16,6 +16,7 @@ public class explosionDamage : NetworkBehaviour
     {
         if (IsServer)
         {
+            print(1);
             // if the shooter is protected from the explosion
             if (player != null)
             {
@@ -92,7 +93,7 @@ public class explosionDamage : NetworkBehaviour
 
     IEnumerator death()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.2);
         if (IsServer)
         {
             Destroy(gameObject);
