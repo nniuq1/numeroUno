@@ -5,7 +5,6 @@ using Unity.Netcode;
 
 public class kaboomarangScript : NetworkBehaviour
 {
-    public NetworkVariable<Transform> player = new NetworkVariable<Transform>();
     bool leaving = true;
     public GameObject explosion;
 
