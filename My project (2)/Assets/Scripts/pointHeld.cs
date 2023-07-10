@@ -21,11 +21,11 @@ public class pointHeld : NetworkBehaviour
             Vector3 dir = transform.parent.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            _rotations.Value = Quaternion.ToEulerAngles(transform.rotation).z;
+            _rotations.Value = angle;
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 0, _rotations.Value);
+            transform.rotation = Quaternion.AngleAxis(_rotations.Value, Vector3.forward);
         }
 
         if (Quaternion.ToEulerAngles(transform.rotation).z < Mathf.PI / 2 && Quaternion.ToEulerAngles(transform.rotation).z > -Mathf.PI / 2)
