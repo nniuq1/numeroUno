@@ -34,13 +34,14 @@ public class kaboomarangScript : NetworkBehaviour
                 {
                     Destroy(gameObject);
                 }
-                position.Value = this.transform.position;
+               
             }
 
             if (Mathf.Abs(transform.GetComponent<Rigidbody2D>().velocity.x) + Mathf.Abs(transform.GetComponent<Rigidbody2D>().velocity.y) < 15 && leaving)
             {
                 leaving = false;
             }
+            position.Value = this.transform.position;
         }
         else{
             this.transform.position = position.Value;
