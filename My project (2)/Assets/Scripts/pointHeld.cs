@@ -55,11 +55,11 @@ public class pointHeld : NetworkBehaviour
                     {
                         if (Inventory.itemClasses[(int)Inventory.itemSelected.Value].explodes)
                         {
-                            newBullet.GetComponent<projectileScript>().explodes.Value = true;
-                            newBullet.GetComponent<projectileScript>().explosionDelay.Value = Inventory.itemClasses[(int)Inventory.itemSelected.Value].explosionDelay;
+                            newBullet.GetComponent<projectileScript>().explodes = true;
+                            newBullet.GetComponent<projectileScript>().explosionDelay = Inventory.itemClasses[(int)Inventory.itemSelected.Value].explosionDelay;
                         }
                         newBullet.GetComponent<projectileScript>().player = NetworkManager.Singleton.LocalClientId;
-                        newBullet.GetComponent<projectileScript>().damage.Value = Inventory.itemClasses[(int)Inventory.itemSelected.Value].bulletDamage;
+                        newBullet.GetComponent<projectileScript>().damage = Inventory.itemClasses[(int)Inventory.itemSelected.Value].bulletDamage;
                         newBullet.GetComponent<projectileScript>().itemselect.Value = Inventory.itemClasses[(int)Inventory.itemSelected.Value].itemID;
                     }
                     else if (Inventory.itemClasses[(int)Inventory.itemSelected.Value].projectile.GetComponent<wandProjectile>() != null)
@@ -95,11 +95,11 @@ public class pointHeld : NetworkBehaviour
                     {
                         if (Inventory.itemClasses[(int)Inventory.itemSelected.Value].explodes)
                         {
-                            newBullet.GetComponent<projectileScript>().explodes.Value = true;
-                            newBullet.GetComponent<projectileScript>().explosionDelay.Value = Inventory.itemClasses[(int)Inventory.itemSelected.Value].explosionDelay;
+                            newBullet.GetComponent<projectileScript>().explodes = true;
+                            newBullet.GetComponent<projectileScript>().explosionDelay = Inventory.itemClasses[(int)Inventory.itemSelected.Value].explosionDelay;
                         }
                         newBullet.GetComponent<projectileScript>().player = NetworkManager.Singleton.LocalClientId;
-                        newBullet.GetComponent<projectileScript>().damage.Value = Inventory.itemClasses[(int)Inventory.itemSelected.Value].bulletDamage;
+                        newBullet.GetComponent<projectileScript>().damage = Inventory.itemClasses[(int)Inventory.itemSelected.Value].bulletDamage;
                         newBullet.GetComponent<projectileScript>().itemselect.Value = Inventory.itemClasses[(int)Inventory.itemSelected.Value].itemID;
                     }
                     else
@@ -133,11 +133,11 @@ public class pointHeld : NetworkBehaviour
         {
             if (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].explodes)
             {
-                newBullet.GetComponent<projectileScript>().explodes.Value = true;
-                newBullet.GetComponent<projectileScript>().explosionDelay.Value = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].explosionDelay;
+                newBullet.GetComponent<projectileScript>().explodes = true;
+                newBullet.GetComponent<projectileScript>().explosionDelay = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].explosionDelay;
             }
             newBullet.GetComponent<projectileScript>().player = player;
-            newBullet.GetComponent<projectileScript>().damage.Value = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].bulletDamage;
+            newBullet.GetComponent<projectileScript>().damage = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].bulletDamage;
             newBullet.GetComponent<projectileScript>().itemselect.Value = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].itemID;
         }
         else if (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].projectile.GetComponent<wandProjectile>() != null)
