@@ -39,20 +39,17 @@ public class explosionDamage : NetworkBehaviour
                     //print(nockback);
                     if (collision.CompareTag("Player"))
                     {
-                        if (!IsOwner)
+                        if (Object.FindObjectOfType<NetworkManager>().GetComponent<NetworkManager>().IsServer)
                         {
-                            if (Object.FindObjectOfType<NetworkManager>().GetComponent<NetworkManager>().IsServer)
+                            ClientRpcParams clientRpcParams = new ClientRpcParams
                             {
-                                ClientRpcParams clientRpcParams = new ClientRpcParams
-                                {
-                                    Send = new ClientRpcSendParams
-                                    {
-                                        TargetClientIds = new ulong[] { collision.GetComponent<NetworkObject>().OwnerClientId }
+                            Send = new ClientRpcSendParams
+                            {
+                                TargetClientIds = new ulong[] { collision.GetComponent<NetworkObject>().OwnerClientId }
 
-                                    }
-                                };
-                                collision.GetComponent<charmovement>().explodeClientRpc(nockback, clientRpcParams);
                             }
+                            };
+                        collision.GetComponent<charmovement>().explodeClientRpc(nockback, clientRpcParams);
                         }
                         collision.GetComponent<playerHealth>().TakeDamage(5);
 
