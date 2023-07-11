@@ -30,57 +30,60 @@ public class meleeHeld : NetworkBehaviour
             transform.GetComponent<SpriteRenderer>().flipX = true;
         }
 
-        if (IsServer)
+        if (IsOwner)
         {
-            if (Input.GetMouseButtonDown(0) && canHit && !Inventory.itemClasses[(int)Inventory.itemSelected.Value].canHoldDown || Input.GetMouseButton(0) && canHit && Inventory.itemClasses[(int)Inventory.itemSelected.Value].canHoldDown)
+            if (IsServer)
             {
-                animationClientRPC(NetworkManager.Singleton.LocalClientId);
-                StartCoroutine(timeBetweenHits());
-                animator.speed = 1f / Inventory.itemClasses[(int)Inventory.itemSelected.Value].attackSpeed;
-                animator.SetBool("attacking", true);
-                StartCoroutine(stopAttacking());
-
-                Collider2D[] attackBox;
-
-                if (animator.GetBool("right") == true)
+                if (Input.GetMouseButtonDown(0) && canHit && !Inventory.itemClasses[(int)Inventory.itemSelected.Value].canHoldDown || Input.GetMouseButton(0) && canHit && Inventory.itemClasses[(int)Inventory.itemSelected.Value].canHoldDown)
                 {
-                    attackBox = Physics2D.OverlapBoxAll(new Vector2(transform.parent.position.x + (transform.localScale.x + 1.55f) / 2, transform.parent.position.y), Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea, 0, meleeMask);
-                }
-                else
-                {
-                    attackBox = Physics2D.OverlapBoxAll(new Vector2(transform.parent.position.x - (transform.localScale.x + 1.55f) / 2, transform.parent.position.y), Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea, 0, meleeMask);
-                }
+                    animationClientRPC(NetworkManager.Singleton.LocalClientId);
+                    StartCoroutine(timeBetweenHits());
+                    animator.speed = 1f / Inventory.itemClasses[(int)Inventory.itemSelected.Value].attackSpeed;
+                    animator.SetBool("attacking", true);
+                    StartCoroutine(stopAttacking());
 
-                for (int i = 0; i < attackBox.Length; i++)
-                {
-                    if (Inventory.itemClasses[(int)Inventory.itemSelected.Value].explodes)
+                    Collider2D[] attackBox;
+
+                    if (animator.GetBool("right") == true)
                     {
-                        if (animator.GetBool("right") == true)
-                        {
-                            GameObject explodesing = Instantiate(explosion, new Vector3(transform.position.x + 1.75f, transform.position.y, 0), Quaternion.Euler(0, 0, 0));
-                            explodesing.GetComponent<explosionDamage>().player = transform.parent.parent.gameObject;
-                        }
-                        else
-                        {
-                            GameObject explodesing = Instantiate(explosion, new Vector3(transform.position.x - 1.75f, transform.position.y, 0), Quaternion.Euler(0, 0, 0));
-                            explodesing.GetComponent<explosionDamage>().player = transform.parent.parent.gameObject;
-                        }
+                        attackBox = Physics2D.OverlapBoxAll(new Vector2(transform.parent.position.x + (transform.localScale.x + 1.55f) / 2, transform.parent.position.y), Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea, 0, meleeMask);
                     }
-                    if (!attackBox[i].CompareTag("Player"))
+                    else
                     {
-                        Instantiate(objectBreaking, attackBox[i].transform.position, attackBox[i].transform.rotation);
-                        Destroy(attackBox[i].gameObject);
+                        attackBox = Physics2D.OverlapBoxAll(new Vector2(transform.parent.position.x - (transform.localScale.x + 1.55f) / 2, transform.parent.position.y), Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea, 0, meleeMask);
                     }
-                    else if (attackBox[i].gameObject != transform.parent.parent.gameObject)
+
+                    for (int i = 0; i < attackBox.Length; i++)
                     {
-                        attackBox[i].GetComponent<playerHealth>().TakeDamage(Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeDamage);
+                        if (Inventory.itemClasses[(int)Inventory.itemSelected.Value].explodes)
+                        {
+                            if (animator.GetBool("right") == true)
+                            {
+                                GameObject explodesing = Instantiate(explosion, new Vector3(transform.position.x + 1.75f, transform.position.y, 0), Quaternion.Euler(0, 0, 0));
+                                explodesing.GetComponent<explosionDamage>().player = transform.parent.parent.gameObject;
+                            }
+                            else
+                            {
+                                GameObject explodesing = Instantiate(explosion, new Vector3(transform.position.x - 1.75f, transform.position.y, 0), Quaternion.Euler(0, 0, 0));
+                                explodesing.GetComponent<explosionDamage>().player = transform.parent.parent.gameObject;
+                            }
+                        }
+                        if (!attackBox[i].CompareTag("Player"))
+                        {
+                            Instantiate(objectBreaking, attackBox[i].transform.position, attackBox[i].transform.rotation);
+                            Destroy(attackBox[i].gameObject);
+                        }
+                        else if (attackBox[i].gameObject != transform.parent.parent.gameObject)
+                        {
+                            attackBox[i].GetComponent<playerHealth>().TakeDamage(Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeDamage);
+                        }
                     }
                 }
             }
-        }
-        else
-        {
-            animationServerRPC(NetworkManager.Singleton.LocalClientId);
+            else
+            {
+                animationServerRPC(NetworkManager.Singleton.LocalClientId);
+            }
         }
     }
 
