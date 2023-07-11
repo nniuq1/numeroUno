@@ -126,11 +126,11 @@ public class meleeHeld : NetworkBehaviour
 
             if (animator.GetBool("right") == true)
             {
-                attackBox = Physics2D.OverlapBoxAll(new Vector2(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.x + (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.localScale.x + 1.55f) / 2, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.y), NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].MeleeAtackArea, 0, meleeMask);
+                attackBox = Physics2D.OverlapBoxAll(new Vector2(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.x + (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetChild(2).GetChild(0).localScale.x + 1.55f) / 2, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.y), NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].MeleeAtackArea, 0, meleeMask);
             }
             else
             {
-                attackBox = Physics2D.OverlapBoxAll(new Vector2(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.x - (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.localScale.x + 1.55f) / 2, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.y), NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].MeleeAtackArea, 0, meleeMask);
+                attackBox = Physics2D.OverlapBoxAll(new Vector2(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.x - (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetChild(2).GetChild(0).localScale.x + 1.55f) / 2, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.y), NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].MeleeAtackArea, 0, meleeMask);
             }
 
             for (int i = 0; i < attackBox.Length; i++)
@@ -140,12 +140,12 @@ public class meleeHeld : NetworkBehaviour
                     if (animator.GetBool("right") == true)
                     {
                         GameObject explodesing = Instantiate(explosion, new Vector3(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.x + 1.75f, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.y, 0), Quaternion.Euler(0, 0, 0));
-                        explodesing.GetComponent<explosionDamage>().player = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.parent.parent.gameObject;
+                        explodesing.GetComponent<explosionDamage>().player = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject;
                     }
                     else
                     {
                         GameObject explodesing = Instantiate(explosion, new Vector3(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.x - 1.75f, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.y, 0), Quaternion.Euler(0, 0, 0));
-                        explodesing.GetComponent<explosionDamage>().player = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.parent.parent.gameObject;
+                        explodesing.GetComponent<explosionDamage>().player = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject;
                     }
                 }
                 if (!attackBox[i].CompareTag("Player"))
@@ -153,7 +153,7 @@ public class meleeHeld : NetworkBehaviour
                     Instantiate(objectBreaking, attackBox[i].transform.position, attackBox[i].transform.rotation);
                     Destroy(attackBox[i].gameObject);
                 }
-                else if (attackBox[i].gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.parent.parent.gameObject)
+                else if (attackBox[i].gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject)
                 {
                     attackBox[i].GetComponent<playerHealth>().TakeDamage(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].MeleeDamage);
                 }
