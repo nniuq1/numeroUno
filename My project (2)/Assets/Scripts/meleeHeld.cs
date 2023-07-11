@@ -82,7 +82,14 @@ public class meleeHeld : NetworkBehaviour
             }
             else
             {
-                animationServerRPC(NetworkManager.Singleton.LocalClientId);
+                if (Input.GetMouseButtonDown(0) && canHit && !Inventory.itemClasses[(int)Inventory.itemSelected.Value].canHoldDown || Input.GetMouseButton(0) && canHit && Inventory.itemClasses[(int)Inventory.itemSelected.Value].canHoldDown)
+                {
+                    StartCoroutine(timeBetweenHits());
+                    animator.speed = 1f / Inventory.itemClasses[(int)Inventory.itemSelected.Value].attackSpeed;
+                    animator.SetBool("attacking", true);
+                    StartCoroutine(stopAttacking());
+                    animationServerRPC(NetworkManager.Singleton.LocalClientId);
+                }
             }
         }
     }
@@ -109,8 +116,6 @@ public class meleeHeld : NetworkBehaviour
     [ServerRpc]
     void animationServerRPC(ulong player)
     {
-        if (Input.GetMouseButtonDown(0) && canHit && !NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].canHoldDown || Input.GetMouseButton(0) && canHit && NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].canHoldDown)
-        {
             animationClientRPC(NetworkManager.Singleton.LocalClientId);
             StartCoroutine(timeBetweenHits());
             animator.speed = 1f / NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].attackSpeed;
@@ -152,7 +157,6 @@ public class meleeHeld : NetworkBehaviour
                 {
                     attackBox[i].GetComponent<playerHealth>().TakeDamage(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].MeleeDamage);
                 }
-            }
         }
     }
 }
