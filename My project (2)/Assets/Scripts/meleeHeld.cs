@@ -126,11 +126,11 @@ public class meleeHeld : NetworkBehaviour
 
             if (animator.GetBool("right") == true)
             {
-                attackBox = Physics2D.OverlapBoxAll(new Vector2(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.parent.position.x + (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.localScale.x + 1.55f) / 2, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.parent.position.y), NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].MeleeAtackArea, 0, meleeMask);
+                attackBox = Physics2D.OverlapBoxAll(new Vector2(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.x + (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.localScale.x + 1.55f) / 2, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.y), NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].MeleeAtackArea, 0, meleeMask);
             }
             else
             {
-                attackBox = Physics2D.OverlapBoxAll(new Vector2(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.parent.position.x - (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.localScale.x + 1.55f) / 2, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.parent.position.y), NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].MeleeAtackArea, 0, meleeMask);
+                attackBox = Physics2D.OverlapBoxAll(new Vector2(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.x - (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.localScale.x + 1.55f) / 2, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.y), NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].MeleeAtackArea, 0, meleeMask);
             }
 
             for (int i = 0; i < attackBox.Length; i++)
