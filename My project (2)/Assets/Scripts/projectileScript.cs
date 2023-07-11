@@ -14,10 +14,13 @@ public class projectileScript : NetworkBehaviour
     public NetworkVariable<bool> explodes = new NetworkVariable<bool>();
     itemClass item;
     public NetworkVariable<Vector3> _netpos = new NetworkVariable<Vector3>();
+    public List<itemClass> itemClasses;
+    public NetworkVariable<int> itemselect = new NetworkVariable<int>();
+
 
     private void Start()
     {
-        item = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetComponent<inventory>().itemSelected.Value];
+        item = itemClasses[itemselect.Value];
 
         move.Value = true;
         //if (IsServer)

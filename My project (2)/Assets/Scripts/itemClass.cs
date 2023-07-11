@@ -33,6 +33,7 @@ public class itemClass : ScriptableObject
     public float timeBetweenShots;
     public float bulletDamage;
     public float gravityScale = 0;
+    public int itemID;
 
     [Header("Melee Settings")]
     public Vector2 MeleeAtackArea;

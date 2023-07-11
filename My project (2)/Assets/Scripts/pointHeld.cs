@@ -60,6 +60,7 @@ public class pointHeld : NetworkBehaviour
                         }
                         newBullet.GetComponent<projectileScript>().player = NetworkManager.Singleton.LocalClientId;
                         newBullet.GetComponent<projectileScript>().damage.Value = Inventory.itemClasses[(int)Inventory.itemSelected.Value].bulletDamage;
+                        newBullet.GetComponent<projectileScript>().itemselect.Value = Inventory.itemClasses[(int)Inventory.itemSelected.Value].itemID;
                     }
                     else if (Inventory.itemClasses[(int)Inventory.itemSelected.Value].projectile.GetComponent<wandProjectile>() != null)
                     {
@@ -99,6 +100,7 @@ public class pointHeld : NetworkBehaviour
                         }
                         newBullet.GetComponent<projectileScript>().player = NetworkManager.Singleton.LocalClientId;
                         newBullet.GetComponent<projectileScript>().damage.Value = Inventory.itemClasses[(int)Inventory.itemSelected.Value].bulletDamage;
+                        newBullet.GetComponent<projectileScript>().itemselect.Value = Inventory.itemClasses[(int)Inventory.itemSelected.Value].itemID;
                     }
                     else
                     {
@@ -136,6 +138,7 @@ public class pointHeld : NetworkBehaviour
             }
             newBullet.GetComponent<projectileScript>().player = player;
             newBullet.GetComponent<projectileScript>().damage.Value = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].bulletDamage;
+            newBullet.GetComponent<projectileScript>().itemselect.Value = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].itemID;
         }
         else if (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].projectile.GetComponent<wandProjectile>() != null)
         {
