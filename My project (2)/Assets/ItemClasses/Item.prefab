@@ -106,6 +106,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 137288c5a6dfa4801b577a6ce35fb013, type: 2}
   - {fileID: 11400000, guid: 34fba12b398ae4047a17d04001cc1147, type: 2}
   - {fileID: 11400000, guid: 49fbbbaa2a47045f7a137a983adb44f5, type: 2}
+  - {fileID: 11400000, guid: 2122911f9bbe4473692d7f3a5088e96b, type: 2}
+  - {fileID: 11400000, guid: cec5c38c32892411da8d892ddc38cb1b, type: 2}
+  - {fileID: 11400000, guid: 1a5feb01653cc48eaa4696af810e50fc, type: 2}
+  - {fileID: 11400000, guid: 3fb3d6f6592e0426d8c12ee6c85656fb, type: 2}
+  - {fileID: 11400000, guid: 2f53b7daa4f424482b41d9a47cf5b019, type: 2}
+  - {fileID: 11400000, guid: 64d865146d8a54f3ca0c1595fd471df1, type: 2}
   itemclass: {fileID: 0}
   spinSpeed: 1
 --- !u!61 &945578185900309634

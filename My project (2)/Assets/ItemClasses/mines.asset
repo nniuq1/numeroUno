@@ -27,6 +27,7 @@ MonoBehaviour:
   timeBetweenShots: 1
   bulletDamage: 0
   gravityScale: 1
+  itemID: 2
   MeleeAtackArea: {x: 0, y: 0}
   timeBetweenMeleeAtack: 0
   attackSpeed: 0
