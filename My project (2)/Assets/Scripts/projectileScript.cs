@@ -18,13 +18,13 @@ public class projectileScript : NetworkBehaviour
     private void Start()
     {
         move.Value = true;
-        if (IsServer)
-        {
+        //if (IsServer)
+        //{
             transform.GetComponent<SpriteRenderer>().sprite = item.projectileSprite;
             transform.GetComponent<SpriteRenderer>().color = item.bulletColor;
             StartCoroutine(death());
             transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), item.projectileSpeed * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
-        }
+        //}
     }
 
     private void Update()
