@@ -61,11 +61,13 @@ public class meleeHeld : NetworkBehaviour
                             {
                                 GameObject explodesing = Instantiate(explosion, new Vector3(transform.position.x + 1.75f, transform.position.y, 0), Quaternion.Euler(0, 0, 0));
                                 explodesing.GetComponent<explosionDamage>().player = transform.parent.parent.gameObject;
+                                explodesing.GetComponent<NetworkObject>().Spawn();
                             }
                             else
                             {
                                 GameObject explodesing = Instantiate(explosion, new Vector3(transform.position.x - 1.75f, transform.position.y, 0), Quaternion.Euler(0, 0, 0));
                                 explodesing.GetComponent<explosionDamage>().player = transform.parent.parent.gameObject;
+                                explodesing.GetComponent<NetworkObject>().Spawn();
                             }
                         }
                         if (!attackBox[i].CompareTag("Player"))
@@ -141,12 +143,14 @@ public class meleeHeld : NetworkBehaviour
                     {
                         GameObject explodesing = Instantiate(explosion, new Vector3(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.x + 1.75f, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.y, 0), Quaternion.Euler(0, 0, 0));
                         explodesing.GetComponent<explosionDamage>().player = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject;
-                    }
+                    explodesing.GetComponent<NetworkObject>().Spawn();
+                }
                     else
                     {
                         GameObject explodesing = Instantiate(explosion, new Vector3(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.x - 1.75f, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.y, 0), Quaternion.Euler(0, 0, 0));
                         explodesing.GetComponent<explosionDamage>().player = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject;
-                    }
+                    explodesing.GetComponent<NetworkObject>().Spawn();
+                }
                 }
                 if (!attackBox[i].CompareTag("Player"))
                 {
