@@ -5,13 +5,13 @@ using Unity.Netcode;
 
 public class projectileScript : NetworkBehaviour
 {
-    public NetworkVariable<float> damage = new NetworkVariable<float>();
+    public float damage;
     //public NetworkVariable<GameObject> player = new NetworkVariable<GameObject>();
     public ulong player;
-    NetworkVariable<bool> move = new NetworkVariable<bool>();
-    public NetworkVariable<float> explosionDelay;
+    bool move;
+    public float explosionDelay;
     public GameObject explosion;
-    public NetworkVariable<bool> explodes = new NetworkVariable<bool>();
+    public bool explodes;
     itemClass item;
     public NetworkVariable<Vector3> _netpos = new NetworkVariable<Vector3>();
     public List<itemClass> itemClasses;
@@ -22,7 +22,7 @@ public class projectileScript : NetworkBehaviour
     {
         item = itemClasses[itemselect.Value];
 
-        move.Value = true;
+        move = true;
         //if (IsServer)
         //{
             transform.GetComponent<SpriteRenderer>().sprite = item.projectileSprite;
@@ -47,7 +47,7 @@ public class projectileScript : NetworkBehaviour
     IEnumerator death()
     {
         yield return new WaitForSeconds(5);
-        if (move.Value)
+        if (move)
         {
             if (IsServer)
             {
@@ -62,7 +62,7 @@ public class projectileScript : NetworkBehaviour
         {
             if (collision.transform.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
             {
-                if (explodes.Value)
+                if (explodes)
                 {
                     StartCoroutine(explodeDelay(collision.gameObject));
                 }
@@ -70,7 +70,7 @@ public class projectileScript : NetworkBehaviour
                 {
                     if (collision.CompareTag("Player"))
                     {
-                        collision.GetComponent<playerHealth>().TakeDamage(damage.Value);
+                        collision.GetComponent<playerHealth>().TakeDamage(damage);
                     }
                     if (IsOwnedByServer)
                     {
@@ -79,7 +79,7 @@ public class projectileScript : NetworkBehaviour
                 }
             }
 
-            if (!move.Value && collision.CompareTag("Player") && collision.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject)
+            if (!move && collision.CompareTag("Player") && collision.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject)
             {
                 if (IsOwnedByServer)
                 {
@@ -93,10 +93,10 @@ public class projectileScript : NetworkBehaviour
 
     IEnumerator explodeDelay(GameObject collision)
     {
-        move.Value = false;
+        move = false;
         Destroy(transform.GetComponent<Rigidbody2D>());
         //transform.SetParent(collision.transform);
-        yield return new WaitForSeconds(explosionDelay.Value);
+        yield return new WaitForSeconds(explosionDelay);
         if (IsOwnedByServer)
         {
             GameObject explodingson = Instantiate(explosion, transform.position, transform.rotation, null);
