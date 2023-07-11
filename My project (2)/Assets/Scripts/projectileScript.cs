@@ -6,30 +6,36 @@ using Unity.Netcode;
 public class projectileScript : NetworkBehaviour
 {
     public NetworkVariable<float> damage = new NetworkVariable<float>();
-    public NetworkVariable<GameObject> player = new NetworkVariable<GameObject>();
+    //public NetworkVariable<GameObject> player = new NetworkVariable<GameObject>();
+    public ulong player;
     NetworkVariable<bool> move = new NetworkVariable<bool>();
     public NetworkVariable<float> explosionDelay;
     public GameObject explosion;
     public NetworkVariable<bool> explodes = new NetworkVariable<bool>();
-    public NetworkVariable<itemClass> item = new NetworkVariable<itemClass>();
+    public itemClass item;
+    public NetworkVariable<Vector3> _netpos = new NetworkVariable<Vector3>();
 
     private void Start()
     {
         move.Value = true;
         if (IsServer)
         {
-            transform.GetComponent<SpriteRenderer>().sprite = item.Value.projectileSprite;
-            transform.GetComponent<SpriteRenderer>().color = item.Value.bulletColor;
+            transform.GetComponent<SpriteRenderer>().sprite = item.projectileSprite;
+            transform.GetComponent<SpriteRenderer>().color = item.bulletColor;
             StartCoroutine(death());
-            transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.Value.projectileSpeed * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), item.Value.projectileSpeed * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
+            transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), item.projectileSpeed * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
         }
     }
 
     private void Update()
     {
-        if (move.Value)
+        if (IsServer)
         {
-            //transform.position = new Vector2(transform.position.x + item.projectileSpeed * Time.deltaTime * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), transform.position.y + item.projectileSpeed * Time.deltaTime * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
+            _netpos.Value = transform.position;
+        }
+        else
+        {
+            transform.position = _netpos.Value;
         }
     }
 
@@ -38,7 +44,7 @@ public class projectileScript : NetworkBehaviour
         yield return new WaitForSeconds(5);
         if (move.Value)
         {
-            if (IsOwnedByServer)
+            if (IsServer)
             {
                 Destroy(gameObject);
             }
@@ -47,31 +53,35 @@ public class projectileScript : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.gameObject != player.Value && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
+        if (IsServer)
         {
-            if (explodes.Value)
+            if (collision.transform.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
             {
-                StartCoroutine(explodeDelay(collision.gameObject));
-            }
-            else
-            {
-                if (collision.CompareTag("Player"))
+                if (explodes.Value)
                 {
-                    collision.GetComponent<playerHealth>().TakeDamage(damage.Value);
+                    StartCoroutine(explodeDelay(collision.gameObject));
                 }
+                else
+                {
+                    if (collision.CompareTag("Player"))
+                    {
+                        collision.GetComponent<playerHealth>().TakeDamage(damage.Value);
+                    }
+                    if (IsOwnedByServer)
+                    {
+                        Destroy(gameObject);
+                    }
+                }
+            }
+
+            if (!move.Value && collision.CompareTag("Player") && collision.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject)
+            {
                 if (IsOwnedByServer)
                 {
+                    GameObject explodingson = Instantiate(explosion, transform.position, transform.rotation, null);
+                    explodingson.GetComponent<NetworkObject>().Spawn();
                     Destroy(gameObject);
                 }
-            }
-        }
-
-        if (!move.Value && collision.CompareTag("Player") && collision.gameObject != player.Value)
-        {
-            Instantiate(explosion, transform.position, transform.rotation, null);
-            if (IsOwnedByServer)
-            {
-                Destroy(gameObject);
             }
         }
     }
@@ -82,9 +92,10 @@ public class projectileScript : NetworkBehaviour
         Destroy(transform.GetComponent<Rigidbody2D>());
         //transform.SetParent(collision.transform);
         yield return new WaitForSeconds(explosionDelay.Value);
-        Instantiate(explosion, transform.position, transform.rotation, null);
         if (IsOwnedByServer)
         {
+            GameObject explodingson = Instantiate(explosion, transform.position, transform.rotation, null);
+            explodingson.GetComponent<NetworkObject>().Spawn();
             Destroy(gameObject);
         }
     }

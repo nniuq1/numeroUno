@@ -103,7 +103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemclasses:
-  - {fileID: 11400000, guid: 1a5feb01653cc48eaa4696af810e50fc, type: 2}
+  - {fileID: 11400000, guid: 137288c5a6dfa4801b577a6ce35fb013, type: 2}
+  - {fileID: 11400000, guid: 34fba12b398ae4047a17d04001cc1147, type: 2}
+  - {fileID: 11400000, guid: 49fbbbaa2a47045f7a137a983adb44f5, type: 2}
   itemclass: {fileID: 0}
   spinSpeed: 1
 --- !u!61 &945578185900309634
