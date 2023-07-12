@@ -11,23 +11,47 @@ public class meleeHeld : NetworkBehaviour
     public GameObject explosion;
     public inventory Inventory;
     public LayerMask meleeMask;
+    NetworkVariable<bool> rightFacing = new NetworkVariable<bool>(writePerm: NetworkVariableWritePermission.Owner);
 
     private void Update()
     {
         transform.GetComponent<Animator>().enabled = true;
-        if (transform.parent.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition).x > transform.parent.position.x)
+
+        if (IsOwner)
         {
-            transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected.Value].weaponSize;
-            animator.SetBool("right", true);
-            transform.position = new Vector2(transform.parent.position.x + Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea.x / 2, transform.parent.position.y);
-            transform.GetComponent<SpriteRenderer>().flipX = false;
+            if (transform.parent.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition).x > transform.parent.position.x)
+            {
+                rightFacing.Value = true;
+                transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected.Value].weaponSize;
+                animator.SetBool("right", true);
+                transform.position = new Vector2(transform.parent.position.x + Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea.x / 2, transform.parent.position.y);
+                transform.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else
+            {
+                rightFacing.Value = false;
+                transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected.Value].weaponSize;
+                animator.SetBool("right", false);
+                transform.position = new Vector2(transform.parent.position.x - Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea.x / 2, transform.parent.position.y);
+                transform.GetComponent<SpriteRenderer>().flipX = true;
+            }
         }
         else
         {
-            transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected.Value].weaponSize;
-            animator.SetBool("right", false);
-            transform.position = new Vector2(transform.parent.position.x - Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea.x / 2, transform.parent.position.y);
-            transform.GetComponent<SpriteRenderer>().flipX = true;
+            if (rightFacing.Value)
+            {
+                transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected.Value].weaponSize;
+                animator.SetBool("right", true);
+                transform.position = new Vector2(transform.parent.position.x + Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea.x / 2, transform.parent.position.y);
+                transform.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else
+            {
+                transform.localScale = Inventory.itemClasses[(int)Inventory.itemSelected.Value].weaponSize;
+                animator.SetBool("right", false);
+                transform.position = new Vector2(transform.parent.position.x - Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeAtackArea.x / 2, transform.parent.position.y);
+                transform.GetComponent<SpriteRenderer>().flipX = true;
+            }
         }
 
         if (IsOwner)
@@ -90,7 +114,7 @@ public class meleeHeld : NetworkBehaviour
                     animator.speed = 1f / Inventory.itemClasses[(int)Inventory.itemSelected.Value].attackSpeed;
                     animator.SetBool("attacking", true);
                     StartCoroutine(stopAttacking());
-                    animationServerRPC(NetworkManager.Singleton.LocalClientId);
+                    animationServerRPC(NetworkManager.Singleton.LocalClientId, animator.GetBool("right"));
                 }
             }
         }
@@ -116,7 +140,7 @@ public class meleeHeld : NetworkBehaviour
     }
 
     [ServerRpc]
-    void animationServerRPC(ulong player)
+    void animationServerRPC(ulong player, bool right)
     {
             animationClientRPC(NetworkManager.Singleton.LocalClientId);
             StartCoroutine(timeBetweenHits());
@@ -126,7 +150,7 @@ public class meleeHeld : NetworkBehaviour
 
             Collider2D[] attackBox;
 
-            if (animator.GetBool("right") == true)
+            if (right)
             {
                 attackBox = Physics2D.OverlapBoxAll(new Vector2(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.x + (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetChild(2).GetChild(0).localScale.x + 1.55f) / 2, NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.position.y), NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].MeleeAtackArea, 0, meleeMask);
             }
