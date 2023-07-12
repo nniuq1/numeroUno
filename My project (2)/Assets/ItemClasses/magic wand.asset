@@ -23,9 +23,9 @@ MonoBehaviour:
   projectile: {fileID: 4465303326248721522, guid: 92c1590e73e9c458e87f2f80411df102, type: 3}
   bulletSize: {x: 1, y: 1}
   bulletColor: {r: 1, g: 1, b: 1, a: 1}
-  projectileSpeed: 25
-  timeBetweenShots: 1
-  bulletDamage: 2.5
+  projectileSpeed: 35
+  timeBetweenShots: 0.8
+  bulletDamage: 4
   gravityScale: 0
   itemID: 0
   MeleeAtackArea: {x: 0, y: 0}
