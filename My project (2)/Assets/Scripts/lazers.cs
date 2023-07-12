@@ -9,13 +9,12 @@ public class lazers : NetworkBehaviour
     public GameObject projectile;
     public NetworkVariable<float> _rotations = new NetworkVariable<float>(writePerm: NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> shooting = new NetworkVariable<bool>(writePerm: NetworkVariableWritePermission.Owner);
-    // Start is called before the first frame update
-    void Start()
+
+    private void OnEnable()
     {
-        
+        GetComponent<Animator>().enabled = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (IsOwner)
@@ -37,7 +36,7 @@ public class lazers : NetworkBehaviour
         }
         else
         {
-            transform.rotation = Quaternion.EulerAngles(0, 0, _rotations.Value);
+            transform.rotation = Quaternion.Euler(0, 0, _rotations.Value);
         }
         if (shooting.Value)
         {
