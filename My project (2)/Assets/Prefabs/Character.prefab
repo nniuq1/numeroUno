@@ -549,6 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da19b4d265c494dcbbd8929db670159c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  line: {fileID: 6389320001018593022}
   Inventory: {fileID: 0}
   projectile: {fileID: 0}
   _rotations:
