@@ -25,8 +25,9 @@ MonoBehaviour:
   bulletColor: {r: 1, g: 1, b: 1, a: 1}
   projectileSpeed: 25
   timeBetweenShots: 1
-  bulletDamage: 1
+  bulletDamage: 2.5
   gravityScale: 0
+  itemID: 0
   MeleeAtackArea: {x: 0, y: 0}
   timeBetweenMeleeAtack: 0
   attackSpeed: 0

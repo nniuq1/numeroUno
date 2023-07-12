@@ -35,6 +35,7 @@ public class wandProjectile : NetworkBehaviour
         if (IsServer)
         {
             _netpos.Value = transform.position;
+            transform.rotation = Quaternion.Euler(0, 0, transform.rotation.z + Random.Range(-0.1f, 0.1f));
         }
         else
         {
