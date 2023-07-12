@@ -5,6 +5,7 @@ using Unity.Netcode;
 
 public class lazers : NetworkBehaviour
 {
+    [SerializeField] public GameObject player;
     [SerializeField] public LineRenderer line;
     public inventory Inventory;
     public GameObject projectile;
@@ -38,11 +39,11 @@ public class lazers : NetworkBehaviour
         {
             //draw raycast
             RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)));
-            if (hit[1].transform != null)
+            if (hit.Length > 1)
             {
-                line.enabled = false;
-                line.SetPosition(0, transform.position);
-                line.SetPosition(0, hit[1].point);
+                line.enabled = true;
+                line.SetPosition(0, player.transform.position);
+                line.SetPosition(1, hit[1].point);
                 if (IsServer)
                 {
                     //RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)));

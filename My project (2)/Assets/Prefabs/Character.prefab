@@ -549,6 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da19b4d265c494dcbbd8929db670159c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 4342881439462133325}
   line: {fileID: 6389320001018593022}
   Inventory: {fileID: 0}
   projectile: {fileID: 0}
@@ -595,9 +596,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1302316309
+  m_SortingLayer: 1
+  m_SortingOrder: -100
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
