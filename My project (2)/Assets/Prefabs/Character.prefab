@@ -251,7 +251,8 @@ MonoBehaviour:
   combinations:
   - {fileID: 11400000, guid: 532d5e5fbfbf44534803c9f1f3679167, type: 2}
   itemClasses: []
-  itemSelected: 0
+  itemSelected:
+    m_InternalValue: 0
 --- !u!61 &4342881439462133317
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -392,6 +393,7 @@ GameObject:
   - component: {fileID: 4342881439588749696}
   - component: {fileID: 4342881439588749725}
   - component: {fileID: 6010190408266294141}
+  - component: {fileID: 6895716518445774694}
   m_Layer: 3
   m_Name: ItemHeld
   m_TagString: Untagged
@@ -480,6 +482,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Inventory: {fileID: 4342881439462133324}
   projectile: {fileID: 8204904633328365783, guid: 7c3229b251aae4aee9af357fc60572ee, type: 3}
+  _rotations:
+    m_InternalValue: 0
 --- !u!114 &4342881439588749696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,6 +536,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6895716518445774694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4342881439588749698}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da19b4d265c494dcbbd8929db670159c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Inventory: {fileID: 0}
+  projectile: {fileID: 0}
+  _rotations:
+    m_InternalValue: 0
+  shooting:
+    m_InternalValue: 0
 --- !u!1 &4342881439647498336
 GameObject:
   m_ObjectHideFlags: 0
