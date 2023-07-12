@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Lazer Rifle
   sprite: {fileID: 21300000, guid: b9fbcd1d6c8244009bbab0a41dbb845d, type: 3}
-  weapontype: 0
+  weapontype: 3
   explodes: 0
   explosionDelay: 0
   weaponSize: {x: 1.5, y: 0.9}
