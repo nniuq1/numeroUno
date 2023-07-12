@@ -10,17 +10,12 @@ public class lazers : NetworkBehaviour
     public NetworkVariable<float> _rotations = new NetworkVariable<float>(writePerm: NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> shooting = new NetworkVariable<bool>(writePerm: NetworkVariableWritePermission.Owner);
 
-    private void OnEnable()
-    {
-        GetComponent<Animator>().enabled = false;
-    }
-
     void Update()
     {
+        GetComponent<SpriteRenderer>().flipX = false;
+        transform.GetComponent<Animator>().enabled = false;
         if (IsOwner)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
-            transform.GetComponent<Animator>().enabled = false;
             Vector3 dir = transform.parent.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
