@@ -12,7 +12,7 @@ public class pointHeld : NetworkBehaviour
     public GameObject projectile;
     public NetworkVariable<float> _rotations = new NetworkVariable<float>(writePerm: NetworkVariableWritePermission.Owner);
 
-    private void Start()
+    private void OnEnable()
     {
         GetComponent<Animator>().enabled = false;
     }
