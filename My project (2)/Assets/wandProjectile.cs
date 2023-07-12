@@ -35,7 +35,6 @@ public class wandProjectile : NetworkBehaviour
         if (IsServer)
         {
             _netpos.Value = transform.position;
-            transform.rotation = Quaternion.Euler(0, 0, transform.rotation.z + Random.Range(-0.1f, 0.1f));
         }
         else
         {
@@ -52,7 +51,8 @@ public class wandProjectile : NetworkBehaviour
                 if (bounces > 0)
                 {
                     bounces--;
-                    transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Mathf.Atan2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y) + Mathf.PI), item.projectileSpeed * Mathf.Sin(Mathf.Atan2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y) + Mathf.PI));
+                    int random = (Random.Range(0, 1) * 2) - 1;
+                    transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Mathf.Atan2(collision.transform.position.x + random * transform.position.x, collision.transform.position.y + random * transform.position.y) + Mathf.PI), item.projectileSpeed * Mathf.Sin(Mathf.Atan2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y) + Mathf.PI));
                 }
                 else
                 {
