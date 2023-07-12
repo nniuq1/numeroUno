@@ -40,7 +40,7 @@ public class lazers : NetworkBehaviour
             {
                 //RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)));
                 RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)));
-                if (hit[1].transform.GetComponent<playerHealth>() != null)
+                if (hit[1].transform != null && hit[1].transform.GetComponent<playerHealth>() != null)
                 {
                     hit[1].transform.GetComponent<playerHealth>().TakeDamage(3 * Time.deltaTime);
                 }
