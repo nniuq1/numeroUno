@@ -10,11 +10,15 @@ public class wandProjectile : NetworkBehaviour
     public ulong player;
     bool move = true;
     public itemClass item;
+    NetworkVariable<Vector2> _netpos = new NetworkVariable<Vector2>();
 
     private void Start()
     {
-        StartCoroutine(death());
-        transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), item.projectileSpeed * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
+        if (IsServer)
+        {
+            StartCoroutine(death());
+            transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), item.projectileSpeed * Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z));
+        }
     }
 
     IEnumerator death()
@@ -26,23 +30,38 @@ public class wandProjectile : NetworkBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (IsServer)
+        {
+            _netpos.Value = transform.position;
+        }
+        else
+        {
+            transform.position = _netpos.Value;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
+        if (IsServer)
         {
-            if (bounces > 0)
+            if (collision.transform.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
             {
-                bounces--;
-                transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Mathf.Atan2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y) + Mathf.PI), item.projectileSpeed * Mathf.Sin(Mathf.Atan2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y) + Mathf.PI));
+                if (bounces > 0)
+                {
+                    bounces--;
+                    transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Mathf.Atan2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y) + Mathf.PI), item.projectileSpeed * Mathf.Sin(Mathf.Atan2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y) + Mathf.PI));
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
-            else
+            if (collision.CompareTag("Player") && collision.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject)
             {
-                Destroy(gameObject);
+                collision.GetComponent<playerHealth>().TakeDamage(damage);
             }
-        }
-        if (collision.CompareTag("Player") && collision.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject)
-        {
-            collision.GetComponent<playerHealth>().TakeDamage(damage);
         }
     }
 }
