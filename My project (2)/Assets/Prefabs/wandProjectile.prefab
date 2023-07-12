@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1583633302400239005}
   - component: {fileID: 8686834435812518874}
   - component: {fileID: -466690228590328960}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wandProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
