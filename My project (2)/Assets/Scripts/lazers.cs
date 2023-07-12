@@ -45,7 +45,8 @@ public class lazers : NetworkBehaviour
             if (IsServer)
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)));
-                print(hit.transform);
+                RaycastHit2D hit2 = Physics2D.Raycast(hit.point, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)));
+                print(hit2.transform);
             }
         }
     }
