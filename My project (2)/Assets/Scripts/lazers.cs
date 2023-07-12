@@ -5,9 +5,10 @@ using Unity.Netcode;
 
 public class lazers : NetworkBehaviour
 {
+    public LayerMask layers;
     [SerializeField] public GameObject player;
     [SerializeField] public LineRenderer line;
-    public inventory Inventory;
+    public Vector2 weaponSize;
     public GameObject projectile;
     public NetworkVariable<float> _rotations = new NetworkVariable<float>(writePerm: NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> shooting = new NetworkVariable<bool>(writePerm: NetworkVariableWritePermission.Owner);
@@ -33,12 +34,22 @@ public class lazers : NetworkBehaviour
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 0, _rotations.Value);
+            transform.rotation = Quaternion.AngleAxis(_rotations.Value, Vector3.forward);
         }
+
+        if (Quaternion.ToEulerAngles(transform.rotation).z < Mathf.PI / 2 && Quaternion.ToEulerAngles(transform.rotation).z > -Mathf.PI / 2)
+        {
+            transform.localScale = weaponSize;
+        }
+        else
+        {
+            transform.localScale = new Vector3(weaponSize.x, -weaponSize.y, 1);
+        }
+
         if (shooting.Value)
         {
             //draw raycast
-            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)));
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)), 100, layers);
             if (hit.Length > 1)
             {
                 line.enabled = true;
