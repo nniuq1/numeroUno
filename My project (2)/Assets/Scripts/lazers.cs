@@ -26,7 +26,7 @@ public class lazers : NetworkBehaviour
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             _rotations.Value = angle;
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
                 shooting.Value = true;
             }
@@ -45,6 +45,7 @@ public class lazers : NetworkBehaviour
             if (IsServer)
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)));
+                print(hit.point);
                 RaycastHit2D hit2 = Physics2D.Raycast(hit.point, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)));
                 print(hit2.transform);
             }
