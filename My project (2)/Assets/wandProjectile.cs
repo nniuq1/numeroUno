@@ -52,6 +52,7 @@ public class wandProjectile : NetworkBehaviour
                 {
                     bounces--;
                     int random = (Random.Range(0, 2) * 2) - 1;
+                    print(random);
                     transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Mathf.Atan2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y) + random * Mathf.PI), item.projectileSpeed * Mathf.Sin(Mathf.Atan2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y) + random * Mathf.PI));
                 }
                 else
