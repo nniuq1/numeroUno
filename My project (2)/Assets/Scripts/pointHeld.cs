@@ -64,9 +64,7 @@ public class pointHeld : NetworkBehaviour
                     }
                     else if (Inventory.itemClasses[(int)Inventory.itemSelected.Value].projectile.GetComponent<wandProjectile>() != null)
                     {
-                        newBullet.GetComponent<wandProjectile>().item = Inventory.itemClasses[(int)Inventory.itemSelected.Value];
-                        newBullet.GetComponent<wandProjectile>().player = transform.parent.parent.gameObject;
-                        newBullet.GetComponent<wandProjectile>().damage = Inventory.itemClasses[(int)Inventory.itemSelected.Value].bulletDamage;
+                        newBullet.GetComponent<wandProjectile>().player = NetworkManager.Singleton.LocalClientId;
                     }
                     else
                     {
@@ -142,9 +140,7 @@ public class pointHeld : NetworkBehaviour
         }
         else if (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].projectile.GetComponent<wandProjectile>() != null)
         {
-            newBullet.GetComponent<wandProjectile>().item = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value];
-            newBullet.GetComponent<wandProjectile>().player = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.parent.parent.gameObject;
-            newBullet.GetComponent<wandProjectile>().damage = NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].bulletDamage;
+            newBullet.GetComponent<wandProjectile>().player = player;
         }
         else
         {

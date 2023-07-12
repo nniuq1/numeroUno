@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class wandProjectile : MonoBehaviour
+public class wandProjectile : NetworkBehaviour
 {
     public int bounces = 5;
-    public float damage;
-    public GameObject player;
+    float damage = 1;
+    public ulong player;
     bool move = true;
-    public float explosionDelay = 0;
-    public GameObject explosion;
-    public bool explodes = false;
     public itemClass item;
 
     private void Start()
@@ -30,7 +28,7 @@ public class wandProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.gameObject != player && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
+        if (collision.transform.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
         {
             if (bounces > 0)
             {
@@ -42,7 +40,7 @@ public class wandProjectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        if (collision.CompareTag("Player") && collision.gameObject != player)
+        if (collision.CompareTag("Player") && collision.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject)
         {
             collision.GetComponent<playerHealth>().TakeDamage(damage);
         }
