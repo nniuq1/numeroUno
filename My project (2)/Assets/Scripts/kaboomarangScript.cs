@@ -52,14 +52,14 @@ public class kaboomarangScript : NetworkBehaviour
     {
         if (IsServer)
         {
-            if (leaving)
+            if (collision.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
             {
-                if (collision.gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject && collision.gameObject.layer == 3 || collision.gameObject.layer == 0 || collision.gameObject.layer == 7 || collision.gameObject.layer == 6)
+                if (leaving)
                 {
                     leaving = false;
-                    GameObject explodingson = Instantiate(explosion, transform.position, transform.rotation);
-                    explodingson.GetComponent<NetworkObject>().Spawn();
                 }
+                GameObject explodingson = Instantiate(explosion, transform.position, transform.rotation);
+                explodingson.GetComponent<NetworkObject>().Spawn();
             }
         }
     }

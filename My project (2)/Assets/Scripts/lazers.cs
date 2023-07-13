@@ -49,7 +49,7 @@ public class lazers : NetworkBehaviour
         if (shooting.Value)
         {
             //draw raycast
-            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)), 100, layers);
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)), Mathf.Infinity, layers);
             if (hit.Length > 1)
             {
                 line.enabled = true;
