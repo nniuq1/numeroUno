@@ -58,7 +58,11 @@ public class playerHealth : NetworkBehaviour
             Object.FindObjectOfType<Canvas>().transform.GetChild(3).GetChild(1).transform.localScale = new Vector2(_netHealth.Value / startHealth, 1);
             if (_netHealth.Value <= 0)
             {
-
+                Vector2 deathpos = transform.position;
+                //_netHealth.Value = startHealth;
+                TestServerRpc(NetworkManager.Singleton.LocalClientId);
+                health = startHealth;
+                transform.position = Vector3.zero;
                 for (int i = 0; i < GetComponent<inventory>().itemClasses.Count; i++)
                 {
                     if (GetComponent<inventory>().itemClasses[i].weapontype == itemClass.WeaponType.Hamburguesa)
@@ -68,13 +72,9 @@ public class playerHealth : NetworkBehaviour
                         {
                             GetComponent<inventory>().itemSelected.Value--;
                         }
-                        CreateHamburguesaServerRPC(transform.position, NetworkManager.Singleton.LocalClientId);
+                        CreateHamburguesaServerRPC(deathpos, NetworkManager.Singleton.LocalClientId);
                     }
                 }
-                //_netHealth.Value = startHealth;
-                TestServerRpc(NetworkManager.Singleton.LocalClientId);
-                health = startHealth;
-                transform.position = Vector3.zero;
             }
         }
     }
