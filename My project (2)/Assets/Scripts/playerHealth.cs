@@ -58,7 +58,7 @@ public class playerHealth : NetworkBehaviour
             Object.FindObjectOfType<Canvas>().transform.GetChild(3).GetChild(1).transform.localScale = new Vector2(_netHealth.Value / startHealth, 1);
             if (_netHealth.Value <= 0)
             {
-                Vector2 deathpos = transform.position;
+                Vector2 deathpos = transform.parent.parent.position;
                 //_netHealth.Value = startHealth;
                 TestServerRpc(NetworkManager.Singleton.LocalClientId);
                 health = startHealth;
