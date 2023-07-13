@@ -26,7 +26,7 @@ public class hamburguesaHeld : NetworkBehaviour
         if (timeRemaining <= 0)
         {
             print("youWin");
-            Destroy(transform.parent.parent.gameObject);
+            //Destroy(transform.parent.parent.gameObject);
         }
     }
 
