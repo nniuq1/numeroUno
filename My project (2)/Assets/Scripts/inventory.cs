@@ -151,6 +151,7 @@ public class inventory : NetworkBehaviour
     {
         if (collision.CompareTag("Item"))
         {
+            print("pick up");
             Destroy(collision.gameObject);
             itemClasses.Add(collision.transform.GetComponent<itemScript>().itemclass);
             CheckComboes();

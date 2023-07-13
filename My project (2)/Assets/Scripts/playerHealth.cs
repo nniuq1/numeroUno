@@ -90,13 +90,13 @@ public class playerHealth : NetworkBehaviour
     {
         print("I am served");
         GameObject ham = Instantiate(hamburguesaItem, pos, Quaternion.Euler(0, 0, 0));
-        ham.GetComponent<NetworkObject>().Spawn();
-        /*for (int i = 0; i < NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetComponent<inventory>().itemClasses.Count; i++)
+        //ham.GetComponent<NetworkObject>().Spawn();
+        for (int i = 0; i < NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetComponent<inventory>().itemClasses.Count; i++)
         {
             if (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetComponent<inventory>().itemClasses[i].weapontype == itemClass.WeaponType.Hamburguesa)
             {
                 NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetComponent<inventory>().itemClasses.RemoveAt(i);
             }
-        }*/
+        }
     }
 }
