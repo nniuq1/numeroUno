@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class playerHealth : NetworkBehaviour
 {
+    public GameObject hamburguesaItem;
     public NetworkVariable<float> _netHealth = new NetworkVariable<float>();
     public float startHealth = 10;
     public float health;
@@ -63,6 +64,7 @@ public class playerHealth : NetworkBehaviour
                     if (GetComponent<inventory>().itemClasses[i].weapontype == itemClass.WeaponType.Hamburguesa)
                     {
                         GetComponent<inventory>().itemClasses.RemoveAt(i);
+                        CreateHamburguesaServerRPC(transform.position);
                     }
                 }
                 //_netHealth.Value = startHealth;
@@ -77,5 +79,12 @@ public class playerHealth : NetworkBehaviour
     void TestServerRpc(ulong clientId) {
         NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject.GetComponent<playerHealth>().ResetHealth();
         
+    }
+
+    [ServerRpc]
+    void CreateHamburguesaServerRPC(Vector2 pos)
+    {
+        GameObject ham = Instantiate(hamburguesaItem, pos, Quaternion.Euler(0, 0, 0));
+        ham.GetComponent<NetworkObject>().Spawn();
     }
 }
