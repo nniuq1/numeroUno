@@ -64,6 +64,10 @@ public class playerHealth : NetworkBehaviour
                     if (GetComponent<inventory>().itemClasses[i].weapontype == itemClass.WeaponType.Hamburguesa)
                     {
                         GetComponent<inventory>().itemClasses.RemoveAt(i);
+                        if (i < GetComponent<inventory>().itemSelected.Value)
+                        {
+                            GetComponent<inventory>().itemSelected.Value--;
+                        }
                         CreateHamburguesaServerRPC(transform.position);
                     }
                 }

@@ -375,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ef6d5586e02490db30d1f27643bef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hamburguesaItem: {fileID: 1557219316867608882, guid: 952bc3ea779e74d45bc726a280dd8626, type: 3}
   _netHealth:
     m_InternalValue: 0
   startHealth: 30
@@ -517,6 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 60
+  timeRemaining: 0
 --- !u!95 &6010190408266294141
 Animator:
   serializedVersion: 4
