@@ -68,7 +68,7 @@ public class playerHealth : NetworkBehaviour
                         {
                             GetComponent<inventory>().itemSelected.Value--;
                         }
-                        CreateHamburguesaServerRPC(transform.position);
+                        CreateHamburguesaServerRPC(transform.position, NetworkManager.Singleton.LocalClientId);
                     }
                 }
                 //_netHealth.Value = startHealth;
@@ -86,9 +86,16 @@ public class playerHealth : NetworkBehaviour
     }
 
     [ServerRpc]
-    void CreateHamburguesaServerRPC(Vector2 pos)
+    void CreateHamburguesaServerRPC(Vector2 pos, ulong player)
     {
         GameObject ham = Instantiate(hamburguesaItem, pos, Quaternion.Euler(0, 0, 0));
         ham.GetComponent<NetworkObject>().Spawn();
+        for (int i = 0; i < NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetComponent<inventory>().itemClasses.Count; i++)
+        {
+            if (NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetComponent<inventory>().itemClasses[i].weapontype == itemClass.WeaponType.Hamburguesa)
+            {
+                NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetComponent<inventory>().itemClasses.RemoveAt(i);
+            }
+        }
     }
 }
