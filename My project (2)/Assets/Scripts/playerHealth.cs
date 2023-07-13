@@ -88,6 +88,7 @@ public class playerHealth : NetworkBehaviour
     [ServerRpc]
     void CreateHamburguesaServerRPC(Vector2 pos, ulong player)
     {
+        print("I am served");
         GameObject ham = Instantiate(hamburguesaItem, pos, Quaternion.Euler(0, 0, 0));
         ham.GetComponent<NetworkObject>().Spawn();
         for (int i = 0; i < NetworkManager.Singleton.ConnectedClients[player].PlayerObject.transform.GetComponent<inventory>().itemClasses.Count; i++)
