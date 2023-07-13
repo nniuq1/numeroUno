@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class hamburguesaHeld : MonoBehaviour
+public class hamburguesaHeld : NetworkBehaviour
 {
     public float startTime = 60;
-    float timeRemaining;
+    public float timeRemaining;
 
     private void Start()
     {
@@ -15,7 +16,7 @@ public class hamburguesaHeld : MonoBehaviour
     private void Update()
     {
         transform.GetComponent<Animator>().enabled = false;
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && IsOwner)
         {
             timeRemaining -= Time.deltaTime;
             print(timeRemaining);
@@ -26,5 +27,18 @@ public class hamburguesaHeld : MonoBehaviour
             print("youWin");
             Destroy(transform.parent.parent.gameObject);
         }
+    }
+
+    [ServerRpc]
+    public void SetTimeServerRPC(float timeremaining)
+    {
+        NetworkManager.LocalClient.PlayerObject.transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().timeRemaining = timeremaining;
+        SetTimeClientRPC(timeremaining);
+    }
+    [ClientRpc]
+    public void SetTimeClientRPC(float timeremaining)
+    {
+        NetworkManager.LocalClient.PlayerObject.transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().timeRemaining = timeremaining;
+
     }
 }

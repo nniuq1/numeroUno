@@ -57,6 +57,14 @@ public class playerHealth : NetworkBehaviour
             Object.FindObjectOfType<Canvas>().transform.GetChild(3).GetChild(1).transform.localScale = new Vector2(_netHealth.Value / startHealth, 1);
             if (_netHealth.Value <= 0)
             {
+
+                for (int i = 0; i < GetComponent<inventory>().itemClasses.Count; i++)
+                {
+                    if (GetComponent<inventory>().itemClasses[i].weapontype == itemClass.WeaponType.Hamburguesa)
+                    {
+                        GetComponent<inventory>().itemClasses.RemoveAt(i);
+                    }
+                }
                 //_netHealth.Value = startHealth;
                 TestServerRpc(NetworkManager.Singleton.LocalClientId);
                 health = startHealth;
@@ -68,6 +76,6 @@ public class playerHealth : NetworkBehaviour
     [ServerRpc]
     void TestServerRpc(ulong clientId) {
         NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject.GetComponent<playerHealth>().ResetHealth();
-        transform.position = new Vector2(50,50);
+        
     }
 }
