@@ -19,6 +19,7 @@ public class hamburguesaHeld : NetworkBehaviour
         if (Input.GetMouseButton(0) && IsOwner)
         {
             timeRemaining -= Time.deltaTime;
+            SetTimeServerRPC(timeRemaining);
             print(timeRemaining);
         }
 
