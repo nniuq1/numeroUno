@@ -42,4 +42,12 @@ public class itemScript : MonoBehaviour
             transform.localScale = new Vector2(transform.localScale.x + spinSpeed * Time.deltaTime, transform.localScale.y);
         }
     }
+
+    private void OnDestroy()
+    {
+        if (itemclass.Name == "La Hamburguesa")
+        {
+            print("ow");
+        }
+    }
 }
