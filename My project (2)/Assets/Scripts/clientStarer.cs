@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Netcode.Transports.UTP;
 
 public class clientStarer : NetworkBehaviour
 {
@@ -24,6 +26,11 @@ public class clientStarer : NetworkBehaviour
         transform.GetChild(1).gameObject.SetActive(false);
         transform.GetChild(2).gameObject.SetActive(false);
 
+    }
+    public void placeTheHive()
+    {
+        NetworkManager.GetComponent<UnityTransport>().ConnectionData.Address = "";
+        bees.StartClient();
     }
     public void StartGame()
     {
