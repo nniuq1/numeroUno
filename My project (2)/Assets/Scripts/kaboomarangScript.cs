@@ -57,9 +57,9 @@ public class kaboomarangScript : NetworkBehaviour
                 if (leaving)
                 {
                     leaving = false;
+                    GameObject explodingson = Instantiate(explosion, transform.position, transform.rotation);
+                    explodingson.GetComponent<NetworkObject>().Spawn();
                 }
-                GameObject explodingson = Instantiate(explosion, transform.position, transform.rotation);
-                explodingson.GetComponent<NetworkObject>().Spawn();
             }
         }
     }

@@ -43,7 +43,7 @@ public class itemScript : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (itemclass.Name == "La Hamburguesa")
         {

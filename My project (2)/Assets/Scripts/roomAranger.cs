@@ -36,7 +36,7 @@ public class roomAranger : NetworkBehaviour
             int seed = Random.Range(-10000, 10000);
             Random.seed = seed;
             seedClientRpc(seed);
-            print(seed + "serverSeed");
+            //print(seed + "serverSeed");
         }
     }
 
@@ -44,7 +44,7 @@ public class roomAranger : NetworkBehaviour
     public void seedClientRpc(int seed)
     {
         Random.seed = seed;
-        print(seed + "clientSeed");
+        //print(seed + "clientSeed");
   
 
         
