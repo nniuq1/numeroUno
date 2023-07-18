@@ -11,6 +11,7 @@ public class catScript : NetworkBehaviour
     public float damage = 3;
     bool goRight = true;
     GameObject targetPlayer;
+    NetworkVariable<Vector2> _netPos = new NetworkVariable<Vector2>();
 
     private void Start()
     {
@@ -23,37 +24,46 @@ public class catScript : NetworkBehaviour
 
     private void Update()
     {
-        if (IsServer)
+        if (IsOwner)
         {
-            float up;
-
-            if (targetPlayer != null)
+            if (IsServer)
             {
-                if (targetPlayer.transform.position.y > transform.position.y)
+                float up;
+
+                if (targetPlayer != null)
                 {
-                    up = 2.5f;
-                }
-                else if (targetPlayer.transform.position.y < transform.position.y)
-                {
-                    up = -2.5f;
+                    if (targetPlayer.transform.position.y > transform.position.y)
+                    {
+                        up = 2.5f;
+                    }
+                    else if (targetPlayer.transform.position.y < transform.position.y)
+                    {
+                        up = -2.5f;
+                    }
+                    else
+                    {
+                        up = 0;
+                    }
                 }
                 else
                 {
                     up = 0;
                 }
-            }
-            else
-            {
-                up = 0;
-            }
 
-            if (goRight)
-            {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, up);
+                if (goRight)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(speed, up);
+                }
+                else
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, up);
+                }
+
+                _netPos.Value = transform.position;
             }
             else
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, up);
+                transform.position = _netPos.Value;
             }
         }
     }
