@@ -102,7 +102,7 @@ public class meleeHeld : NetworkBehaviour
                         if (!attackBox[i].CompareTag("Player"))
                         {
                             Instantiate(objectBreaking, attackBox[i].transform.position, attackBox[i].transform.rotation);
-                            Destroy(attackBox[i].gameObject);
+                            //Destroy(attackBox[i].gameObject);
                             hiting = true;
                         }
                         else if (attackBox[i].gameObject != transform.parent.parent.gameObject)
@@ -217,7 +217,7 @@ public class meleeHeld : NetworkBehaviour
                 if (!attackBox[i].CompareTag("Player"))
                 {
                     Instantiate(objectBreaking, attackBox[i].transform.position, attackBox[i].transform.rotation);
-                    Destroy(attackBox[i].gameObject);
+                    //Destroy(attackBox[i].gameObject);
                 hiting = true;
                 }
                 else if (attackBox[i].gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject)
