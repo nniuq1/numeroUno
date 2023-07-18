@@ -24,8 +24,6 @@ public class catScript : NetworkBehaviour
 
     private void Update()
     {
-        if (IsOwner)
-        {
             if (IsServer)
             {
                 float up;
@@ -65,7 +63,6 @@ public class catScript : NetworkBehaviour
             {
                 transform.position = _netPos.Value;
             }
-        }
     }
 
     IEnumerator destroy()
