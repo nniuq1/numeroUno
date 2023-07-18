@@ -29,11 +29,11 @@ public class catScript : NetworkBehaviour
 
             if (targetPlayer != null)
             {
-                if (targetPlayer.transform.position.y - 0.5f > transform.position.y)
+                if (targetPlayer.transform.position.y > transform.position.y)
                 {
                     up = 2.5f;
                 }
-                else if (targetPlayer.transform.position.y - 0.5f < transform.position.y)
+                else if (targetPlayer.transform.position.y < transform.position.y)
                 {
                     up = -2.5f;
                 }
