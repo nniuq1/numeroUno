@@ -25,17 +25,17 @@ public class catScript : NetworkBehaviour
     {
         if (IsServer)
         {
-            int up;
+            float up;
 
             if (targetPlayer != null)
             {
                 if (targetPlayer.transform.position.y - 0.5f > transform.position.y)
                 {
-                    up = 1;
+                    up = 2.5f;
                 }
                 else if (targetPlayer.transform.position.y - 0.5f < transform.position.y)
                 {
-                    up = -1;
+                    up = -2.5f;
                 }
                 else
                 {
@@ -67,7 +67,7 @@ public class catScript : NetworkBehaviour
     IEnumerator TimetoCheck()
     {
         CheckDirection();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.75f);
         StartCoroutine(TimetoCheck());
     }
 
