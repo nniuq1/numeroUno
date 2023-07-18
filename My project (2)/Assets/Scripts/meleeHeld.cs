@@ -12,6 +12,10 @@ public class meleeHeld : NetworkBehaviour
     public inventory Inventory;
     public LayerMask meleeMask;
     NetworkVariable<bool> rightFacing = new NetworkVariable<bool>(writePerm: NetworkVariableWritePermission.Owner);
+    int catHitCombo = 0;
+    int catHitRequired = 1;
+    public GameObject cat;
+    float comboTimer = 0;
 
     private void Update()
     {
@@ -94,16 +98,50 @@ public class meleeHeld : NetworkBehaviour
                                 explodesing.GetComponent<NetworkObject>().Spawn();
                             }
                         }
+                        bool hiting = false;
                         if (!attackBox[i].CompareTag("Player"))
                         {
                             Instantiate(objectBreaking, attackBox[i].transform.position, attackBox[i].transform.rotation);
                             Destroy(attackBox[i].gameObject);
+                            hiting = true;
                         }
                         else if (attackBox[i].gameObject != transform.parent.parent.gameObject)
                         {
                             attackBox[i].GetComponent<playerHealth>().TakeDamage(Inventory.itemClasses[(int)Inventory.itemSelected.Value].MeleeDamage);
+                            hiting = true;
+                        }
+                        if (hiting && Inventory.itemClasses[(int)Inventory.itemSelected.Value].Name == "Excalipurr")
+                        {
+                            catHitCombo++;
+                            comboTimer = 1.75f;
+                            if (catHitCombo == catHitRequired)
+                            {
+                                GameObject catObject = Instantiate(cat, transform.position, new Quaternion(0, 0, 0, 0));
+                                catObject.GetComponent<catScript>().player = gameObject;
+                                catHitCombo = 0;
+                            }
                         }
                     }
+                }
+
+                if (Inventory.itemClasses[(int)Inventory.itemSelected.Value].Name == "Excalipurr")
+                {
+                    print(catHitCombo);
+                    if (catHitCombo > 0)
+                    {
+                        comboTimer -= Time.deltaTime;
+                        //print(comboTimer);
+                        if (comboTimer <= 0)
+                        {
+                            catHitCombo = 0;
+                        }
+                    }
+
+                }
+                else
+                {
+                    catHitCombo = 0;
+                    comboTimer = 0;
                 }
             }
             else

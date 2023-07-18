@@ -505,6 +505,7 @@ MonoBehaviour:
   meleeMask:
     serializedVersion: 2
     m_Bits: 136
+  cat: {fileID: 5971178635479152125, guid: 52ed5dc7b01d940dab27974ce59cacdd, type: 3}
 --- !u!114 &4342881439588749725
 MonoBehaviour:
   m_ObjectHideFlags: 0
