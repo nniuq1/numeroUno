@@ -117,7 +117,8 @@ public class meleeHeld : NetworkBehaviour
                             if (catHitCombo == catHitRequired)
                             {
                                 GameObject catObject = Instantiate(cat, transform.position, new Quaternion(0, 0, 0, 0));
-                                catObject.GetComponent<catScript>().player = gameObject;
+                                catObject.GetComponent<catScript>().player = transform.parent.parent.gameObject;
+                                catObject.GetComponent<NetworkObject>().Spawn();
                                 catHitCombo = 0;
                             }
                         }

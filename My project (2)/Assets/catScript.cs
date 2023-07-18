@@ -24,14 +24,12 @@ public class catScript : NetworkBehaviour
     {
         if (IsServer)
         {
-            print(1);
             if (goRight)
             {
                 GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
             }
             else
             {
-                print(2);
                 GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
             }
         }
