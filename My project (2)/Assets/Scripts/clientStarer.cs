@@ -30,8 +30,6 @@ public class clientStarer : NetworkBehaviour
     }
     public void placeTheHive()
     {
-        print((transform.GetChild(3)).transform);
-        print((transform.GetChild(3)).transform.GetComponent<InputField>());
         NetworkManager.GetComponent<UnityTransport>().ConnectionData.Address = transform.GetChild(3).transform.GetComponent<InputField>().text;
         bees.StartClient();
         Destroy(tempCamera.gameObject);
