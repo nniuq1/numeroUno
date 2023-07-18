@@ -10,6 +10,7 @@ public class catScript : NetworkBehaviour
     public float duration = 10;
     public float damage = 3;
     bool goRight = true;
+    GameObject targetPlayer;
 
     private void Start()
     {
@@ -24,13 +25,35 @@ public class catScript : NetworkBehaviour
     {
         if (IsServer)
         {
-            if (goRight)
+            int up;
+
+            if (targetPlayer != null)
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
+                if (targetPlayer.transform.position.y - 0.5f > transform.position.y)
+                {
+                    up = 1;
+                }
+                else if (targetPlayer.transform.position.y - 0.5f < transform.position.y)
+                {
+                    up = -1;
+                }
+                else
+                {
+                    up = 0;
+                }
             }
             else
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
+                up = 0;
+            }
+
+            if (goRight)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, up);
+            }
+            else
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, up);
             }
         }
     }
@@ -50,7 +73,7 @@ public class catScript : NetworkBehaviour
 
     void CheckDirection()
     {
-        GameObject targetPlayer = null;
+        targetPlayer = null;
         float distanceToPlayer = 100000;
         charmovement[] players = Object.FindObjectsOfType<charmovement>();
         for (int i = 0; i < players.Length; i++)
