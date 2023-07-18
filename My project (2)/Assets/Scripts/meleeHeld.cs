@@ -114,35 +114,10 @@ public class meleeHeld : NetworkBehaviour
                         {
                             catHitCombo++;
                             comboTimer = 1.75f;
-                            if (catHitCombo == catHitRequired)
-                            {
-                                GameObject catObject = Instantiate(cat, transform.position, new Quaternion(0, 0, 0, 0));
-                                catObject.GetComponent<catScript>().player = transform.parent.parent.gameObject;
-                                catObject.GetComponent<NetworkObject>().Spawn();
-                                catHitCombo = 0;
-                            }
                         }
                     }
                 }
 
-                if (Inventory.itemClasses[(int)Inventory.itemSelected.Value].Name == "Excalipurr")
-                {
-                    if (catHitCombo > 0)
-                    {
-                        comboTimer -= Time.deltaTime;
-                        //print(comboTimer);
-                        if (comboTimer <= 0)
-                        {
-                            catHitCombo = 0;
-                        }
-                    }
-
-                }
-                else
-                {
-                    catHitCombo = 0;
-                    comboTimer = 0;
-                }
             }
             else
             {
@@ -154,6 +129,32 @@ public class meleeHeld : NetworkBehaviour
                     StartCoroutine(stopAttacking());
                     animationServerRPC(NetworkManager.Singleton.LocalClientId, animator.GetBool("right"));
                 }
+            }
+
+            if (Inventory.itemClasses[(int)Inventory.itemSelected.Value].Name == "Excalipurr")
+            {
+                if (catHitCombo > 0)
+                {
+                    comboTimer -= Time.deltaTime;
+                    //print(comboTimer);
+                    if (comboTimer <= 0)
+                    {
+                        catHitCombo = 0;
+                    }
+                    if (catHitCombo == catHitRequired)
+                    {
+                        GameObject catObject = Instantiate(cat, transform.position, new Quaternion(0, 0, 0, 0));
+                        catObject.GetComponent<catScript>().player = transform.parent.parent.gameObject;
+                        catObject.GetComponent<NetworkObject>().Spawn();
+                        catHitCombo = 0;
+                    }
+                }
+
+            }
+            else
+            {
+                catHitCombo = 0;
+                comboTimer = 0;
             }
         }
     }
@@ -214,15 +215,37 @@ public class meleeHeld : NetworkBehaviour
                     explodesing.GetComponent<NetworkObject>().Spawn();
                 }
                 }
+            bool hiting = false;
                 if (!attackBox[i].CompareTag("Player"))
                 {
                     Instantiate(objectBreaking, attackBox[i].transform.position, attackBox[i].transform.rotation);
                     Destroy(attackBox[i].gameObject);
+                hiting = true;
                 }
                 else if (attackBox[i].gameObject != NetworkManager.Singleton.ConnectedClients[player].PlayerObject.gameObject)
                 {
                     attackBox[i].GetComponent<playerHealth>().TakeDamage(NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemClasses[(int)NetworkManager.Singleton.ConnectedClients[player].PlayerObject.GetComponent<inventory>().itemSelected.Value].MeleeDamage);
+                hiting = true;
                 }
+            if (hiting)
+            {
+                ClientRpcParams clientRpcParams = new ClientRpcParams
+                {
+                    Send = new ClientRpcSendParams
+                    {
+                        TargetClientIds = new ulong[] { player }
+
+                    }
+                };
+                CatClientRPC(clientRpcParams);
+            }
         }
+    }
+
+    [ClientRpc]
+    void CatClientRPC(ClientRpcParams clientRpcParams = default)
+    {
+        NetworkManager.LocalClient.PlayerObject.GetComponent<meleeHeld>().catHitCombo++;
+        NetworkManager.LocalClient.PlayerObject.GetComponent<meleeHeld>().comboTimer = 1.75f;
     }
 }
