@@ -13,7 +13,7 @@ public class meleeHeld : NetworkBehaviour
     public LayerMask meleeMask;
     NetworkVariable<bool> rightFacing = new NetworkVariable<bool>(writePerm: NetworkVariableWritePermission.Owner);
     int catHitCombo = 0;
-    int catHitRequired = 1;
+    int catHitRequired = 4;
     public GameObject cat;
     float comboTimer = 0;
 
