@@ -127,7 +127,6 @@ public class meleeHeld : NetworkBehaviour
 
                 if (Inventory.itemClasses[(int)Inventory.itemSelected.Value].Name == "Excalipurr")
                 {
-                    print(catHitCombo);
                     if (catHitCombo > 0)
                     {
                         comboTimer -= Time.deltaTime;
