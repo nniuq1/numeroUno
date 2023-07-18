@@ -141,11 +141,9 @@ public class meleeHeld : NetworkBehaviour
                     {
                         catHitCombo = 0;
                     }
-                    if (catHitCombo == catHitRequired)
+                    if (catHitCombo >= catHitRequired)
                     {
-                        GameObject catObject = Instantiate(cat, transform.position, new Quaternion(0, 0, 0, 0));
-                        catObject.GetComponent<catScript>().player = transform.parent.parent.gameObject;
-                        catObject.GetComponent<NetworkObject>().Spawn();
+                        CatSummonServerRPC();
                         catHitCombo = 0;
                     }
                 }
@@ -247,5 +245,13 @@ public class meleeHeld : NetworkBehaviour
     {
         NetworkManager.LocalClient.PlayerObject.GetComponent<meleeHeld>().catHitCombo++;
         NetworkManager.LocalClient.PlayerObject.GetComponent<meleeHeld>().comboTimer = 1.75f;
+    }
+
+    [ServerRpc]
+    void CatSummonServerRPC()
+    {
+        GameObject catObject = Instantiate(cat, transform.position, new Quaternion(0, 0, 0, 0));
+        catObject.GetComponent<catScript>().player = transform.parent.parent.gameObject;
+        catObject.GetComponent<NetworkObject>().Spawn();
     }
 }
