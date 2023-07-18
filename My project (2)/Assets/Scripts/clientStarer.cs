@@ -5,6 +5,7 @@ using Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.Netcode.Transports.UTP;
+using UnityEngine.UI;
 
 public class clientStarer : NetworkBehaviour
 {
@@ -13,10 +14,10 @@ public class clientStarer : NetworkBehaviour
 
     public void ReleasetheBees()
     {
-        bees.StartClient();
-        Destroy(tempCamera.gameObject);
         transform.GetChild(1).gameObject.SetActive(false);
         transform.GetChild(2).gameObject.SetActive(false);
+        transform.GetChild(3).gameObject.SetActive(true);
+        transform.GetChild(4).gameObject.SetActive(true);
     }
     public void formTheHive()
     {
@@ -29,8 +30,11 @@ public class clientStarer : NetworkBehaviour
     }
     public void placeTheHive()
     {
-        NetworkManager.GetComponent<UnityTransport>().ConnectionData.Address = "";
+        NetworkManager.GetComponent<UnityTransport>().ConnectionData.Address = transform.GetChild(3).transform.GetComponent<InputField>().text;
         bees.StartClient();
+        Destroy(tempCamera.gameObject);
+        transform.GetChild(3).gameObject.SetActive(false);
+        transform.GetChild(4).gameObject.SetActive(false);
     }
     public void StartGame()
     {
