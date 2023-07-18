@@ -243,8 +243,8 @@ public class meleeHeld : NetworkBehaviour
     [ClientRpc]
     void CatClientRPC(ClientRpcParams clientRpcParams = default)
     {
-        NetworkManager.LocalClient.PlayerObject.GetComponent<meleeHeld>().catHitCombo++;
-        NetworkManager.LocalClient.PlayerObject.GetComponent<meleeHeld>().comboTimer = 1.75f;
+        catHitCombo++;
+        comboTimer = 1.75f;
     }
 
     [ServerRpc]
