@@ -23,27 +23,27 @@ public class pointingScript : MonoBehaviour
             Vector2 arrow = pos;
             if (arrow.x < .1)
             {
-                double d = (arrow.x + .5) / 0.4;
+                double d = (arrow.x - .5) / 0.4;
                 arrow.x = .1f;
-                arrow.y = (float)(arrow.y / d);
+                arrow.y = (float)((arrow.y - 0.5) / (-d) + .5);
             }
-            if (arrow.x > .9)
+            else if (arrow.x > .9)
             {
                 double d = (arrow.x - 0.5)/0.4;
                 arrow.x = .9f;
-                arrow.y = (float)(arrow.y/d);
+                arrow.y = (float)((arrow.y - 0.5) / d + .5);
             }
             if (arrow.y < .1)
             {
-                double d = (arrow.y + 0.5) / 0.4;
+                double d = (arrow.y - 0.5) / 0.4;
                 arrow.y = .1f;
-                arrow.x = (float)(arrow.x / d);
+                arrow.x = (float)((arrow.x - 0.5) / (-d) + .5);
             }
-            if (arrow.y > .9)
+            else if (arrow.y > .9)
             {
                 double d = (arrow.y - 0.5) / 0.4;
                 arrow.y = .9f;
-                arrow.x = (float)(arrow.x / d);
+                arrow.x = (float)((arrow.x - 0.5)/ d +.5);
             }
             arrow.y = arrow.y * transform.parent.GetChild(1).GetComponent<Camera>().pixelHeight;
             arrow.x = arrow.x * transform.parent.GetChild(1).GetComponent<Camera>().pixelWidth;
