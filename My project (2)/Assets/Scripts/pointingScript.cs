@@ -42,7 +42,7 @@ public class pointingScript : NetworkBehaviour
                 if ((targetPos.x < 0 || targetPos.x > 1) || (targetPos.y < 0 || targetPos.y > 1))
                 {
                     transform.GetChild(0).gameObject.SetActive(true);
-                    Vector3 dir = new Vector3(targetPos.x, targetPos.y, 0) - transform.position;
+                    Vector3 dir = transform.parent.GetChild(1).GetComponent<Camera>().ViewportToWorldPoint(targetPos) - transform.position;
                     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                     transform.GetChild(0).transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                     Vector2 arrow = targetPos;
