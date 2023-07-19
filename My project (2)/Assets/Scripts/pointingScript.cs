@@ -13,7 +13,7 @@ public class pointingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         Vector2 pos = transform.parent.GetChild(1).GetComponent<Camera>().WorldToViewportPoint(Vector2.zero);
+        Vector2 pos = transform.parent.GetChild(1).GetComponent<Camera>().WorldToViewportPoint(Vector2.zero);
         if ((pos.x<0 || pos.x > 1) || (pos.y<0 || pos.y>1))
         {
             transform.GetChild(0).gameObject.SetActive(true);
@@ -23,27 +23,27 @@ public class pointingScript : MonoBehaviour
             Vector2 arrow = pos;
             if (arrow.x < .1)
             {
-                double d = (arrow.x + 0.4) / 1.4;
+                double d = (arrow.x + .5) / 0.4;
                 arrow.x = .1f;
-                arrow.y = arrow.y;
+                arrow.y = (float)(arrow.y / d);
             }
             if (arrow.x > .9)
             {
-                double d = (arrow.x - 0.4)/0.4;
+                double d = (arrow.x - 0.5)/0.4;
                 arrow.x = .9f;
-                arrow.y = (float)(((arrow.x - 0.5) / d) + 0.4);
+                arrow.y = (float)(arrow.y/d);
             }
             if (arrow.y < .1)
             {
-                double d = (arrow.y + 0.4) / 1.4;
+                double d = (arrow.y + 0.5) / 0.4;
                 arrow.y = .1f;
-                arrow.x = arrow.x;
+                arrow.x = (float)(arrow.x / d);
             }
             if (arrow.y > .9)
             {
-                double d = (arrow.y - 0.4) / 0.4;
+                double d = (arrow.y - 0.5) / 0.4;
                 arrow.y = .9f;
-                arrow.x = (float)(((arrow.x - 0.5) / d) + 0.4);
+                arrow.x = (float)(arrow.x / d);
             }
             arrow.y = arrow.y * transform.parent.GetChild(1).GetComponent<Camera>().pixelHeight;
             arrow.x = arrow.x * transform.parent.GetChild(1).GetComponent<Camera>().pixelWidth;
