@@ -42,6 +42,7 @@ public class pointingScript : NetworkBehaviour
                 if ((targetPos.x < 0 || targetPos.x > 1) || (targetPos.y < 0 || targetPos.y > 1))
                 {
                     transform.GetChild(0).gameObject.SetActive(true);
+                    transform.GetChild(1).gameObject.SetActive(true);
                     Vector3 dir = transform.parent.GetChild(1).GetComponent<Camera>().ViewportToWorldPoint(targetPos) - transform.position;
                     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                     transform.GetChild(0).transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -74,10 +75,12 @@ public class pointingScript : NetworkBehaviour
                     arrow.x = arrow.x * transform.parent.GetChild(1).GetComponent<Camera>().pixelWidth;
                     Vector2 p = transform.parent.GetChild(1).GetComponent<Camera>().ScreenToWorldPoint(arrow);
                     transform.GetChild(0).transform.position = p;
+                    transform.GetChild(1).transform.position = p;
                 }
                 else
                 {
                     transform.GetChild(0).gameObject.SetActive(false);
+                    transform.GetChild(1).gameObject.SetActive(false);
                 }
             }
         }
