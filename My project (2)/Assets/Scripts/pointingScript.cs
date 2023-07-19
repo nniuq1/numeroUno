@@ -15,7 +15,7 @@ public class pointingScript : NetworkBehaviour
             bool findInChar = false;
             for (int i = 0; i < Object.FindObjectsOfType<inventory>().Length; i++)
             {
-                for (int h = 0; h < Object.FindObjectsOfType<inventory>()[i].itemClasses.Count; i++)
+                for (int h = 0; h < Object.FindObjectsOfType<inventory>()[i].itemClasses.Count; h++)
                 {
                     if (Object.FindObjectsOfType<inventory>()[i].itemClasses[h] == Hamburguesa)
                     {
