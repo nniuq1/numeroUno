@@ -15,6 +15,7 @@ public class pauseMenu : NetworkBehaviour
             pausemenu.SetActive(true);
             NetworkManager.LocalClient.PlayerObject.GetComponent<charmovement>().Pause();
         }
+
     }
 
     public void Resume()
@@ -24,6 +25,13 @@ public class pauseMenu : NetworkBehaviour
     }
 
     public void QuitGame()
+    {
+        NetworkManager.Singleton.Shutdown();
+        Destroy(NetworkManager.gameObject);
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    private void OnDisconnectedFromServer(NetworkDisconnection info)
     {
         NetworkManager.Singleton.Shutdown();
         Destroy(NetworkManager.gameObject);
