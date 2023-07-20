@@ -16,6 +16,7 @@ public class hamburguesaHeld : NetworkBehaviour
     private void Update()
     {
         transform.GetComponent<Animator>().enabled = false;
+        print(IsOwner);
         if (Input.GetMouseButton(0) && IsOwner)
         {
             timeRemaining -= Time.deltaTime;
