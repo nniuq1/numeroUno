@@ -92,6 +92,11 @@ public class explosionDamage : NetworkBehaviour
         yield return new WaitForSeconds(0.2f);
         if (IsServer)
         {
+            GetComponent<CircleCollider2D>().enabled = false;
+        }
+        yield return new WaitForSeconds(2);
+        if (IsServer)
+        {
             Destroy(gameObject);
         }
     }
