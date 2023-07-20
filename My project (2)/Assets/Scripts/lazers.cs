@@ -72,6 +72,7 @@ public class lazers : NetworkBehaviour
         }
         else
         {
+            transform.GetChild(0).GetComponent<AudioSource>().Stop();
             line.enabled = false;
         }
     }
