@@ -31,7 +31,7 @@ public class pauseMenu : NetworkBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
-    private void OnDisconnectedFromServer(NetworkDisconnection info)
+    private void OnDisconnectedFromServer()
     {
         NetworkManager.Singleton.Shutdown();
         Destroy(NetworkManager.gameObject);

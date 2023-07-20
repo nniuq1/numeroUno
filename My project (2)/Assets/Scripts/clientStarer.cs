@@ -38,7 +38,6 @@ public class clientStarer : NetworkBehaviour
     }
     public void StartGame()
     {
-        NetworkManager.IsListening = false;
         transform.GetChild(0).gameObject.SetActive(false);
         sceneClientRpc();
         SceneManager.LoadScene("testing");
