@@ -34,14 +34,11 @@ public class hamburguesaHeld : NetworkBehaviour
     [ServerRpc]
     public void SetTimeServerRPC(float timeremaining)
     {
-        print(1);
-        Object.FindObjectOfType<hamburgesaClock>().time = timeRemaining;
         SetTimeClientRPC(timeremaining);
     }
     [ClientRpc]
     public void SetTimeClientRPC(float timeremaining)
     {
-        print(1);
         NetworkManager.LocalClient.PlayerObject.transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().timeRemaining = timeremaining;
         Object.FindObjectOfType<hamburgesaClock>().time = timeRemaining;
 
