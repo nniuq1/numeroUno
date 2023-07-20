@@ -5,6 +5,7 @@ using Unity.Netcode;
 
 public class pointingScript : NetworkBehaviour
 {
+    bool hasPickedUp = false;
     public Vector2 targetPos;
     public itemClass Hamburguesa;
 
@@ -21,6 +22,7 @@ public class pointingScript : NetworkBehaviour
                     {
                         targetPos = transform.parent.GetChild(1).GetComponent<Camera>().WorldToViewportPoint(Object.FindObjectsOfType<inventory>()[i].transform.position);
                         findInChar = true;
+                        hasPickedUp = true;
                     }
                 }
             }
@@ -37,7 +39,7 @@ public class pointingScript : NetworkBehaviour
             }
 
             //Vector2 pos = transform.parent.GetChild(1).GetComponent<Camera>().WorldToViewportPoint(Vector2.zero);
-            if (targetPos != new Vector2(1000, 1000))
+            if (targetPos != new Vector2(1000, 1000) && hasPickedUp)
             {
                 if ((targetPos.x < 0 || targetPos.x > 1) || (targetPos.y < 0 || targetPos.y > 1))
                 {
