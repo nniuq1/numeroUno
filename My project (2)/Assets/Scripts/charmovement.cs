@@ -106,7 +106,8 @@ public class charmovement : NetworkBehaviour
 
         if (transform.position.y < -10)
         {
-            transform.position = Vector3.zero;
+            //transform.position = Vector3.zero;
+            GetComponent<playerHealth>().TakeDamage(10000);
         }
     }
 

@@ -20,6 +20,7 @@ public class hamburguesaHeld : NetworkBehaviour
         {
             timeRemaining -= Time.deltaTime;
             SetTimeServerRPC(timeRemaining);
+            Object.FindObjectOfType<hamburgesaClock>().time = timeRemaining;
             print(timeRemaining);
         }
 
@@ -34,12 +35,14 @@ public class hamburguesaHeld : NetworkBehaviour
     public void SetTimeServerRPC(float timeremaining)
     {
         NetworkManager.LocalClient.PlayerObject.transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().timeRemaining = timeremaining;
+        Object.FindObjectOfType<hamburgesaClock>().time = timeRemaining;
         SetTimeClientRPC(timeremaining);
     }
     [ClientRpc]
     public void SetTimeClientRPC(float timeremaining)
     {
         NetworkManager.LocalClient.PlayerObject.transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().timeRemaining = timeremaining;
+        Object.FindObjectOfType<hamburgesaClock>().time = timeRemaining;
 
     }
 }

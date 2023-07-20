@@ -58,6 +58,11 @@ public class playerHealth : NetworkBehaviour
             Object.FindObjectOfType<Canvas>().transform.GetChild(3).GetChild(1).transform.localScale = new Vector2(_netHealth.Value / startHealth, 1);
             if (_netHealth.Value <= 0)
             {
+                bool fallDeath = false;
+                if (_netHealth.Value < -100)
+                {
+                    fallDeath = true;
+                }
                 Vector2 deathpos = transform.position;
                 //_netHealth.Value = startHealth;
                 TestServerRpc(NetworkManager.Singleton.LocalClientId);
@@ -72,7 +77,14 @@ public class playerHealth : NetworkBehaviour
                         {
                             GetComponent<inventory>().itemSelected.Value--;
                         }
-                        CreateHamburguesaServerRPC(deathpos, NetworkManager.Singleton.LocalClientId);
+                        if (!fallDeath)
+                        {
+                            CreateHamburguesaServerRPC(deathpos, NetworkManager.Singleton.LocalClientId);
+                        }
+                        else
+                        {
+                            CreateHamburguesaServerRPC(new Vector2(-15, -3), NetworkManager.Singleton.LocalClientId);
+                        }
                     }
                 }
             }

@@ -49,15 +49,15 @@ public class pointingScript : NetworkBehaviour
                     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                     transform.GetChild(0).transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                     Vector2 arrow = targetPos;
-                    if (arrow.x < .1)
+                    if (arrow.x < .05)
                     {
-                        double d = (arrow.x - .5) / 0.4;
+                        double d = (arrow.x - .5) / 0.45;
                         arrow.x = .1f;
                         arrow.y = (float)((arrow.y - 0.5) / (-d) + .5);
                     }
-                    else if (arrow.x > .9)
+                    else if (arrow.x > .95)
                     {
-                        double d = (arrow.x - 0.5) / 0.4;
+                        double d = (arrow.x - 0.5) / 0.45;
                         arrow.x = .9f;
                         arrow.y = (float)((arrow.y - 0.5) / d + .5);
                     }
