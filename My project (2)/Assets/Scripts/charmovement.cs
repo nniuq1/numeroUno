@@ -6,6 +6,8 @@ using Unity.Netcode;
 
 public class charmovement : NetworkBehaviour
 {
+    bool isPaused;
+
     public GameObject dustparticle;
     public float footstepChance = 0.05f;
 
@@ -67,7 +69,7 @@ public class charmovement : NetworkBehaviour
         Collider2D[] rightCollision = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + transform.localScale.x / 2 + wallStopDimentions.x / 2, transform.position.y), wallStopDimentions, 0, sideMask);
         Collider2D[] leftCollision = Physics2D.OverlapBoxAll(new Vector2(transform.position.x - transform.localScale.x / 2 - wallStopDimentions.x / 2, transform.position.y), wallStopDimentions, 0, sideMask);
 
-        if (Input.GetAxisRaw("Horizontal") != 0 && !stunned)
+        if (Input.GetAxisRaw("Horizontal") != 0 && !stunned && !isPaused)
         {
             if (Input.GetAxisRaw("Horizontal") == 1 && rightCollision.Length == 0)
             {
@@ -90,13 +92,13 @@ public class charmovement : NetworkBehaviour
         }
         else
         {
-            if (!stunned)
+            if (!stunned && !isPaused)
             {
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
         }
 
-        if (Input.GetAxisRaw("Vertical") == 1 && canJump && rb.velocity.y <= 0 && !stunned)
+        if (Input.GetAxisRaw("Vertical") == 1 && canJump && rb.velocity.y <= 0 && !stunned && !isPaused)
         {
             canJump = false;
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
@@ -134,5 +136,14 @@ public class charmovement : NetworkBehaviour
         //print(nockback);
         NetworkManager.LocalClient.PlayerObject.GetComponent<Rigidbody2D>().velocity = nockback;
         Stun(0.75f);
+    }
+
+    public void Pause()
+    {
+        isPaused = true;
+    }
+    public void Resume()
+    {
+        isPaused = false;
     }
 }
