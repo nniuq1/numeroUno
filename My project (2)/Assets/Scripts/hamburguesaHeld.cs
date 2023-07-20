@@ -40,6 +40,8 @@ public class hamburguesaHeld : NetworkBehaviour
     {
         NetworkManager.LocalClient.PlayerObject.transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().timeRemaining = timeremaining;
         Object.FindObjectOfType<hamburgesaClock>().time = timeRemaining;
-
+        print(Object.FindObjectOfType<hamburgesaClock>().gameObject + " object");
+        print(timeRemaining + " timeremaining");
+        print(Object.FindObjectOfType<hamburgesaClock>().time + " time");
     }
 }
