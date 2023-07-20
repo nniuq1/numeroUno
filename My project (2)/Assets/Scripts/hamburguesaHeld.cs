@@ -35,7 +35,6 @@ public class hamburguesaHeld : NetworkBehaviour
     public void SetTimeServerRPC(float timeremaining)
     {
         print(1);
-        NetworkManager.LocalClient.PlayerObject.transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().timeRemaining = timeremaining;
         Object.FindObjectOfType<hamburgesaClock>().time = timeRemaining;
         SetTimeClientRPC(timeremaining);
     }
