@@ -20,7 +20,7 @@ public class hamburguesaHeld : NetworkBehaviour
         {
             timeRemaining -= Time.deltaTime;
             SetTimeServerRPC(timeRemaining);
-            print(timeRemaining);
+            //print(timeRemaining);
         }
 
         if (timeRemaining <= 0)

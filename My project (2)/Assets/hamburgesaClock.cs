@@ -9,6 +9,7 @@ public class hamburgesaClock : MonoBehaviour
 
     private void Update()
     {
+        print(time);
         transform.GetChild(0).GetComponent<Image>().fillAmount = time / 60f;
     }
 }
