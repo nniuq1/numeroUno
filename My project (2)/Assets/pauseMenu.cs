@@ -26,12 +26,14 @@ public class pauseMenu : NetworkBehaviour
 
     public void QuitGame()
     {
+        QuitClientRPC();
         NetworkManager.Singleton.Shutdown();
         Destroy(NetworkManager.gameObject);
         SceneManager.LoadScene("Main Menu");
     }
 
-    private void OnDisconnectedFromServer()
+    [ClientRpc]
+    void QuitClientRPC()
     {
         NetworkManager.Singleton.Shutdown();
         Destroy(NetworkManager.gameObject);
