@@ -20,7 +20,7 @@ public class hamburguesaHeld : NetworkBehaviour
         {
             timeRemaining -= Time.deltaTime;
             SetTimeServerRPC(timeRemaining);
-            Object.FindObjectOfType<hamburgesaClock>().time = timeRemaining;
+            //Object.FindObjectOfType<hamburgesaClock>().time = timeRemaining;
             print(timeRemaining);
         }
 
