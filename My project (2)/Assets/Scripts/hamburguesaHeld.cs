@@ -16,7 +16,6 @@ public class hamburguesaHeld : NetworkBehaviour
     private void Update()
     {
         transform.GetComponent<Animator>().enabled = false;
-        print(IsOwner);
         if (Input.GetMouseButton(0) && IsOwner)
         {
             timeRemaining -= Time.deltaTime;
@@ -35,6 +34,7 @@ public class hamburguesaHeld : NetworkBehaviour
     [ServerRpc]
     public void SetTimeServerRPC(float timeremaining)
     {
+        print(1);
         NetworkManager.LocalClient.PlayerObject.transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().timeRemaining = timeremaining;
         Object.FindObjectOfType<hamburgesaClock>().time = timeRemaining;
         SetTimeClientRPC(timeremaining);
@@ -42,6 +42,7 @@ public class hamburguesaHeld : NetworkBehaviour
     [ClientRpc]
     public void SetTimeClientRPC(float timeremaining)
     {
+        print(1);
         NetworkManager.LocalClient.PlayerObject.transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().timeRemaining = timeremaining;
         Object.FindObjectOfType<hamburgesaClock>().time = timeRemaining;
 
