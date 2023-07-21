@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class menuShoot : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class menuShoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Instantiate(bullet, transform.position, transform.rotation);
+        }
+
+        if (transform.position.y <= -20)
+        {
+            SceneManager.LoadScene("waitingRoom");
         }
     }
 }

@@ -14,7 +14,9 @@ public class menuBullet : MonoBehaviour
     {
         if (collision.CompareTag("startgame"))
         {
-            SceneManager.LoadScene("waitingRoom");
+            //SceneManager.LoadScene("waitingRoom");
+            Object.FindObjectOfType<respawnPoint>().GetComponent<Animator>().SetBool("Slide", true);
+            Destroy(gameObject);
         }
         if (collision.CompareTag("settings"))
         {
