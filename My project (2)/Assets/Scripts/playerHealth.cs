@@ -67,7 +67,7 @@ public class playerHealth : NetworkBehaviour
                 //_netHealth.Value = startHealth;
                 TestServerRpc(NetworkManager.Singleton.LocalClientId);
                 health = startHealth;
-                transform.position = Vector3.zero;
+                transform.position = Object.FindObjectOfType<respawnPoint>().transform.position;
                 for (int i = 0; i < GetComponent<inventory>().itemClasses.Count; i++)
                 {
                     if (GetComponent<inventory>().itemClasses[i].weapontype == itemClass.WeaponType.Hamburguesa)

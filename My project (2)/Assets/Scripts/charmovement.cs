@@ -24,7 +24,7 @@ public class charmovement : NetworkBehaviour
 
     public Vector2 wallStopDimentions;
     public LayerMask sideMask;
-    bool t = true;
+    int t = 0;
 
     public override void OnNetworkSpawn()
     {
@@ -44,16 +44,20 @@ public class charmovement : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "testing" && t)
+        if (SceneManager.GetActiveScene().name == "testing" && t == 0)
         {
-            t = false;
-            transform.position = Vector3.zero;
+            t = 1;
             GetComponent<playerHealth>().enabled = true;
             if (IsServer && IsOwner)
             {
                 GameObject aranger = Instantiate(roomAranger, Vector3.zero, Quaternion.EulerAngles(0, 0, 0));
                 aranger.GetComponent<NetworkObject>().Spawn();
             }
+        }
+        else if(t == 1)
+        {
+            t = 2;
+            transform.position = Object.FindObjectOfType<respawnPoint>().transform.position;
         }
 
         Collider2D[] jumpCollision = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y - transform.localScale.y / 2 - jumpTestDimentions.y / 2), jumpTestDimentions, 0, jumpMask);
