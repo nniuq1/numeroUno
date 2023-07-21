@@ -55,7 +55,11 @@ public class lazers : NetworkBehaviour
                 line.enabled = true;
                 line.SetPosition(0, player.transform.position);
                 line.SetPosition(1, hit[1].point);
-                transform.GetChild(0).GetComponent<AudioSource>().Play();
+
+                if (!transform.GetChild(0).GetComponent<AudioSource>().isPlaying)
+                {
+                    transform.GetChild(0).GetComponent<AudioSource>().Play();
+                }
                 if (IsServer)
                 {
                     //RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(Quaternion.ToEulerAngles(transform.rotation).z), Mathf.Sin(Quaternion.ToEulerAngles(transform.rotation).z)));
@@ -71,6 +75,15 @@ public class lazers : NetworkBehaviour
             }
         }
         else
+        {
+            transform.GetChild(0).GetComponent<AudioSource>().Stop();
+            line.enabled = false;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (shooting.Value)
         {
             transform.GetChild(0).GetComponent<AudioSource>().Stop();
             line.enabled = false;
