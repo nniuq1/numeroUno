@@ -10,7 +10,7 @@ public class pauseMenu : NetworkBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && NetworkManager.LocalClient != null)
         {
             pausemenu.SetActive(true);
             NetworkManager.LocalClient.PlayerObject.GetComponent<charmovement>().Pause();

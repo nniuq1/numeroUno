@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.SceneManagement;
 
 public class hamburguesaHeld : NetworkBehaviour
 {
@@ -25,7 +26,8 @@ public class hamburguesaHeld : NetworkBehaviour
 
         if (timeRemaining <= 0)
         {
-            print("youWin");
+            VictoryServerRPC();
+            //print("youWin");
             //Destroy(transform.parent.parent.gameObject);
         }
     }
@@ -40,5 +42,19 @@ public class hamburguesaHeld : NetworkBehaviour
     {
         timeRemaining = timeremaining;
         Object.FindObjectOfType<hamburgesaClock>().time = timeremaining;
+    }
+
+    [ServerRpc]
+    public void VictoryServerRPC()
+    {
+        VictoryClientRPC();
+    }
+
+    [ClientRpc]
+    public void VictoryClientRPC()
+    {
+        NetworkManager.Singleton.Shutdown();
+        Destroy(NetworkManager.gameObject);
+        SceneManager.LoadScene("Main Menu");
     }
 }

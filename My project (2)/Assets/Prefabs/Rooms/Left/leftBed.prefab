@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2506892403931905087}
+  - component: {fileID: 6740797078768061254}
+  - component: {fileID: -5748564629037451400}
   m_Layer: 0
   m_Name: leftBed
   m_TagString: Untagged
@@ -38,6 +40,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6740797078768061254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832537978397625329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6e672b3f62b41ef9ae05e5a9ba8597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chair: {fileID: 7768976910690212873, guid: e2b1686f0562e4f48925c237d8292e4e, type: 3}
+  table: {fileID: 2490755033280020257, guid: 1e57d2a1e17624ec7acd5f6fe8f0bbff, type: 3}
+--- !u!114 &-5748564629037451400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832537978397625329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &851268595410825853
 GameObject:
   m_ObjectHideFlags: 0

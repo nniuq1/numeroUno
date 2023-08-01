@@ -40,45 +40,45 @@ public class inventory : NetworkBehaviour
         if (itemClasses.Count > 0)
         {
             transform.GetChild(2).GetChild(0).transform.GetComponent<SpriteRenderer>().sprite = itemClasses[(int)itemSelected.Value].sprite;
-            if (itemClasses[(int)itemSelected.Value].weapontype == itemClass.WeaponType.Ranged)
+            if ((transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled == true || transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled == true || transform.GetChild(2).GetChild(0).GetComponent<lazers>().enabled == true || transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled == false) && itemClasses[(int)itemSelected.Value].weapontype == itemClass.WeaponType.Ranged && !GetComponent<charmovement>().isPaused && !GetComponent<charmovement>().stunned)
             {
                 transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<lazers>().enabled = false;
-                transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
-                transform.GetChild(2).GetChild(0).localScale = new Vector3(0.8f, 0.8f, 1);
+                //transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
+                //transform.GetChild(2).GetChild(0).localScale = new Vector3(0.8f, 0.8f, 1);
                 transform.GetChild(2).GetChild(0).position = transform.position;
                 transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled = true;
             }
-            else if (itemClasses[(int)itemSelected.Value].weapontype == itemClass.WeaponType.Melee)
+            else if ((transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled == true || transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled == true || transform.GetChild(2).GetChild(0).GetComponent<lazers>().enabled == true || transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled == false) && itemClasses[(int)itemSelected.Value].weapontype == itemClass.WeaponType.Melee && !GetComponent<charmovement>().isPaused && !GetComponent<charmovement>().stunned)
             {
                 transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<lazers>().enabled = false;
-                transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
+                //transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
                 transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled = true;
             }
-            else if (itemClasses[(int)itemSelected.Value].weapontype == itemClass.WeaponType.Hamburguesa)
+            else if ((transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled == true || transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled == true || transform.GetChild(2).GetChild(0).GetComponent<lazers>().enabled == true || transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled == false) && itemClasses[(int)itemSelected.Value].weapontype == itemClass.WeaponType.Hamburguesa && !GetComponent<charmovement>().isPaused && !GetComponent<charmovement>().stunned)
             {
                 transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<lazers>().enabled = false;
-                transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
-                transform.GetChild(2).GetChild(0).localScale = new Vector3(0.8f, 0.8f, 1);
+                //transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
+                //transform.GetChild(2).GetChild(0).localScale = new Vector3(0.8f, 0.8f, 1);
                 transform.GetChild(2).GetChild(0).position = transform.position;
                 transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled = true;
             }
-            else if (itemClasses[(int)itemSelected.Value].weapontype == itemClass.WeaponType.Other)
+            else if ((transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled == true || transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled == true || transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled == true || transform.GetChild(2).GetChild(0).GetComponent<lazers>().enabled == false) && itemClasses[(int)itemSelected.Value].weapontype == itemClass.WeaponType.Other && !GetComponent<charmovement>().isPaused && !GetComponent<charmovement>().stunned)
             {
                 transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<lazers>().enabled = true;
-                transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
-                transform.GetChild(2).GetChild(0).localScale = new Vector3(1, 1, 1);
+                //transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
+                //transform.GetChild(2).GetChild(0).localScale = new Vector3(1, 1, 1);
                 transform.GetChild(2).GetChild(0).position = transform.position;
             }
-            else
+            /*else
             {
                 transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled = false;
@@ -87,7 +87,14 @@ public class inventory : NetworkBehaviour
                 transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
                 transform.GetChild(2).GetChild(0).localScale = new Vector3(0.8f, 0.8f, 1);
                 transform.GetChild(2).GetChild(0).position = transform.position;
-            }
+            }*/
+        }
+        else
+        {
+            transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled = false;
+            transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled = false;
+            transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled = false;
+            transform.GetChild(2).GetChild(0).GetComponent<lazers>().enabled = false;
         }
 
         if (IsOwner)

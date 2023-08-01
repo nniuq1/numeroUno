@@ -6,13 +6,15 @@ using Unity.Netcode;
 
 public class charmovement : NetworkBehaviour
 {
-    bool isPaused;
+    bool stunStateChange = false;
+
+    public bool isPaused;
 
     public GameObject dustparticle;
     public float footstepChance = 0.05f;
 
     public GameObject roomAranger;
-    bool stunned = false;
+    public bool stunned = false;
 
     private Rigidbody2D rb;
     public float speed = 5;
@@ -44,6 +46,22 @@ public class charmovement : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isPaused || stunned)
+        {
+            transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled = false;
+            transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled = false;
+            transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled = false;
+            transform.GetChild(2).GetChild(0).GetComponent<lazers>().enabled = false;
+            stunStateChange = true;
+        }
+        else if (stunStateChange)
+        {
+            transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled = true;
+            transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled = true;
+            transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled = true;
+            transform.GetChild(2).GetChild(0).GetComponent<lazers>().enabled = true;
+        }
+
         if (SceneManager.GetActiveScene().name == "testing" && t == 0)
         {
             t = 1;
@@ -96,7 +114,7 @@ public class charmovement : NetworkBehaviour
         }
         else
         {
-            if (!stunned && !isPaused)
+            if (!stunned)
             {
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
