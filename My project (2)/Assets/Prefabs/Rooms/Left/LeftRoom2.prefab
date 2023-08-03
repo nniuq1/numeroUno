@@ -240,7 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1543503331578809274}
   m_Layer: 0
-  m_Name: chairLocation
+  m_Name: chairLocation1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -648,8 +648,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6e672b3f62b41ef9ae05e5a9ba8597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backwardschair: {fileID: 8561860865825455570, guid: bbe919da8e1ce4ccea04eb82f4e5e749, type: 3}
   chair: {fileID: 7768976910690212873, guid: e2b1686f0562e4f48925c237d8292e4e, type: 3}
   table: {fileID: 2490755033280020257, guid: 1e57d2a1e17624ec7acd5f6fe8f0bbff, type: 3}
+  sofa: {fileID: 0}
+  bed: {fileID: 0}
+  stove: {fileID: 0}
+  pan: {fileID: 0}
 --- !u!114 &3620983713515522885
 MonoBehaviour:
   m_ObjectHideFlags: 0

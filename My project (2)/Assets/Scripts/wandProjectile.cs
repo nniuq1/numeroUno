@@ -11,6 +11,7 @@ public class wandProjectile : NetworkBehaviour
     bool move = true;
     public itemClass item;
     NetworkVariable<Vector2> _netpos = new NetworkVariable<Vector2>();
+    public AudioClip sfx;
 
     private void Start()
     {
@@ -53,6 +54,7 @@ public class wandProjectile : NetworkBehaviour
                     bounces--;
                     float random = ((Random.Range(0, 2) * 2) - 1) * Mathf.PI / 2;
                     transform.GetComponent<Rigidbody2D>().velocity = new Vector2(item.projectileSpeed * Mathf.Cos(Mathf.Atan2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y) + (Mathf.PI / 2) + random), item.projectileSpeed * Mathf.Sin(Mathf.Atan2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y) + (Mathf.PI / 2) + random));
+                    //transform.GetChild(0).GetComponent<AudioSource>().Play();
                 }
                 else
                 {

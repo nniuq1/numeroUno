@@ -27,6 +27,19 @@ public class hamburguesaHeld : NetworkBehaviour
         if (timeRemaining <= 0)
         {
             VictoryServerRPC();
+            timeRemaining = 1000;
+            SetTimeServerRPC(timeRemaining);
+            for (int i = 0; i < transform.parent.parent.GetComponent<inventory>().itemClasses.Count; i++)
+            {
+                if (transform.parent.parent.GetComponent<inventory>().itemClasses[i].weapontype == itemClass.WeaponType.Hamburguesa)
+                {
+                    transform.parent.parent.GetComponent<inventory>().itemClasses.RemoveAt(i);
+                    if (i < transform.parent.parent.GetComponent<inventory>().itemSelected.Value)
+                    {
+                        transform.parent.parent.GetComponent<inventory>().itemSelected.Value--;
+                    }
+                }
+            }
             //print("youWin");
             //Destroy(transform.parent.parent.gameObject);
         }
@@ -53,8 +66,7 @@ public class hamburguesaHeld : NetworkBehaviour
     [ClientRpc]
     public void VictoryClientRPC()
     {
-        NetworkManager.Singleton.Shutdown();
-        Destroy(NetworkManager.gameObject);
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("victory");
+        transform.parent.parent.position = new Vector3(0, 3, 0);
     }
 }

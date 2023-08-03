@@ -31,6 +31,12 @@ public class lazers : NetworkBehaviour
             {
                 shooting.Value = false;
             }
+
+            if (Input.GetMouseButtonDown(0) && IsOwner)
+            {
+                transform.GetChild(1).GetComponent<soundEffectVolume>().baseVolume = 0.0625f;
+                transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(transform.parent.parent.GetComponent<inventory>().itemClasses[(int)transform.parent.parent.GetComponent<inventory>().itemSelected.Value].fireSFX);
+            }
         }
         else
         {
@@ -56,6 +62,7 @@ public class lazers : NetworkBehaviour
                 line.SetPosition(0, player.transform.position);
                 line.SetPosition(1, hit[1].point);
 
+                transform.GetChild(0).GetComponent<soundEffectVolume>().baseVolume = 0.5f;
                 if (!transform.GetChild(0).GetComponent<AudioSource>().isPlaying)
                 {
                     transform.GetChild(0).GetComponent<AudioSource>().Play();
@@ -77,6 +84,7 @@ public class lazers : NetworkBehaviour
         else
         {
             transform.GetChild(0).GetComponent<AudioSource>().Stop();
+            transform.GetChild(1).GetComponent<AudioSource>().Stop();
             line.enabled = false;
         }
     }

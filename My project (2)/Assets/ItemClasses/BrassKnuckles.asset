@@ -27,7 +27,9 @@ MonoBehaviour:
   timeBetweenShots: 0
   bulletDamage: 0
   gravityScale: 0
+  itemID: 0
   MeleeAtackArea: {x: 1, y: 1.5}
   timeBetweenMeleeAtack: 0
   attackSpeed: 0.2
   MeleeDamage: 3
+  soudEffect: {fileID: 8300000, guid: 439e616601911442898c3413d2c7d0be, type: 3}

@@ -34,10 +34,12 @@ public class itemClass : ScriptableObject
     public float bulletDamage;
     public float gravityScale = 0;
     public int itemID;
+    public AudioClip fireSFX;
 
     [Header("Melee Settings")]
     public Vector2 MeleeAtackArea;
     public float timeBetweenMeleeAtack;
     public float attackSpeed;
     public float MeleeDamage;
+    public AudioClip soudEffect;
 }

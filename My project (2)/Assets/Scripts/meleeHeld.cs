@@ -69,6 +69,8 @@ public class meleeHeld : NetworkBehaviour
                     animator.speed = 1f / Inventory.itemClasses[(int)Inventory.itemSelected.Value].attackSpeed;
                     animator.SetBool("attacking", true);
                     StartCoroutine(stopAttacking());
+                    transform.GetChild(0).GetComponent<soundEffectVolume>().baseVolume = 0.125f;
+                    transform.GetChild(0).GetComponent<AudioSource>().PlayOneShot(Inventory.itemClasses[(int)Inventory.itemSelected.Value].soudEffect);
 
                     Collider2D[] attackBox;
 

@@ -48,6 +48,8 @@ public class pointHeld : NetworkBehaviour
             {
                 canShoot = false;
                 StartCoroutine(timeBetween());
+                transform.GetChild(0).GetComponent<soundEffectVolume>().baseVolume = 0.0625f;
+                transform.GetChild(0).GetComponent<AudioSource>().PlayOneShot(Inventory.itemClasses[(int)Inventory.itemSelected.Value].fireSFX);
                 if (IsServer)
                 {
                     GameObject newBullet = Instantiate(Inventory.itemClasses[(int)Inventory.itemSelected.Value].projectile, transform.position, transform.rotation);
@@ -86,6 +88,8 @@ public class pointHeld : NetworkBehaviour
             {
                 canShoot = false;
                 StartCoroutine(timeBetween());
+                transform.GetChild(0).GetComponent<soundEffectVolume>().baseVolume = 0.0625f;
+                transform.GetChild(0).GetComponent<AudioSource>().PlayOneShot(Inventory.itemClasses[(int)Inventory.itemSelected.Value].fireSFX);
                 if (IsServer)
                 {
                     GameObject newBullet = Instantiate(Inventory.itemClasses[(int)Inventory.itemSelected.Value].projectile, transform.position, transform.rotation);

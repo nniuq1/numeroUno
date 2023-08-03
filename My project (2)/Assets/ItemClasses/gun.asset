@@ -27,7 +27,10 @@ MonoBehaviour:
   timeBetweenShots: 0.5
   bulletDamage: 3
   gravityScale: 0.1
+  itemID: 0
+  fireSFX: {fileID: 8300000, guid: 4cbe1bde419864448be81ec266218a78, type: 3}
   MeleeAtackArea: {x: 0, y: 0}
   timeBetweenMeleeAtack: 0
   attackSpeed: 0
   MeleeDamage: 0
+  soudEffect: {fileID: 0}

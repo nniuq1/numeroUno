@@ -63,8 +63,9 @@ public class inventory : NetworkBehaviour
                 transform.GetChild(2).GetChild(0).GetComponent<meleeHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<pointHeld>().enabled = false;
                 transform.GetChild(2).GetChild(0).GetComponent<lazers>().enabled = false;
-                //transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
-                //transform.GetChild(2).GetChild(0).localScale = new Vector3(0.8f, 0.8f, 1);
+                transform.GetChild(2).GetChild(0).GetComponent<Animator>().enabled = false;
+                transform.GetChild(2).GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
+                transform.GetChild(2).GetChild(0).localScale = new Vector3(0.8f, 0.8f, 1);
                 transform.GetChild(2).GetChild(0).position = transform.position;
                 transform.GetChild(2).GetChild(0).GetComponent<hamburguesaHeld>().enabled = true;
             }
@@ -101,6 +102,10 @@ public class inventory : NetworkBehaviour
         {
             if (itemClasses.Count > 0)
             {
+                if (inventoryUI == null && SceneManager.GetActiveScene().name == "victory")
+                {
+                    inventoryUI = GameObject.FindObjectOfType<Canvas>().transform.GetChild(0).gameObject;
+                }
                 inventoryUI.SetActive(true);
                 inventoryUI.transform.GetChild(0).gameObject.SetActive(true);
 

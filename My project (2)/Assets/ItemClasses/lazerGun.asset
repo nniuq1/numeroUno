@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: lazerGun
   m_EditorClassIdentifier: 
   Name: Lazer Rifle
-  sprite: {fileID: 21300000, guid: b9fbcd1d6c8244009bbab0a41dbb845d, type: 3}
+  sprite: {fileID: 21300000, guid: 2c4173e45b5bd463f82fe0af6810361b, type: 3}
   weapontype: 3
   explodes: 0
   explosionDelay: 0
@@ -28,7 +28,9 @@ MonoBehaviour:
   bulletDamage: 0.1
   gravityScale: 0
   itemID: 1
+  fireSFX: {fileID: 8300000, guid: 4c7da6a67809240b384e5246859b330a, type: 3}
   MeleeAtackArea: {x: 0, y: 0}
   timeBetweenMeleeAtack: 0
   attackSpeed: 0
   MeleeDamage: 0
+  soudEffect: {fileID: 0}
